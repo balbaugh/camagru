@@ -2,7 +2,7 @@
 require_once 'security.php';
 require_once '../config/database.php';
 
-$conn = dbConnect('pdo');
+$conn = dbConnect();
 $images_directory = '../photos';
 $sql = 'SELECT image_path FROM user_images';
 $result = $conn->query($sql);

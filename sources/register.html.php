@@ -1,4 +1,4 @@
-<?php include 'templates/includes/headandnav.html.php'; ?>
+<?php include 'includes/headandnav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">
@@ -23,7 +23,7 @@
 				<div class="container p-6 px-10-desktop py-12-desktop">
 					<form class="box" id="registration_form" action="" method="post">
 						<figure class="image level is-mobile is-square">
-							<img id="stealie" src="./public/images/camagruStealie.png" alt="">
+							<img id="stealie" src="../public/images/camagruStealie.png" alt="StealieLogo">
 						</figure>
 						<div class="field">
 							<label for="email" class="label">Email</label>
@@ -61,9 +61,4 @@
 		</div>
 	</div>
 </section>
-<?php include './templates/includes/footer.html.php'; ?>
-</section>
-
-</body>
-
-</html>
+<?php include 'includes/footer.html.php'; ?>

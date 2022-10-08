@@ -4,7 +4,7 @@ if (isset($errorMessage)) :
 endif;
 ?>
 
-<?php include '../../app/templates/includes/headandnav.html.php'; ?>
+<?php include './includes/headandnav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">
