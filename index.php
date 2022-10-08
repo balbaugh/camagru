@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="./public/styles/bulma.css">
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<title>camagru</title>
 </head>
 
@@ -164,7 +163,7 @@
 			</div>
 		</div>
 	</section>
-	<?php include './templates/includes/footer.html.php'; ?>
+	<?php include 'includes/footer.html.php'; ?>
 	</section>
 
 </body>

@@ -80,6 +80,33 @@ session_start();
 						</a>
 						<?php endif; ?>
 					</div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Menu
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                Home
+                            </a>
+                            <a class="navbar-item">
+                                Profile
+                            </a>
+                            <a class="navbar-item">
+                                Post
+                            </a>
+                            <hr class="navbar-divider">
+                            <?php if ($loggedIn) : ?>
+                                <a class="navbar-item">
+                                    Log out
+                                </a>
+                            <?php else : ?>
+                                <a class="navbar-item">
+                                    Log in
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

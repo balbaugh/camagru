@@ -1,21 +1,51 @@
-<?php include 'includes/headandnav.html.php'; ?>
+
+<?php
+    //require_once '../dbconnect.php';
+    require_once '../functions.php';
+    require_once '../security.php';
+
+    if(isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $errors = [];
+
+        if (empty($username)) {
+            $errors[] = 'Username is required';
+        }
+        if (empty($email)) {
+            $errors[] = 'Email is required';
+        }
+        if (empty($password)) {
+            $errors[] = 'Password is required';
+        }
+
+        if (empty($errors)) {
+            $conn = dbConnect();
+            $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+            $conn = null;
+            header(' ');
+        }
+    }
+?>
+
+
+
+
+
+
+
+<?php include '../includes/headandnav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">
 		<div class="columns is-vcentered">
 			<div class="column is-6 mb-8 mb-0-desktop">
-				<!-- prints registration form errors -->
-				<?php
-				if (!empty($errors)) : ?>
-				<div class="notification is-danger">
-					<p>Your account could not be created. Please check the following:</p>
-					<ul>
-						<?php foreach ($errors as $error) : ?>
-						<li><?= $error ?></li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<?php endif; ?>
 				<h2 class="mb-10 title is-2">We steal your face right off of your head!</h2>
 				<p class="is-size-5 has-text-grey-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 			</div>
@@ -23,7 +53,7 @@
 				<div class="container p-6 px-10-desktop py-12-desktop">
 					<form class="box" id="registration_form" action="" method="post">
 						<figure class="image level is-mobile is-square">
-							<img id="stealie" src="../public/images/camagruStealie.png" alt="StealieLogo">
+							<img src="../public/images/camagruStealie.png" alt="StealieLogo">
 						</figure>
 						<div class="field">
 							<label for="email" class="label">Email</label>
@@ -45,7 +75,7 @@
 								<input class="input" type="password" name="user[password]" id="password"
 									placeholder="********" required>
 							</div>
-							<p id=" error_message"></p>
+                            <?php echo $errors;?>
 						</div>
 
 						<!-- INSERT TERMS OF SERVICE TOS CHECKBOX -->
@@ -61,4 +91,4 @@
 		</div>
 	</div>
 </section>
-<?php include 'includes/footer.html.php'; ?>
+<?php include '../includes/footer.html.php'; ?>

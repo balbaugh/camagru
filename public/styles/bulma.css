@@ -44,6 +44,11 @@
 	font-style: normal;
 }
 
+/* footer fixed to bottom */
+.is-fullheight-100vh{
+	height:100vh;
+}
+
 /* END OF ADDED STYLES */
 
 
