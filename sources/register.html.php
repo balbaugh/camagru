@@ -1,44 +1,9 @@
-
 <?php
-    //require_once '../dbconnect.php';
-    require_once '../functions.php';
-    require_once '../security.php';
-
-    if(isset($_POST['submit'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $errors = [];
-
-        if (empty($username)) {
-            $errors[] = 'Username is required';
-        }
-        if (empty($email)) {
-            $errors[] = 'Email is required';
-        }
-        if (empty($password)) {
-            $errors[] = 'Password is required';
-        }
-
-        if (empty($errors)) {
-            $conn = dbConnect();
-            $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
-            $conn = null;
-            header(' ');
-        }
-    }
+    // include './config/dbconnect.php';
+    // require_once './controllers/functions.php';
+    // require_once './controllers/security.php';
+    // require_once './controllers/registration.php';
 ?>
-
-
-
-
-
-
 
 <?php include '../includes/headandnav.html.php'; ?>
 
@@ -58,30 +23,35 @@
 						<div class="field">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="user[email]" id="email"
+								<input class="input" type="email" name="email" id="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
+                            <p class="help is-danger"> <?php echo $email_error; ?> </p>
 						</div>
+
 						<div class=" field">
 							<label for="username" class="label">Username</label>
 							<div class="control">
-								<input class="input" type="text" name="user[username]" id="username"
+								<input class="input" type="text" name="username" id="username"
 									placeholder="Username" required>
 							</div>
+                            <p class="help is-danger"> <?php echo $username_error; ?> </p>
 						</div>
+
 						<div class=" field">
 							<label for="password" class="label">Password</label>
 							<div class="control">
-								<input class="input" type="password" name="user[password]" id="password"
+								<input class="input" type="password" name="password" id="password"
 									placeholder="********" required>
 							</div>
-                            <?php echo $errors;?>
+                            <p class="help is-danger"> <?php echo $password_error; ?> </p>
 						</div>
 
-						<!-- INSERT TERMS OF SERVICE TOS CHECKBOX -->
-
-						<input type="submit" name="submit" id="signup_btn" value="Sign Up"
-							class="button is-primary is-fullwidth">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary is-fullwidth" type="submit" name="submit" id="submit">Sign Up</button>
+                            </div>
+                        </div>
 					</form>
 					<div class="box has-text-centered">
 						Already have an account? <a href="../index.php">Log in</a>
