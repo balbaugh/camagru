@@ -1,13 +1,13 @@
 <?php
 
-// The ob_start() method keeps an eye on output buffering and allow us to use Header.
+/*// The ob_start() method keeps an eye on output buffering and allow us to use Header.
 ob_start();
 
 // The $_SESSION allow us to save data that we can use in our PHP application,
 // sessions are alive as long as the browser window is open.
 if(!isset($_SESSION)) {
     session_start();
-}
+}*/
 
 function dbConnect(): PDO
 {

@@ -1,10 +1,3 @@
-<?php
-    // include './config/dbconnect.php';
-    // require_once './controllers/functions.php';
-    // require_once './controllers/security.php';
-    // require_once './controllers/registration.php';
-?>
-
 <?php include '../includes/headandnav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
@@ -16,7 +9,7 @@
 			</div>
 			<div class="column is-5">
 				<div class="container p-6 px-10-desktop py-12-desktop">
-					<form class="box" id="registration_form" action="" method="post">
+					<form class="box" id="registration_form" action="../controllers/registration.php" method="post">
 						<figure class="image level is-mobile is-square">
 							<img src="../public/images/camagruStealie.png" alt="StealieLogo">
 						</figure>
@@ -26,7 +19,9 @@
 								<input class="input" type="email" name="email" id="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
-                            <p class="help is-danger"> <?php echo $email_error; ?> </p>
+                            <?php if (isset($_GET['email_error'])) { ?>
+                                <p class="help is-danger"><?php echo $_GET['email_error']; ?> </p>
+                            <?php } ?>
 						</div>
 
 						<div class=" field">
@@ -35,7 +30,9 @@
 								<input class="input" type="text" name="username" id="username"
 									placeholder="Username" required>
 							</div>
-                            <p class="help is-danger"> <?php echo $username_error; ?> </p>
+                            <?php if (isset($_GET['username_error'])) { ?>
+                                <p class="help is-danger"><?php echo $_GET['username_error']; ?> </p>
+                            <?php } ?>
 						</div>
 
 						<div class=" field">
@@ -44,17 +41,19 @@
 								<input class="input" type="password" name="password" id="password"
 									placeholder="********" required>
 							</div>
-                            <p class="help is-danger"> <?php echo $password_error; ?> </p>
+                            <?php if (isset($_GET['password_error'])) { ?>
+                                <p class="help is-danger"><?php echo $_GET['password_error']; ?> </p>
+                            <?php } ?>
 						</div>
 
                         <div class="field">
                             <div class="control">
-                                <button class="button is-primary is-fullwidth" type="submit" name="submit" id="submit">Sign Up</button>
+                                <button class="button is-primary is-fullwidth" type="submit" name="submit_registration" id="submit_registration">Sign Up</button>
                             </div>
                         </div>
 					</form>
 					<div class="box has-text-centered">
-						Already have an account? <a href="../index.php">Log in</a>
+						Already have an account? <a href="login.html.php">Log in</a>
 					</div>
 				</div>
 			</div>

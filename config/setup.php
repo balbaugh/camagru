@@ -8,16 +8,17 @@ $DB_PASSWORD = 'pizzza';
 $sql = "
 		CREATE DATABASE IF NOT EXISTS `camagru_db`;
 		CREATE TABLE IF NOT EXISTS camagru_db. `users` (
-			`id_user`				INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			`id_user`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`username`				VARCHAR(255) NOT NULL,
 			`email`					VARCHAR(255) NOT NULL,
 			`password`				VARCHAR(255) NOT NULL,
 			`verify_token`			VARCHAR(255) NOT NULL,
+			`verified`				TINYINT(1) NOT NULL DEFAULT 0,
 			`notifications`			TINYINT(1) NOT NULL DEFAULT 1,
 			`creation_date`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
 		CREATE TABLE IF NOT EXISTS camagru_db. `images` (
-			`id_image`				INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			`id_image`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
 			`image_name`			VARCHAR(255) NOT NULL,
@@ -26,7 +27,7 @@ $sql = "
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
 		CREATE TABLE IF NOT EXISTS camagru_db. `likes` (
-			`id_like`				INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			`id_like`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
@@ -34,7 +35,7 @@ $sql = "
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
 		CREATE TABLE IF NOT EXISTS camagru_db. `comments` (
-			`id_comment`			INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			`id_comment`			INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
