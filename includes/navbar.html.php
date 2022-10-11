@@ -1,7 +1,7 @@
 	<nav class="navbar has-shadow">
 		<div class="navbar-brand">
 			<a class="navbar-item">
-				<?php echo "<img src='../public/images/camagruText.png' alt=''>"; ?>
+				<?php echo "<img src='../public/stickers/camagruText.png' alt=''>"; ?>
 			</a>
 			<div class="navbar-start">
 				<div class="navbar-item">

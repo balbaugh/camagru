@@ -40,9 +40,13 @@ if (isset($_POST['submit_login'])) {
         if ($result) {
             if (password_verify($password, $result['password'])) {
                 if ($result['verified'] == 1) {
-                    $_SESSION['id_user'] = $result['id_user'];
-                    $_SESSION['username'] = $result['username'];
-                    $_SESSION['email'] = $result['email'];
+                    $user = array(
+                        'id_user' => $result['id_user'],
+                        'username' => $result['username'],
+                        'email' => $result['email'],
+
+                    );
+                    $_SESSION['user'] = $user;
                     header("Location: ../sources/gallery.html.php?login_success=You are logged in!");
                     exit();
                 } else {

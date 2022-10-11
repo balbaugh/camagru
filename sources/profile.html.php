@@ -1,8 +1,4 @@
-<?php include '../includes/headNavOut.html.php'; ?>
-
-<?php if (isset($_GET['logout_success'])) { ?>
-    <p class="help is-success"><?php echo $_GET['logout_success']; ?> </p>
-<?php } ?>
+<?php include '../includes/headNav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
     <div class="is-relative container">
@@ -13,7 +9,7 @@
             </div>
             <div class="column is-5">
                 <div class="container p-6 px-10-desktop py-12-desktop">
-                    <form class="box" id="login_form" action="../controllers/login.php" method="post">
+                    <form class="box" id="registration_form" action="../controllers/registration.php" method="post">
                         <figure class="image level is-mobile is-square">
                             <img src="../public/stickers/camagruStealie.png" alt="StealieLogo">
                         </figure>
@@ -26,11 +22,16 @@
                             <?php if (isset($_GET['email_error'])) { ?>
                                 <p class="help is-danger"><?php echo $_GET['email_error']; ?> </p>
                             <?php } ?>
-                            <?php if (isset($_GET['login_error'])) { ?>
-                                <p class="help is-danger"><?php echo $_GET['login_error']; ?> </p>
-                            <?php } ?>
-                            <?php if (isset($_GET['token_success'])) { ?>
-                                <p class="help is-success"><?php echo $_GET['token_success']; ?> </p>
+                        </div>
+
+                        <div class=" field">
+                            <label for="username" class="label">Username</label>
+                            <div class="control">
+                                <input class="input" type="text" name="username" id="username"
+                                       placeholder="Username" required>
+                            </div>
+                            <?php if (isset($_GET['username_error'])) { ?>
+                                <p class="help is-danger"><?php echo $_GET['username_error']; ?> </p>
                             <?php } ?>
                         </div>
 
@@ -47,12 +48,12 @@
 
                         <div class="field">
                             <div class="control">
-                                <button class="button is-primary is-fullwidth" type="submit" name="submit_login" id="submit_login">Log In</button>
+                                <button class="button is-primary is-fullwidth" type="submit" name="submit_registration" id="submit_registration">Sign Up</button>
                             </div>
                         </div>
                     </form>
                     <div class="box has-text-centered">
-                        Need an account? <a href="register.html.php">Register</a>
+                        Already have an account? <a href="login.html.php">Log in</a>
                     </div>
                 </div>
             </div>

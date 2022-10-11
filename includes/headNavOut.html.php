@@ -14,7 +14,7 @@
 
 		<div class="navbar-brand">
 			<a href="" class="navbar-item">
-				<img src="../public/images/camagruText.png" alt="">
+				<img src="../public/stickers/camagruText.png" alt="">
 			</a>
 			<div class="navbar-start">
 				<div class="navbar-item">
@@ -54,17 +54,6 @@
 								</br>
 							</div>
 						</a>
-						<?php if ($loggedIn) : ?>
-						<a href="logout.html.php" class="navbar-item">
-							<div class="level-item">
-								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIconsGray/icons8-logout-50.png" alt="Log out"
-										title="Log out">
-								</span>
-								</br>
-							</div>
-						</a>
-						<?php else : ?>
 						<a href="login.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
@@ -74,7 +63,6 @@
 								</br>
 							</div>
 						</a>
-						<?php endif; ?>
 					</div>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
@@ -92,15 +80,9 @@
                                 Post
                             </a>
                             <hr class="navbar-divider">
-                            <?php if ($loggedIn) : ?>
-                                <a class="navbar-item" href="logout.html.php">
-                                    Log out
-                                </a>
-                            <?php else : ?>
                                 <a class="navbar-item" href="login.html.php">
                                     Log in
                                 </a>
-                            <?php endif; ?>
                         </div>
                     </div>
 				</div>

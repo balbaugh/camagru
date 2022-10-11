@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <!-- By prefixing a link in an HTML document, here the stylesheet, with a forward slash ( / ), it tells the browser to look for the file from the top level of the website. If we refresh the page, we’ll see the styles now display correctly. -->
 
@@ -15,7 +15,7 @@
 
 		<div class="navbar-brand">
 			<a class="navbar-item">
-				<img src="../public/images/camagruText.png" alt="">
+				<img src="../public/stickers/camagruText.png" alt="">
 			</a>
 			<div class="navbar-start">
 				<div class="navbar-item">

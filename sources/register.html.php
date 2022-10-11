@@ -1,4 +1,4 @@
-<?php include '../includes/headandnav.html.php'; ?>
+<?php include '../includes/headNavOut.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">
@@ -11,7 +11,7 @@
 				<div class="container p-6 px-10-desktop py-12-desktop">
 					<form class="box" id="registration_form" action="../controllers/registration.php" method="post">
 						<figure class="image level is-mobile is-square">
-							<img src="../public/images/camagruStealie.png" alt="StealieLogo">
+							<img src="../public/stickers/camagruStealie.png" alt="StealieLogo">
 						</figure>
 						<div class="field">
 							<label for="email" class="label">Email</label>

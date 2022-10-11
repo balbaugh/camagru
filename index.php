@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="navbar-brand">
 				<a class="navbar-item">
-					<img src="./public/images/camagruText.png" alt="">
+					<img src="public/stickers/camagruText.png" alt="">
 				</a>
 			</div>
 
@@ -125,7 +125,7 @@
 					<div class="container p-6 px-10-desktop py-12-desktop">
 						<form class="box" id="registration_form" action="" method="post">
 							<figure class="image level is-mobile is-square">
-								<img id="stealie" src="./public/images/camagruStealie.png" alt="">
+								<img id="stealie" src="public/stickers/camagruStealie.png" alt="">
 							</figure>
 							<div class="field">
 								<label for="email" class="label">Email</label>
