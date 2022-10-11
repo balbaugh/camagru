@@ -22,19 +22,11 @@
                             <?php if (isset($_GET['email_error'])) { ?>
                                 <p class="help is-danger"><?php echo $_GET['email_error']; ?> </p>
                             <?php } ?>
+                            <?php if (isset($_GET['login_error'])) { ?>
+                                <p class="help is-danger"><?php echo $_GET['login_error']; ?> </p>
+                            <?php } ?>
                             <?php if (isset($_GET['token_success'])) { ?>
                                 <p class="help is-success"><?php echo $_GET['token_success']; ?> </p>
-                            <?php } ?>
-                        </div>
-
-                        <div class=" field">
-                            <label for="username" class="label">Username</label>
-                            <div class="control">
-                                <input class="input" type="text" name="username" id="username"
-                                       placeholder="Username" required>
-                            </div>
-                            <?php if (isset($_GET['username_error'])) { ?>
-                                <p class="help is-danger"><?php echo $_GET['username_error']; ?> </p>
                             <?php } ?>
                         </div>
 

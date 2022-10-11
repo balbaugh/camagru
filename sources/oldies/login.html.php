@@ -1,10 +1,4 @@
-<?php
-if (isset($errorMessage)) :
-	echo '<div class="errors">Sorry, your username and password could not be found.</div>';
-endif;
-?>
-
-<?php include './includes/headandnav.html.php'; ?>
+<?php include '../includes/headandnav.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">

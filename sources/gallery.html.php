@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Photo Album - Free Bulma template</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <!-- Bulma Version 0.9.0-->
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/instaAlbum.css">
-</head>
+<?php include '../includes/headandnav.html.php'; ?>
 
 <body>
-<div class="navbar is-inline-flex is-transparent">
-    <div class="navbar-brand">
-        <a class="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Bulma">
-        </a>
-    </div>
-    <div class="navbar-menu">
-        <div class="navbar-item">
-            <div class="control has-icons-left">
-                <input class="input is-small has-text-centered" type="text" placeholder="search">
-                <span class="icon is-left is-small">
-                        <i class="material-icons">search</i>
-                    </span>
-            </div>
-        </div>
-    </div>
-    <div class="navbar-item is-flex-touch">
-        <a class="navbar-item">
-            <i class="material-icons">explore</i>
-        </a>
-        <a class="navbar-item">
-            <i class="material-icons">favorite_border</i>
-        </a>
-        <a class="navbar-item">
-            <i class="material-icons">person_outline</i>
-        </a>
-    </div>
-</div>
+<?php if (isset($_GET['login_success'])) { ?>
+    <p class="help is-success"><?php echo $_GET['login_success']; ?> </p>
+<?php } ?>
+
 <div class="columns body-columns">
     <div class="column is-half is-offset-one-quarter">
         <div class="card">
@@ -67,14 +30,18 @@
                 <div class="level is-mobile">
                     <div class="level-left">
                         <div class="level-item has-text-centered">
-                            <a href="">
-                                <i class="material-icons">favorite_border</i>
-                            </a>
+                            <div>
+                                <a href="">
+                                    <img src="../public/icons/MaterialIconsGray/icons8-heart-50.png" alt="Like"
+                                         title="Log in">
+                                </a>
+                            </div>
                         </div>
                         <div class="level-item has-text-centered">
                             <div>
                                 <a href="">
-                                    <i class="material-icons">chat_bubble_outline</i>
+                                    <img src="../public/icons/MaterialIconsGray/icons8-chat-bubble-50.png" alt="Like"
+                                         title="Log in">
                                 </a>
                             </div>
                         </div>
