@@ -27,15 +27,15 @@ if (isset($_POST['submit'])) {
 	else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST['password']))
 	$message = "<h6 id='message'>" . "Password should contain only letters and numbers" . "<h6>";
 
-			else if (!validate_password($_POST['password']))
+			else if (!validatePassword($_POST['password']))
 			$message = "<h6 id='message'>" . "Password should contain at least 1 lowercase letter, 1 uppercase letter 1
 				number and length of 8" . "<h6>";
 
 					else {
-					$email = validate_data($_POST['email']);
-					$password = validate_data($_POST['password']);
-					$fullname = validate_data($_POST['fullname']);
-					$username = validate_data($_POST['username']);
+					$email = validateData($_POST['email']);
+					$password = validateData($_POST['password']);
+					$fullname = validateData($_POST['fullname']);
+					$username = validateData($_POST['username']);
 
 
 					$sql = $dbh->prepare("SELECT * FROM `user` WHERE `username` = '$username' OR `email` = '$email'");

@@ -9,7 +9,7 @@ if(isset($_POST['new']) && isset($_POST['repeat']) && isset($_POST['username']))
     $new_pass = $_POST['new'];
     $repeat_pass = $_POST['repeat'];
     $username = $_POST['username'];
-    if (strlen($new_pass) < 10 || number_check($new_pass) == 0 || character_check($new_pass) == 0)
+    if (strlen($new_pass) < 10 || number_check($new_pass) == 0 || characterCheck($new_pass) == 0)
     {
         print_msg("Password has to be min. 10 characters long and has to include 1 number and 1 special character");
         header('Refresh: 3; reset_password.php');

@@ -16,11 +16,11 @@ if(isset($_POST['submit'])){
 		$message = "<h6 id='message'>"."Incorrect username"."<h6>";
 	
 	else if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST['password']) || 
-		!validate_password($_POST['password']))
+		!validatePassword($_POST['password']))
 		$message = "<h6 id='message'>"."Incorrect password"."<h6>";
 	else {
-		$username = validate_data ( $_POST['username'] );
-		$password = validate_data ( $_POST['password'] );
+		$username = validateData ( $_POST['username'] );
+		$password = validateData ( $_POST['password'] );
 
 		// check if one info is not givin by user, return error message
 		if(empty($username) || empty($password)){
@@ -85,7 +85,7 @@ if (isset($_POST['submit-forgot'])){
 	if (!filter_var($_POST['forgot-email'], FILTER_VALIDATE_EMAIL))
 		$message = "<h6 id='message'>"."Incorrect email!"."<h6>";
 	else{
-		$forgot_email= validate_data ($_POST['forgot-email']);
+		$forgot_email= validateData ($_POST['forgot-email']);
 		$_POST = array();
 		$forgot_query = $dbh->prepare ("SELECT * FROM `user` WHERE `email` = '$forgot_email'");
 		$forgot_query->execute();

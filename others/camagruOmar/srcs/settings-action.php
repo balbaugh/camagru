@@ -27,7 +27,7 @@ if (isset($_POST['change_username'])){
     if (!preg_match("/^[a-zA-Z]*$/", $_POST['new_username']))
 	    $message = "Username can contain only letters";
     else {
-        $new_username = validate_data ( $_POST['new_username'] );
+        $new_username = validateData ( $_POST['new_username'] );
         $check_username = $dbh->prepare("SELECT * FROM `user` WHERE `username` = '$new_username'");
         $check_username->execute();
         $checked = $check_username->fetch();
@@ -55,7 +55,7 @@ if (isset($_POST['change_name'])){
     if (!preg_match("/^[a-zA-Z\s]+$/", $_POST['new_name']))
 	    $message = "Fullname can contain only letters and spaces";
     else {
-        $new_name = validate_data ( $_POST['new_name'] );
+        $new_name = validateData ( $_POST['new_name'] );
         $_POST = array();
         
         $name_query = $dbh->prepare("UPDATE `user` SET `fullname` = '$new_name' WHERE `username` = '$username'");
@@ -68,7 +68,7 @@ if (isset($_POST['change_email'])){
     if (!filter_var($_POST['new_email'], FILTER_VALIDATE_EMAIL))
         $message = "Incorrect email!";
     else {
-        $new_email = validate_data ( $_POST['new_email'] );
+        $new_email = validateData ( $_POST['new_email'] );
         $_POST = array();
         $email_query = $dbh->prepare("UPDATE `user` SET `email` = '$new_email' WHERE `username` = '$username'");
         $email_query->execute();
@@ -79,12 +79,12 @@ if (isset($_POST['change_pass'])){
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST['new_pass'])){
         $message = "Password should contain only letters and numbers";
     }
-    else if (!validate_password(($_POST['new_pass'])))
+    else if (!validatePassword(($_POST['new_pass'])))
     {
         $message = "Password should contain at least 1 lowercase letter, 1 uppercase letter 1 number and length of 8";
     }
     else {
-        $new_pass = validate_data ( $_POST['new_pass'] );
+        $new_pass = validateData ( $_POST['new_pass'] );
         $_POST = array();
         $new_pass = hash('whirlpool', $new_pass);
         $pass_query = $dbh->prepare("UPDATE `user` SET `password` = '$new_pass' WHERE `username` = '$username'");

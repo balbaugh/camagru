@@ -12,7 +12,7 @@ if ($_SESSION['nwpass'] == 2){
             $message = "<h6 class='error-msg'>"."Password should contain only letters and numbers"."<h6>";
         }
     
-        else if (!validate_password($_POST['new-password'])){
+        else if (!validatePassword($_POST['new-password'])){
             $message = "<h6 class='error-msg'>"."Password should contain at least 1 lowercase letter, 1 uppercase letter 1 number and length of 8"."<h6>";
         }
 

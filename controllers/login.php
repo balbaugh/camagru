@@ -4,7 +4,7 @@
 
 session_start();
 
-include("../config/dbconnect.php");
+include_once '../config/dbconnect.php';
 
 if (isset($_POST['submit_login'])) {
     $email = $_POST['email'];
@@ -34,12 +34,12 @@ if (isset($_POST['submit_login'])) {
 
     try {
         $conn = dbConnect();
-        $stmt = $conn->prepare("SELECT id_user, username, email, password, verified FROM users WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id_user, username, email, password, verify_token FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             if (password_verify($password, $result['password'])) {
-                if ($result['verified'] == 1) {
+                if ($result['verify_token'] == 1) {
                     $user = array(
                         'id_user' => $result['id_user'],
                         'username' => $result['username'],
@@ -47,7 +47,7 @@ if (isset($_POST['submit_login'])) {
 
                     );
                     $_SESSION['user'] = $user;
-                    header("Location: ../sources/gallery.html.php?login_success=You are logged in!");
+                    header("Location: ../sources/home.html.php?login_success=You are logged in!");
                     exit();
                 } else {
                     header("Location: ../sources/login.html.php?login_error=Your account is not verified!");

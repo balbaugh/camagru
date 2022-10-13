@@ -18,10 +18,10 @@ if (isset($_POST['submit'])) {
 	if (strlen($new_user) > 20 || strlen($new_user) < 4) {
 		print_msg("Username has to be in between 4 and 20 characters long.");
 		header('Refresh: 2; create.php');
-	} else if (character_check($new_user) == 1) {
+	} else if (characterCheck($new_user) == 1) {
 		print_msg("It can only contain aphabetical characters, numbers and underscores.");
 		header('Refresh: 2; create.php');
-	} else if (($new_pwd != $re_pwd) || strlen($new_pwd < 10) || number_check($new_pwd) == 0 || character_check($new_pwd) == 0) {
+	} else if (($new_pwd != $re_pwd) || strlen($new_pwd < 10) || number_check($new_pwd) == 0 || characterCheck($new_pwd) == 0) {
 		print_msg("Passwords have to be identical, minimum 10 characters long, including a number, a capital letter and a special character.");
 		header('Refresh: 5; create.php');
 	} else if ($_POST['email'] && $_POST['name'] && $_POST['login'] && $_POST['passwd'] === $_POST['re-passwd'] && isset($_POST['submit'])) {

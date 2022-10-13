@@ -27,7 +27,7 @@
 			<div class="navbar-end">
 				<div class="navbar-item">
 					<div class="field is-grouped">
-						<a href="../index.php" class="navbar-item">
+						<a href="../" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-home-50.png" alt="Home"
@@ -36,7 +36,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="profile.html.php" class="navbar-item">
+						<a href="../sources/profile.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-user-50.png" alt="Profile"
@@ -45,7 +45,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="camera.html.php" class="navbar-item">
+						<a href="../sources/camera.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-add-50.png" alt="Post"
@@ -54,7 +54,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="login.html.php" class="navbar-item">
+						<a href="../sources/login.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-login-50.png" alt="Log in"
@@ -70,17 +70,17 @@
                         </a>
 
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="../index.php">
+                            <a class="navbar-item" href="../">
                                 Home
                             </a>
-                            <a class="navbar-item" href="profile.html.php">
+                            <a class="navbar-item" href="../sources/profile.html.php">
                                 Profile
                             </a>
-                            <a class="navbar-item" href="camera.html.php">
+                            <a class="navbar-item" href="../sources/camera.html.php">
                                 Post
                             </a>
                             <hr class="navbar-divider">
-                                <a class="navbar-item" href="login.html.php">
+                                <a class="navbar-item" href="../sources/login.html.php">
                                     Log in
                                 </a>
                         </div>

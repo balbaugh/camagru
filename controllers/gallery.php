@@ -17,21 +17,24 @@ if (isset($_SESSION['user'])) {
     $stmt->execute();
 }
 
-function getImages() {
+function getImages()
+{
     $stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
     $stmt->execute();
     $images = $stmt->fetchAll();
     return $images;
 }
 
-function getLikes() {
+function getLikes()
+{
     $stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
     $stmt->execute();
     $likes = $stmt->fetchAll();
     return $likes;
 }
 
-function getComments() {
+function getComments()
+{
     $stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
     $stmt->execute();
     $comments = $stmt->fetchAll();

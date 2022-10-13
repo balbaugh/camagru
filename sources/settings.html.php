@@ -1,2 +1,2 @@
-<?php include '../includes/headNav.html.php'; ?>
+<?php include_once '../includes/headNav.html.php'; ?>
 

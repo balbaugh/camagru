@@ -1,9 +1,9 @@
 <?php
 
-include './config/dbconnect.php';
+include_once './config/dbconnect.php';
 
 //checks that the login and password match and also if the user account is activated
-function auth ($login, $password)
+function auth($login, $password)
 {
     $res = 0;
     try {
@@ -13,9 +13,10 @@ function auth ($login, $password)
         $result = $qry->fetchAll(PDO::FETCH_ASSOC);
         if ($result) {
             foreach ($result as $key) {
-                $user_pwd = hash('whirlpool', $password);
-                if ($key['username'] == $login && $key['pwd'] == $user_pwd)
+                $userPwd = hash('whirlpool', $password);
+                if ($key['username'] == $login && $key['pwd'] == $userPwd) {
                     $res += 1;
+                }
                 if ($key['verify_token'] == 1 && $res == 1) {
                     $conn = null;
                     return ($res += 1);
@@ -30,12 +31,13 @@ function auth ($login, $password)
 }
 
 // checks the input of user activation code to check if it is numeric or not
-function number_check ($str)
+function numberCheck($str)
 {
     $i = 0;
     while ($str[$i]) {
-        if (is_numeric($str[$i]) == 1)
+        if (is_numeric($str[$i]) == 1) {
             return 1;
+        }
         $i++;
     }
     return 0;

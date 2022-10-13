@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_id']))
 $username = $_SESSION['username'];
 if(isset($_POST['submit-comment'])){
 
-	$comment = validate_data ( $_POST['comment'] );
+	$comment = validateData ( $_POST['comment'] );
 	$image_id = $_POST['image_id'];
 	if (strlen($comment) > 0 && !empty(trim($comment))){
 		$query = $dbh->prepare("INSERT INTO user_comments(`image_id`, `username`, `comment`) 

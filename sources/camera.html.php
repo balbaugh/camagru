@@ -1,4 +1,4 @@
-<?php include '../includes/headNav.html.php'; ?>
+<?php include_once '../includes/headNav.html.php'; ?>
 
 <section class="section">
     <div class="container">
@@ -52,4 +52,4 @@
 </body>
 <script src="../public/scripts/camera.js"></script>
 </html>
-<?php include '../includes/footer.html.php'; ?>
+<?php include_once '../includes/footer.html.php'; ?>

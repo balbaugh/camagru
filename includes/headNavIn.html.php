@@ -27,7 +27,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="field is-grouped">
-                    <a href="../index.php" class="navbar-item">
+                    <a href="../" class="navbar-item">
                         <div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-home-50.png" alt="Home"
@@ -36,7 +36,7 @@
                             </br>
                         </div>
                     </a>
-                    <a href="profile.html.php" class="navbar-item">
+                    <a href="../sources/profile.html.php" class="navbar-item">
                         <div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-user-50.png" alt="Profile"
@@ -45,7 +45,7 @@
                             </br>
                         </div>
                     </a>
-                    <a href="camera.html.php" class="navbar-item">
+                    <a href="../sources/camera.html.php" class="navbar-item">
                         <div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIconsGray/icons8-add-50.png" alt="Post"
@@ -54,7 +54,7 @@
                             </br>
                         </div>
                     </a>
-                    <a href="../controllers/logut.php" class="navbar-item">
+                    <a href="../controllers/logout.php" class="navbar-item">
                         <div class="level-item">
                             <span class="icon is-medium">
                                 <img src="../public/icons/MaterialIconsGray/icons8-logout-50.png" alt="Log out"
@@ -70,17 +70,17 @@
                     </a>
 
                     <div class="navbar-dropdown">
-                        <a class="navbar-item" href="../index.php">
+                        <a class="navbar-item" href="../">
                             Home
                         </a>
-                        <a class="navbar-item" href="profile.html.php">
+                        <a class="navbar-item" href="../sources/profile.html.php">
                             Profile
                         </a>
-                        <a class="navbar-item" href="camera.html.php">
+                        <a class="navbar-item" href="../sources/camera.html.php">
                             Post
                         </a>
                         <hr class="navbar-divider">
-                            <a class="navbar-item" href="../controllers/logut.php">
+                            <a class="navbar-item" href="../controllers/logout.php">
                                 Log out
                             </a>
                     </div>

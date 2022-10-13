@@ -1,4 +1,4 @@
-<?php include '../includes/headNavGal.html.php'; ?>
+<?php include_once '../includes/headNavHome.html.php'; ?>
 
 <body>
 <?php if (isset($_GET['login_success'])) { ?>
@@ -93,4 +93,5 @@
         </div>
     </div>
 </div>
-<?php include '../includes/footer.html.php'; ?>
+<?php include_once '../includes/footer.html.php'; ?>
+

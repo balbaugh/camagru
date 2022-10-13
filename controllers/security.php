@@ -1,18 +1,21 @@
 <?php
 
-include './config/dbconnect.php';
+include_once '../config/dbconnect.php';
 
 // checks the characters in the string for special characters that could be used to hack the database
 // also in functions.php
-function character_check($user)
+function characterCheck($user)
 {
-    if (preg_match('/[\'^£$%&*()}{@#~?!><>\s+,\/|=+¬-]/', $user))
+    if (preg_match(pattern: '/[\'^£$%&*()}{@#~?!><>\s+,\/|=+¬-]/', subject: $user)) {
         return 1;
-    return 0;
+    } else {
+        return 0;
+    }
 }
 
+
 // double validation for user entries
-function validate_data ($data)
+function validateData($data)
 {
     $data = trim($data);
     $data = stripslashes($data);
@@ -22,10 +25,10 @@ function validate_data ($data)
 }
 
 // password validation
-function validate_password ($password)
+function validatePassword($password)
 {
     if (
-        strlen($password) > 6   &&
+        strlen($password) > 6 &&
         preg_match('/[a-z]/', $password) &&
         preg_match('/[A-Z]/', $password) &&
         preg_match('/[0-9]/', $password)
@@ -35,3 +38,4 @@ function validate_password ($password)
         return 0;
     }
 }
+

@@ -15,7 +15,7 @@ if (isset($_POST['delete_account'])){
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST['password']))
         $message = "Password should contain only letters and numbers";
     else {
-        $user_pass = validate_data ( $_POST['password'] );
+        $user_pass = validateData ( $_POST['password'] );
         $_POST = array();
         $user_pass = hash('whirlpool', $user_pass);
         $check_pass = $dbh->prepare ("SELECT * FROM `user` WHERE `username` = '$username' AND `password` = '$user_pass'");

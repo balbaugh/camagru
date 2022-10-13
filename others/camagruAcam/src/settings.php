@@ -75,7 +75,7 @@ if(isset($_POST['submit']))
         }
         else if (!empty($new_username))
         {
-            if (info_check(2, 0, $new_username) == 1 && character_check($new_username) == 0)
+            if (info_check(2, 0, $new_username) == 1 && characterCheck($new_username) == 0)
             {
                 if (strlen($new_username) <= 20 && strlen($new_username) >= 4)
                 {
@@ -118,7 +118,7 @@ if(isset($_POST['submit']))
         }
         else if(!empty($password))
         {
-            if($password == $repeat_password && strlen($password > 10) && number_check($password) == 1 && character_check($password) == 1)
+            if($password == $repeat_password && strlen($password > 10) && number_check($password) == 1 && characterCheck($password) == 1)
             {
                 $password = hash('whirlpool', $password);
                 try
