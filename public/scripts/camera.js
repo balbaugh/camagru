@@ -42,7 +42,7 @@ return;
 video = document.getElementById('video');
 canvas = document.getElementById('canvas');
 photo = document.getElementById('photo');
-startbutton = document.getElementById('startbutton');
+startbutton = document.getElementById('captureButton');
 
 navigator.mediaDevices.getUserMedia({
 video: true,
