@@ -11,7 +11,7 @@
 				<div class="container p-6 px-10-desktop py-12-desktop">
 					<form action="" method="post" class="box">
 						<figure class="image level is-mobile is-square">
-							<img id="stealie" src="../../public/stickers/camagruStealie.png" alt="">
+							<img id="stealie" src="../../public/logo/camagruStealie.png" alt="">
 						</figure>
 						<div class="field">
 							<label class="label" for="email">Email</label>

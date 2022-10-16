@@ -45,7 +45,7 @@ if(isset($_POST['upload_img_btn']) && !empty($_POST['upload_img_btn'])){
 	  imagecopyresampled($destination, $source, 0, 0, 0, 0, $width, $height, $orig_width, $orig_height);
 	}
 
-	// Grab the stickers, if no stickers selected by user, this if statement will be skipped
+	// Grab the logo, if no logo selected by user, this if statement will be skipped
 	$upload_file = $_POST['upload_file'];
 	if($upload_file){
 		list($type, $data_url) = explode(';', $upload_file);

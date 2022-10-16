@@ -18,7 +18,7 @@ display correctly. -->
 
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img src="../public/stickers/camagruText.png" alt="">
+            <img src="../public/logo/camagruText.png" alt="">
         </a>
         <div class="navbar-start">
             <div class="navbar-item">

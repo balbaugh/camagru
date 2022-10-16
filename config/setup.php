@@ -6,8 +6,8 @@ $DB_USER = 'root';
 $DB_PASSWORD = 'pizzza';
 
 $sql = "
-		CREATE DATABASE IF NOT EXISTS `camagru_db`;
-		CREATE TABLE IF NOT EXISTS camagru_db. `users` (
+		CREATE DATABASE IF NOT EXISTS `camaguru`;
+		CREATE TABLE IF NOT EXISTS camaguru. `users` (
 			`id_user`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`username`				VARCHAR(255) NOT NULL,
 			`email`					VARCHAR(255) NOT NULL,
@@ -17,7 +17,7 @@ $sql = "
 			`notifications`			TINYINT(1) NOT NULL DEFAULT 1,
 			`creation_date`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camagru_db. `images` (
+		CREATE TABLE IF NOT EXISTS camaguru. `images` (
 			`id_image`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ $sql = "
 			`image_path`			LONGBLOB NOT NULL,
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camagru_db. `likes` (
+		CREATE TABLE IF NOT EXISTS camaguru. `likes` (
 			`id_like`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
@@ -34,7 +34,7 @@ $sql = "
 			`liked`					INT DEFAULT 0 NOT NULL,
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camagru_db. `comments` (
+		CREATE TABLE IF NOT EXISTS camaguru. `comments` (
 			`id_comment`			INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,

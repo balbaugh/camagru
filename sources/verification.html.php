@@ -15,7 +15,7 @@
                           action="../controllers/verification.php"
                           method="post">
                         <figure class="image level is-mobile is-square">
-                            <img src="../public/stickers/camagruStealie.png"
+                            <img src="../public/logo/camagruStealie.png"
                                  alt="StealieLogo">
                         </figure>
                         <div class="field">

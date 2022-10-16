@@ -11,7 +11,7 @@ if(!isset($_SESSION)) {
 
 function dbConnect(): PDO
 {
-    $DB_DSN = 'mysql:host=localhost;dbname=camagru_db;';
+    $DB_DSN = 'mysql:host=localhost;dbname=camaguru;';
     $DB_USER = 'root';
     $DB_PASSWORD = 'pizzza';
     $conn = "";

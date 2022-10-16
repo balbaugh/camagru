@@ -1,0 +1,6 @@
+
+Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8»ý²™½0
+kphp:S100"RRename function "check_token" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(×ÔðŒþÿÿÿÿ
+:php:S113"'Add a new line at the end of this file.8»ý²™½0
+sphp:S117"ZRename this parameter "$verify_token" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(×ÔðŒþÿÿÿÿ
+k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Ç´Àöüÿÿÿÿ

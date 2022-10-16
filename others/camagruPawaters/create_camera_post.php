@@ -22,7 +22,7 @@ if(isset($_POST['webcam_img_btn']) && !empty($_POST['webcam_img_btn'])){
 	// Create a unique image name by using strval function that converts the timestamp into a string
 	$image_name = strval(time()) . ".jpg";
 
-	// Grab the photo with the stickers
+	// Grab the photo with the logo
 	if (!isset($_POST['webcam_file']) || empty($_POST['webcam_file'])){
 		header("location: camera.php?error_message=Please enter a valid image");
         exit; 
@@ -35,7 +35,7 @@ if(isset($_POST['webcam_img_btn']) && !empty($_POST['webcam_img_btn'])){
 	$destination = imagecreatefromstring($decoded_url);
 
 	if (!isset($_POST['sticker-canvas']) || empty($_POST['sticker-canvas'])){
-		header("location: camera.php?error_message=error with stickers");
+		header("location: camera.php?error_message=error with logo");
         exit; 
 	}
 	$stickers_canvas = $_POST['sticker-canvas'];
