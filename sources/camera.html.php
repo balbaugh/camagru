@@ -93,23 +93,25 @@
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/bolt.png" class="button sticker" id="boltSticker">
+										<img src="../public/stickers/bolt.png" class="button sticker is-white"
+											id="boltSticker" onclick="selectSticker(this)">
 									</figure>
 								</div>
 							</div>
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/camagruStealie.png" class="button sticker"
-											id="camagruSticker">
+										<img src="../public/stickers/camagruStealie.png" class="button sticker is-white"
+											id="camagruSticker" onclick="selectSticker(this)">
 									</figure>
 								</div>
 							</div>
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/StealYourFaceEmpty.png" class="button sticker"
-											id="emptySticker">
+										<img src="../public/stickers/StealYourFaceEmpty.png"
+											class="button sticker is-white" id="emptySticker"
+											onclick="selectSticker(this)">
 									</figure>
 								</div>
 							</div>
@@ -118,16 +120,16 @@
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/SilentEmoji.png" class="button sticker"
-											id="silentSticker" onclick="selectFilter(this)">
+										<img src="../public/stickers/SilentEmoji.png" class="button sticker is-white"
+											id="silentSticker" onclick="selectSticker(this)">
 									</figure>
 								</div>
 							</div>
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/PizzaEmoji.png" class="button sticker"
-											id="pizzaSticker">
+										<img src="../public/stickers/PizzaEmoji.png" class="button sticker is-white"
+											id="pizzaSticker" onclick="selectSticker(this)">
 									</figure>
 								</div>
 							</div>
