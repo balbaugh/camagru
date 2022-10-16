@@ -25,7 +25,7 @@
 						<div class="field">
 							<div class="control">
 								<button class="button is-primary is-fullwidth" type="submit" name="submit_reset"
-									id="submit_reset">Rest Password
+									id="submit_reset">Reset Password
 								</button>
 							</div>
 						</div>

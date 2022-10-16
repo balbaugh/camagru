@@ -89,22 +89,49 @@
 						</button>
 					</header>
 					<div class="card-content is-hidden" id="stickerList">
-						Test
-					</div>
-				</div>
-
-				<div id="filterPanel" class="card mt-3" hidden>
-					<header class="card-header">
-						<h2 class="card-header-title">Filters</h2>
-						<button class="card-header-icon card-toggle">
-							<span class="icon">
-								<img src="../public/icons/MaterialIcons/icons8-expand-arrow-48.png" alt="Options"
-									title="More Options">
-							</span>
-						</button>
-					</header>
-					<div class="card-content is-hidden" id="filterList">
-						Test
+						<div class="tile is-ancestor">
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/bolt.png" class="button sticker" id="boltSticker">
+									</figure>
+								</div>
+							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/camagruStealie.png" class="button sticker"
+											id="camagruSticker">
+									</figure>
+								</div>
+							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/StealYourFaceEmpty.png" class="button sticker"
+											id="emptySticker">
+									</figure>
+								</div>
+							</div>
+						</div>
+						<div class="tile is-ancestor">
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/SilentEmoji.png" class="button sticker"
+											id="silentSticker" onclick="selectFilter(this)">
+									</figure>
+								</div>
+							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/PizzaEmoji.png" class="button sticker"
+											id="pizzaSticker">
+									</figure>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

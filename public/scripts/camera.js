@@ -1,4 +1,4 @@
-// card toggle for logo // filters // initialize other page elements
+// card toggle for logo // stickers // initialize other page elements
 document.addEventListener('DOMContentLoaded', function () {
 	let cardToggles = document.getElementsByClassName('card-toggle');
 	for (let i = 0; i < cardToggles.length; i++) {
@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 });
+
+// STICKERS
+function selectSticker(clickedSticker) {
+
+	// getting the path of the sticker and save it in display screen
+	stickerDisplayed.src = "../public/stickers/" + clickedSticker.id;
+
+	// applying sticker location
+	applySticker(clickedSticker.classList[1]);
+}
+
+
 
 
 // We start by wrapping the whole script in an anonymous function to avoid global variables, then setting up various variables we'll be using.
@@ -35,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	let uploadCard = null;
 	let uploadButton = null;
 	let commentForm = null;
+	let stickerDisplayed = null;
 	let stickerPanel = null;
 	let filterPanel = null;
 
@@ -56,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		uploadButton = document.getElementById('uploadButton');
 		commentForm = document.getElementById('commentForm');
 		stickerPanel = document.getElementById('stickerPanel');
-		filterPanel = document.getElementById('filterPanel');
 		videoStream = document.getElementById('videoStream');
 		ctx = canvas.getContext('2d');
 
@@ -97,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		captureButton.addEventListener('click', function (ev) {
 			commentForm.hidden = false;
 			stickerPanel.hidden = false;
-			filterPanel.hidden = false;
 			uploadCard.hidden = true;
 
 			if (video.paused) {
