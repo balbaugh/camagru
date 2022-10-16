@@ -1,0 +1,10 @@
+
+PWeb:AvoidCommentedOutCodeCheckv"Remove this commented out code.(¡„Û²8åäÖ½0
+VWeb:AvoidCommentedOutCodeCheck¯"Remove this commented out code.(×ö…©øÿÿÿÿ8Ä¸èæ½0
+Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8–åäÖ½0
+gphp:S103–"KSplit this 147 characters long line (which is greater than 120 authorized).(ïâü™8–åäÖ½0
+gphp:S103—"KSplit this 126 characters long line (which is greater than 120 authorized).(ƒ¸¼®8—åäÖ½0
+gphp:S103"KSplit this 123 characters long line (which is greater than 120 authorized).(ÊïÔ¢8—åäÖ½0
+:php:S113"'Add a new line at the end of this file.8—åäÖ½0
+k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ªœŞòşÿÿÿÿ
+n	php:S4833­"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ8—åäÖ½0

@@ -19,7 +19,7 @@ function check_token($email, $verify_token)
 		$stmt->execute();
 		$user = $stmt->fetch();
 		if ($user) {
-			$stmt = $conn->prepare("UPDATE users SET verify_token = 1 WHERE email = :email AND verify_token = :verify_token");
+			$stmt = $conn->prepare("UPDATE users SET verified = 1 WHERE email = :email AND verify_token = :verify_token");
 			$stmt->bindParam(':email', $email);
 			$stmt->bindParam(':verify_token', $verify_token);
 			$stmt->execute();
