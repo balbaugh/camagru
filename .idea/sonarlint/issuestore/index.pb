@@ -9,8 +9,6 @@ I
 sources/register.html.php,7/a/7a28a93e442a99451331cb39bf95636aabea72b6
 K
 includes/headNavIn.html.php,8/3/832662daef0a4415aeb954172f0963c99916ed45
-H
-public/scripts/camera.js,c/5/c5988d09fa649566f972666a44c5420595ddfc42
 I
 sources/oldies/camera.php,0/d/0dae15e9dbc12b8e19d67eafffb3d2cc40c72952
 F

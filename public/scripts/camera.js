@@ -8,17 +8,37 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 });
 
-// STICKERS
-function selectSticker(clickedSticker) {
+// Helpers
+function isImage(url) {
+	return /^data:image\/(png|gif|jpeg|jpg|webp|avif|svg);base64,/.test(url);
+}
 
-	// getting the path of the sticker and save it in display screen
-	stickerDisplayed.src = "../public/stickers/" + clickedSticker.id;
+function testImage(url) {
+	const imgPromise = new Promise(function imgPromise(resolve, reject) {
+		const imgElement = new Image();
 
-	// applying sticker location
-	applySticker(clickedSticker.classList[1]);
+		imgElement.addEventListener('load', function imgOnLoad() {
+			resolve(this);
+		});
+
+		imgElement.addEventListener('error', function imgOnError() {
+			reject(this);
+		})
+
+		imgElement.src = url;
+	});
+
+	return imgPromise;
 }
 
 
+function stopWebcam() {
+	video.pause();
+	tracks = video.srcObject.getTracks();
+	tracks.forEach(function (track) {
+		track.stop();
+	});
+}
 
 
 // We start by wrapping the whole script in an anonymous function to avoid global variables, then setting up various variables we'll be using.
@@ -40,37 +60,49 @@ function selectSticker(clickedSticker) {
 	// will be set by the startup() function.
 
 	let video = null;
+	let videoStream = null;
 	let canvas = null;
+	let canvasSticker = null;
 	let photo = null;
+	let ctx = null;
+	let ctxSticker = null;
 	let captureButton = null;
 	let saveButton = null;
 	let uploadCard = null;
 	let uploadButton = null;
+	let uploadedImage = null;
+	let uploadedDiv = null;
+
+	let webcamCard = null;
 	let commentForm = null;
 	let stickerDisplayed = null;
 	let stickerPanel = null;
-	let filterPanel = null;
-
-
-
-	// FIGURE THIS OUT AND EXPAND UPON IT
-	// imageBlob is the image data that will be sent to the server
-	let imageBlob = null;
+	let lastFrame = null;
+	let lastSticker = null;
+	let selectedSticker = null;
 
 
 	function initializeCamera() {
 
 		video = document.getElementById('video');
 		canvas = document.getElementById('canvas');
-		photo = document.getElementById('photo');
+		canvasSticker = document.getElementById('canvasSticker');
+		photo = document.getElementById('uploadedPhoto');
+		pic = new Image();
 		captureButton = document.getElementById('captureButton');
 		saveButton = document.getElementById('saveButton');
 		uploadCard = document.getElementById('uploadCard');
 		uploadButton = document.getElementById('uploadButton');
+		uploadedDiv = document.getElementById('uploadedDiv');
+
+		uploadedImage = document.querySelector('#uploadImage');
+		webcamCard = document.getElementById('webcamCard');
 		commentForm = document.getElementById('commentForm');
 		stickerPanel = document.getElementById('stickerPanel');
 		videoStream = document.getElementById('videoStream');
 		ctx = canvas.getContext('2d');
+		ctxSticker = canvasSticker.getContext('2d');
+
 
 		// Get the video stream from the camera
 		navigator.mediaDevices.getUserMedia({
@@ -85,6 +117,7 @@ function selectSticker(clickedSticker) {
 			.catch(function (err) {
 				console.log("An error occurred: ${err}");
 			});
+
 
 		// When the video stream is ready, start the camera
 		// // if (isNaN(height)) :: Firefox currently has a bug where the height
@@ -108,7 +141,6 @@ function selectSticker(clickedSticker) {
 		// When the capture button is clicked, take a picture
 		captureButton.addEventListener('click', function (ev) {
 			commentForm.hidden = false;
-			stickerPanel.hidden = false;
 			uploadCard.hidden = true;
 
 			if (video.paused) {
@@ -117,9 +149,53 @@ function selectSticker(clickedSticker) {
 			} else {
 				video.pause();
 				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+				let imageDataURL = canvas.toDataURL('image/png');
+				photo.setAttribute('src', imageDataURL);
 				captureButton.textContent = "Retake";
 			}
 		});
+
+		// UPLOAD
+		uploadedImage.addEventListener('change', function () {
+			const reader = new FileReader();
+			if (this.files[0].size > 4 * 1024 * 1024) {
+				alert("File is too big! Please upload a file smaller than 4MB.");
+				this.value = "";
+			} else {
+				reader.addEventListener("load", () => {
+					const uploadedImage = reader.result;
+
+					if (isImage(uploadedImage)) {
+						testImage(uploadedImage)
+							.then(() => {
+								pic.src = uploadedImage;
+							})
+							.catch(() => {
+								alert("File is not an image! Please upload an image file.");
+							});
+					} else {
+						alert("Wrong format! Please upload a jpeg or png.");
+					}
+				});
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
+
+		// draw uploadedImage on canvas
+		pic.addEventListener('load', () => {
+			// stopWebcam();
+			webcamCard.hidden = true;
+			uploadButton.textContent = "Choose Again";
+			commentForm.hidden = false;
+			ctx.drawImage(pic, 0, 0, canvas.width, canvas.height);
+			let imageDataURL = canvas.toDataURL('image/png');
+			photo.setAttribute('src', imageDataURL);
+		});
+
+
+
+
+
 	}
 
 	window.addEventListener('load', initializeCamera, false);

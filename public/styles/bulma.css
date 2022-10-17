@@ -5382,7 +5382,7 @@ print {
 	position: relative;
 }
 
-.card-image:first-child img {
+/* .card-image:first-child img {
 	border-top-left-radius: 0.25rem;
 	border-top-right-radius: 0.25rem;
 }
@@ -5391,6 +5391,7 @@ print {
 	border-bottom-left-radius: 0.25rem;
 	border-bottom-right-radius: 0.25rem;
 }
+ */
 
 .card-content {
 	background-color: transparent;

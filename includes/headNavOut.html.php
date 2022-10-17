@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../public/styles/bulma.css">
 	<title>camagru</title>
@@ -64,27 +64,27 @@
 							</div>
 						</a>
 					</div>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                            Menu
-                        </a>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">
+							Menu
+						</a>
 
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="../">
-                                Home
-                            </a>
-                            <a class="navbar-item" href="../sources/profile.html.php">
-                                Profile
-                            </a>
-                            <a class="navbar-item" href="../sources/camera.html.php">
-                                Post
-                            </a>
-                            <hr class="navbar-divider">
-                                <a class="navbar-item" href="../sources/login.html.php">
-                                    Log in
-                                </a>
-                        </div>
-                    </div>
+						<div class="navbar-dropdown">
+							<a class="navbar-item" href="../">
+								Home
+							</a>
+							<a class="navbar-item" href="../sources/profile.html.php">
+								Profile
+							</a>
+							<a class="navbar-item" href="../sources/camera.html.php">
+								Post
+							</a>
+							<hr class="navbar-divider">
+							<a class="navbar-item" href="../sources/login.html.php">
+								Log in
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
