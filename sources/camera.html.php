@@ -5,7 +5,62 @@
 		<div class="column is-two-thirds">
 			<div class="container is-fluid">
 
-				<div id="webcamCard" class="card mt-2">
+				<div class="block">
+					<h2 class="has-text-centered">1. Choose A Sticker</h2>
+					<h2 class="has-text-centered">2. Take a Picture</h2>
+					<h2 class="has-text-centered">- OR -</h2>
+					<h2 class="has-text-centered">2. Upload a Picture</h2>
+					<h2 class="has-text-centered">3. Add a Description</h2>
+					<h2 class="has-text-centered">4. Submit</h2>
+				</div>
+
+				<div id="stickerPanel" class="card mt-3">
+					<header class="card-header">
+						<h2 class="card-header-title">Stickers</h2>
+						<button class="card-header-icon card-toggle">
+							<span class="icon">
+								<img src="../public/icons/MaterialIcons/icons8-expand-arrow-48.png" alt="Options"
+									title="More Options">
+							</span>
+						</button>
+					</header>
+
+					<div class="card-content is-hidden" id="stickerList">
+						<div class="tile is-ancestor">
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/bolt.png"
+											class="button sticker filter frame is-white" id="boltSticker"
+											onclick="selectFilter(this)">
+									</figure>
+								</div>
+							</div>
+							<div class=" tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/camagruStealie.png"
+											class="button sticker filter frame is-white" id="camagruSticker"
+											onclick="selectFilter(this)">
+									</figure>
+								</div>
+							</div>
+						</div>
+						<div class=" tile is-ancestor">
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/StealYourFaceEmpty.png"
+											class="button sticker filter frame is-white" id="emptySticker"
+											onclick="selectFilter(this)">
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id=" webcamCard" class="card mt-2">
 					<div class="block has-text-centered" id="captureImage">
 						<header class="card-header">
 							<h2 class="card-header-title">Camera</h2>
@@ -26,8 +81,13 @@
 
 							<div class="control">
 								<button class="button is-normal is-fullwidth is-focused is-link is-light is-responsive"
-									id="captureButton" type="submit">
+									id="startButton" type="submit">
 									Start Camera
+								</button>
+								<button
+									class="button is-normal is-fullwidth is-focused is-link is-light is-responsive is-hidden"
+									id="captureButton" type="submit">
+									Capture
 								</button>
 							</div>
 
@@ -37,7 +97,7 @@
 
 				<div id="uploadCard" class="card mt-3">
 					<header class="card-header">
-						<h2 class="card-header-title">Upload Image</h2>
+						<h2 class="card-header-title">Upload</h2>
 						<button class="card-header-icon card-toggle">
 							<span class="icon">
 								<img src="../public/icons/MaterialIcons/icons8-expand-arrow-48.png" alt="Options"
@@ -86,57 +146,6 @@
 					</div>
 				</div>
 
-				<div id="stickerPanel" class="card mt-3">
-					<header class="card-header">
-						<h2 class="card-header-title">Choose A Sticker</h2>
-						<button class="card-header-icon card-toggle">
-							<span class="icon">
-								<img src="../public/icons/MaterialIcons/icons8-expand-arrow-48.png" alt="Options"
-									title="More Options">
-							</span>
-						</button>
-					</header>
-
-					<div class="card-content is-hidden" id="stickerList">
-						<div class="tile is-ancestor">
-							<div class="tile is-parent">
-								<div class="tile is-child is-1">
-									<figure class="image is-128x128">
-										<img src="../public/stickers/bolt.png" class="button sticker frame is-white"
-											id="boltSticker">
-									</figure>
-								</div>
-							</div>
-							<div class="tile is-parent">
-								<div class="tile is-child is-1">
-									<figure class="image is-128x128">
-										<img src="../public/stickers/camagruStealie.png"
-											class="button sticker frame is-white" id="camagruSticker">
-									</figure>
-								</div>
-							</div>
-						</div>
-						<div class="tile is-ancestor">
-							<div class="tile is-parent">
-								<div class="tile is-child is-1">
-									<figure class="image is-128x128">
-										<img src="../public/stickers/StealYourFaceEmpty.png"
-											class="button sticker frame is-white" id="emptySticker">
-									</figure>
-								</div>
-							</div>
-							<div class="tile is-parent">
-								<div class="tile is-child is-1">
-									<figure class="image is-128x128">
-										<img src="../public/stickers/SilentEmoji.png"
-											class="button sticker stickerBottomRight is-white" id="silentSticker">
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<div id="libraryPanel" class="card mt-3">
 					<header class="card-header">
 						<h2 class="card-header-title">Photo Library</h2>
@@ -177,3 +186,4 @@
 <?php include_once '../includes/footer.html.php'; ?>
 
 <script src="../public/scripts/camera.js"></script>
+<!-- <script src="../public/scripts/test.js"></script> -->

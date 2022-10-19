@@ -31,7 +31,21 @@ function testImage(url) {
 	return imgPromise;
 }
 
+// function to start the webcam
+function startWebcam() {
+	// start the webcam
+	navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+		.then(function (stream) {
+			video.srcObject = stream;
+			video.play();
+		})
+		.catch(function (err) {
+			console.log("An error occurred: " + err);
+		});
+}
 
+
+// function to stop the webcam
 function stopWebcam() {
 	video.pause();
 	tracks = video.srcObject.getTracks();
@@ -80,6 +94,7 @@ function stopWebcam() {
 	let lastFrame = null;
 	let lastSticker = null;
 	let selectedSticker = null;
+	let sticker = null;
 
 
 	function initializeCamera() {
@@ -89,6 +104,7 @@ function stopWebcam() {
 		canvasSticker = document.getElementById('canvasSticker');
 		photo = document.getElementById('uploadedPhoto');
 		pic = new Image();
+		startButton = document.getElementById('startButton');
 		captureButton = document.getElementById('captureButton');
 		saveButton = document.getElementById('saveButton');
 		uploadCard = document.getElementById('uploadCard');
@@ -99,24 +115,35 @@ function stopWebcam() {
 		webcamCard = document.getElementById('webcamCard');
 		commentForm = document.getElementById('commentForm');
 		stickerPanel = document.getElementById('stickerPanel');
+		sticker = document.querySelector('#sticker');
 		videoStream = document.getElementById('videoStream');
 		ctx = canvas.getContext('2d');
 		ctxSticker = canvasSticker.getContext('2d');
 
+		// run startWebcam function when the capture button is clicked
+		startButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			startWebcam();
+			// hide start button
+			startButton.classList.add('is-hidden');
+			// show capture button
+			captureButton.classList.remove('is-hidden');
+		});
 
-		// Get the video stream from the camera
-		navigator.mediaDevices.getUserMedia({
-			video: true,
-			audio: false,
-			facingMode: "user"
-		})
-			.then(function (stream) {
-				video.srcObject = stream;
-				video.play();
-			})
-			.catch(function (err) {
-				console.log("An error occurred: ${err}");
-			});
+
+		/* 		// Get the video stream from the camera
+				navigator.mediaDevices.getUserMedia({
+					video: true,
+					audio: false,
+					facingMode: "user"
+				})
+					.then(function (stream) {
+						video.srcObject = stream;
+						video.play();
+					})
+					.catch(function (err) {
+						console.log("An error occurred: ${err}");
+					}); */
 
 
 		// When the video stream is ready, start the camera
@@ -184,16 +211,13 @@ function stopWebcam() {
 		// draw uploadedImage on canvas
 		pic.addEventListener('load', () => {
 			// stopWebcam();
-			webcamCard.hidden = true;
+			// webcamCard.hidden = true;
 			uploadButton.textContent = "Choose Again";
 			commentForm.hidden = false;
 			ctx.drawImage(pic, 0, 0, canvas.width, canvas.height);
 			let imageDataURL = canvas.toDataURL('image/png');
 			photo.setAttribute('src', imageDataURL);
 		});
-
-
-
 
 
 	}

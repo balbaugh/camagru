@@ -1,3 +1,4 @@
+
 // card toggle for logo // stickers // initialize other page elements
 document.addEventListener('DOMContentLoaded', function () {
 	let cardToggles = document.getElementsByClassName('card-toggle');
@@ -31,23 +32,6 @@ function testImage(url) {
 	return imgPromise;
 }
 
-/*
-function startWebcam() {
-	navigator.mediaDevices.getUserMedia({
-		video: true,
-		audio: false
-	})
-		.then((stream) => {
-			video.srcObject = stream;
-			video.play();
-		})
-		.catch((err) => {
-			alert(`An error occurred: ${err}`);
-		});
-	captureButton.textContent = 'Capture';
-	uploadCard.classList.add('is-hidden');
-}
-
 
 function stopWebcam() {
 	video.pause();
@@ -56,7 +40,6 @@ function stopWebcam() {
 		track.stop();
 	});
 }
- */
 
 
 // We start by wrapping the whole script in an anonymous function to avoid global variables, then setting up various variables we'll be using.
@@ -157,7 +140,7 @@ function stopWebcam() {
 		}, false);
 
 		// When the capture button is clicked, take a picture
-		captureButton.addEventListener('click', function () {
+		captureButton.addEventListener('click', function (ev) {
 			commentForm.hidden = false;
 			uploadCard.hidden = true;
 
@@ -172,29 +155,6 @@ function stopWebcam() {
 				captureButton.textContent = "Retake";
 			}
 		});
-		/*
-				captureButton.addEventListener('click', function () {
-					if (captureButton && captureButton.textContent === 'Start Webcam') {
-						startWebcam();
-					} else {
-						if (captureButton && captureButton.textContent === 'Capture') {
-							video.pause();
-							commentForm.hidden = false;
-							uploadCard.hidden = true;
-							ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-							let imageDataURL = canvas.toDataURL('image/png');
-							photo.setAttribute('src', imageDataURL);
-							captureButton.textContent = "Retake";
-						} else {
-							if (captureButton && captureButton.textContent === 'Retake') {
-								video.play();
-								commentForm.hidden = true;
-								captureButton.textContent = "Capture";
-							}
-						}
-					}
-				});
-		 */
 
 		// UPLOAD
 		uploadedImage.addEventListener('change', function () {
@@ -224,7 +184,7 @@ function stopWebcam() {
 
 		// draw uploadedImage on canvas
 		pic.addEventListener('load', () => {
-			stop_webcam();
+			// stopWebcam();
 			webcamCard.hidden = true;
 			uploadButton.textContent = "Choose Again";
 			commentForm.hidden = false;
@@ -234,10 +194,7 @@ function stopWebcam() {
 		});
 
 
-		// When the save button is clicked, save the picture
-		/* 		saveButton.addEventListener('click', function () {
 
-				}); */
 
 
 	}
