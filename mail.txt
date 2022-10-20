@@ -1,0 +1,18 @@
+[mail function]
+; For Win32 only.
+; https://php.net/smtp
+SMTP = localhost
+; https://php.net/smtp-port
+smtp_port = 25
+
+; For Win32 only.
+; https://php.net/sendmail-from
+;sendmail_from = balbaugh@outlook.com
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+; https://php.net/sendmail-path
+sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
+
+
+
+***   outlook accepts emails from localhost   ***

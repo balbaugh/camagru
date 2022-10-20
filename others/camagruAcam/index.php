@@ -4,7 +4,7 @@ require_once("./config/setup.php");
 if ($_SESSION['logged_in_user'] != "")
     header("Location: ./src/profile.php");
 ?>
-
+w
 <!DOCTYPE html>
 <html lang="en">
 <head>

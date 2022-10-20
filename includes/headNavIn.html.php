@@ -30,8 +30,7 @@
 						<a href="../" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIconsGray/icons8-home-50.png" alt="Home"
-										title="Home">
+									<img src="../public/icons/MaterialIcons/icons8-home-50.png" alt="Home" title="Home">
 								</span>
 								</br>
 							</div>
@@ -39,7 +38,7 @@
 						<a href="../sources/profile.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIconsGray/icons8-user-50.png" alt="Profile"
+									<img src="../public/icons/MaterialIcons/icons8-user-50.png" alt="Profile"
 										title="Profile">
 								</span>
 								</br>
@@ -48,8 +47,7 @@
 						<a href="../sources/camera.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIconsGray/icons8-add-50.png" alt="Post"
-										title="Post">
+									<img src="../public/icons/MaterialIcons/icons8-add-50.png" alt="Post" title="Post">
 								</span>
 								</br>
 							</div>
@@ -57,7 +55,7 @@
 						<a href="../controllers/logout.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIconsGray/icons8-logout-50.png" alt="Log out"
+									<img src="../public/icons/MaterialIcons/icons8-logout-50.png" alt="Log out"
 										title="Log out">
 								</span>
 								</br>
