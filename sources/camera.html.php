@@ -25,8 +25,7 @@
 						</button>
 					</header>
 
-					<!-- <div class="card-content is-hidden" id="stickerList"> -->
-					<div class="card-content" id="stickerList">
+					<div class="card-content is-hidden" id="stickerList">
 						<div class="tile is-ancestor">
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
@@ -36,7 +35,7 @@
 									</figure>
 								</div>
 							</div>
-							<div class=" tile is-parent">
+							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
 										<img src="../public/stickers/camagruStealie.png"
@@ -45,7 +44,7 @@
 								</div>
 							</div>
 						</div>
-						<div class=" tile is-ancestor">
+						<div class="tile is-ancestor">
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
@@ -58,7 +57,7 @@
 					</div>
 				</div>
 
-				<div id=" webcamCard" class="card mt-2">
+				<div id="webcamCard" class="card mt-2">
 					<div class="block has-text-centered" id="captureImage">
 						<header class="card-header">
 							<h2 class="card-header-title">Camera</h2>
@@ -69,8 +68,7 @@
 								</span>
 							</button>
 						</header>
-						<!-- <div class="card-content is-hidden" id="cameraView"> -->
-						<div class="card-content" id="cameraView">
+						<div class="card-content is-hidden" id="cameraView">
 							<div id="videoStream" class="block">
 								<video id="video" autoplay muted></video>
 								<canvas id="canvas" hidden></canvas>
@@ -188,5 +186,5 @@
 <?php include_once '../includes/footer.html.php'; ?>
 
 
-<!-- <script src="../public/scripts/camera.js"></script> -->
-<script src="../public/scripts/camera2.js"></script>
+<!-- <script src="../public/scripts/camera2.js"></script> -->
+<script src="../public/scripts/camera.js"></script>
