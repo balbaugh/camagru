@@ -9,17 +9,17 @@
 	<title>camagru</title>
 </head>
 
-<body>
+<body class="main">
 	<nav class="navbar has-shadow">
 
 		<div class="navbar-brand">
 			<a href="" class="navbar-item">
 				<img src="../public/logo/camagruText.png" alt="">
 			</a>
-			<div class="navbar-start">
-				<div class="navbar-item">
-
-				</div>
+			<div class="navbar-burger burger" data-target="navMenu">
+				<span></span>
+				<span></span>
+				<span></span>
 			</div>
 		</div>
 
@@ -61,27 +61,6 @@
 								</br>
 							</div>
 						</a>
-					</div>
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							Menu
-						</a>
-
-						<div class="navbar-dropdown">
-							<a class="navbar-item" href="../">
-								Home
-							</a>
-							<a class="navbar-item" href="../sources/profile.html.php">
-								Profile
-							</a>
-							<a class="navbar-item" href="../sources/camera.html.php">
-								Post
-							</a>
-							<hr class="navbar-divider">
-							<a class="navbar-item" href="../sources/login.html.php">
-								Log in
-							</a>
-						</div>
 					</div>
 				</div>
 			</div>

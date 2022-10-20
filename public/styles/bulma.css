@@ -85,6 +85,21 @@ screen and (-ms-high-contrast: none) {
 	}
 }
 
+
+/* Sticy Footer */
+
+.main {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.section {
+	flex: 1;
+}
+
+
+
 /* END OF ADDED STYLES */
 
 

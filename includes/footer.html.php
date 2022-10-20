@@ -6,5 +6,6 @@
 	</div>
 </footer>
 </body>
+<script src="../public/scripts/navbar.js"></script>
 
 </html>

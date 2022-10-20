@@ -25,14 +25,14 @@
 						</button>
 					</header>
 
-					<div class="card-content is-hidden" id="stickerList">
+					<!-- <div class="card-content is-hidden" id="stickerList"> -->
+					<div class="card-content" id="stickerList">
 						<div class="tile is-ancestor">
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/bolt.png"
-											class="button sticker filter frame is-white" id="boltSticker"
-											onclick="selectFilter(this)">
+										<img src="../public/stickers/bolt.png" class="button sticker frame is-white"
+											id="sticker1" alt="boltSticker">
 									</figure>
 								</div>
 							</div>
@@ -40,8 +40,7 @@
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
 										<img src="../public/stickers/camagruStealie.png"
-											class="button sticker filter frame is-white" id="camagruSticker"
-											onclick="selectFilter(this)">
+											class="button sticker frame is-white" id="sticker2" alt="camagruSticker">
 									</figure>
 								</div>
 							</div>
@@ -51,8 +50,7 @@
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
 										<img src="../public/stickers/StealYourFaceEmpty.png"
-											class="button sticker filter frame is-white" id="emptySticker"
-											onclick="selectFilter(this)">
+											class="button sticker frame is-white" id="sticker3" alt="emptySticker">
 									</figure>
 								</div>
 							</div>
@@ -71,12 +69,16 @@
 								</span>
 							</button>
 						</header>
-						<div class="card-content is-hidden" id="cameraView">
+						<!-- <div class="card-content is-hidden" id="cameraView"> -->
+						<div class="card-content" id="cameraView">
 							<div id="videoStream" class="block">
 								<video id="video" autoplay muted></video>
 								<canvas id="canvas" hidden></canvas>
+								<input type="hidden" id="webcam-file" value="" name="webcam_file">
 								<canvas id="canvasSticker" hidden></canvas>
-								<div id="stickerOverlay" src="" hidden></div>
+								<input type="hidden" id="sticker1_path" value="" name="sticker1_path">
+								<input type="hidden" id="sticker2_path" value="" name="sticker2_path">
+								<input type="hidden" id="sticker3_path" value="" name="sticker3_path">
 							</div>
 
 							<div class="control">
@@ -185,6 +187,6 @@
 </section>
 <?php include_once '../includes/footer.html.php'; ?>
 
-<script src="../public/scripts/camera.js"></script>
-<script src="../public/scripts/navbar.js"></script>
-<!-- <script src="../public/scripts/test.js"></script> -->
+
+<!-- <script src="../public/scripts/camera.js"></script> -->
+<script src="../public/scripts/camera2.js"></script>

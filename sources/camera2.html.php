@@ -1,10 +1,4 @@
-<?php
-require_once("connect.php");
-session_start();
-if ($_SESSION['logged_in_user'] == "")
-	header('Location: ./gallery.php');
-?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -212,71 +206,34 @@ if ($_SESSION['logged_in_user'] == "")
 </head>
 
 <body>
-	<div class="navPanel"></div>
-	<a id="profile" href="profile_page.php"><img src="../images/profile.png" width="50"></a>
-	<a id="gallery" href="user_gallery.php"><img src="../images/globe1.png" width="50"></a>
-	<a id="logout" href="logout.php"><img src="../images/logout.png" width="50"></a>
+
 	<video id="video" width="340" height="240" autoplay></video>
-	<button id="start-camera"><img src="../images/snapshot.png" width="50"></button><button id="click-photo">
-		<p>CHOOSE STICKER TO TAKE PHOTO</p><img src="../images/capture.png" width="50">
+	<button id="start-camera">Start Camera</button><button id="click-photo">
+		<p>Capture</p><img src="../images/capture.png" width="50">
 	</button>
 	<canvas id="canvas" width="375" height="280" value="canvas"></canvas>
 	<form class="form" action="add_webcam.php" method="POST" enctype="multipart/form-data">
-		<button id="web_add" type="submit" name="add" value=""><img src="../images/add.png" width="50"></button>
+		<button id="web_add" type="submit" name="add" value="">Submit</button>
 		<input type="hidden" id="web_photo" name="new_pic" value="">
 		<input type="hidden" id="stamp" name="stamp" value="">
 	</form>
-	<div class="image">
-		<div class="slide-container">
-			<div id="image-container">
-				<?php
-				try {
-					$user = $_SESSION['logged_in_user'];
-					$snap_stat = 1;
-					$conn = connect();
-					$sql = "SELECT img_path, snap_shot FROM user_images WHERE img_user='$user'";
-					$stmt = $conn->query($sql);
-					$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-					if ($result) {
-						foreach ($result as $k) {
-							if ($k['snap_shot'] == 1) {
-								$img_id = $k['img_name'];
-				?>
-				<!DOCTYPE html>
-				<html>
-
-				<body>
-					<img class="img_size" src=<?php echo $k['img_path']; ?>>&nbsp
-				</body>
-
-				</html>
-				<?php
-							}
-						}
-					}
-				} catch (PDOException $e) {
-					echo $stmt . "<br>" . $e->getMessage();
-				}
-				$conn = null;
-				?>
-			</div>
-		</div>
-	</div>
 	<br>
 	<br>
 	<div class="stamps">
-		<button><img id="first" onclick="stampPath1()" src="../images/sharingan1.png" width='50' height='50'></button>
-		<button><img id="second" onclick="stampPath2()" src="../images/sharingan2.png" width='50' height='50'></button>
-		<button><img id="third" onclick="stampPath3()" src="../images/sharingan3.png" width='50' height='50'></button>
-		<button><img id="fourth" onclick="stampPath4()" src="../images/sharingan.png" width='50' height='50'></button>
+		<button><img id="first" onclick="stampPath1()" src="../public/stickers/bolt.png" width='50'
+				height='50'></button>
+		<button><img id="second" onclick="stampPath2()" src="../public/stickers/camagruStealie.png" width='50'
+				height='50'></button>
+		<button><img id="third" onclick="stampPath3()" src="../public/stickers/StealYourFaceEmpty.png" width='50'
+				height='50'></button>
+
 	</div>
 	<div class="img_add">
 		<form class="form" action="add_foto.php" method="POST" enctype="multipart/form-data">
 			<label for="inputTag">
-				<input id="inputTag" type="file" name="photo">ADD PHOTO FROM DEVICE <img id="file_button"
-					src="../images/file.png" width="20">
+				<input id="inputTag" type="file" name="photo">ADD PHOTO FROM DEVICE
 			</label>
-			<button id="web_add" type="submit" value="Add"><img src="../images/add.png" width="30"></button>
+			<button id="web_add" type="submit" value="Add">Add</button>
 			<input type="hidden" id="stamp1" name="stamp" value="">
 		</form>
 	</div>
@@ -284,7 +241,7 @@ if ($_SESSION['logged_in_user'] == "")
 	<hr id="hrNavbar">
 	<hr>
 	<div class="footer">
-		<p>CAMAGRU<img src="../images/wow.png" width="20"></p>
+		<p>CAMAGRU</p>
 	</div>
 </body>
 

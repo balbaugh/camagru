@@ -9,22 +9,17 @@
 	<title>camagru</title>
 </head>
 
-<body>
+<body class="main">
 	<nav class="navbar has-shadow">
 
 		<div class="navbar-brand">
 			<a href="" class="navbar-item">
 				<img src="../public/logo/camagruText.png" alt="">
 			</a>
-			<div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+			<div class="navbar-burger burger" data-target="navMenu">
 				<span></span>
 				<span></span>
 				<span></span>
-			</div>
-			<div class="navbar-start">
-				<div class="navbar-item">
-
-				</div>
 			</div>
 		</div>
 
@@ -32,7 +27,7 @@
 			<div class="navbar-end">
 				<div class="navbar-item">
 					<div class="field is-grouped">
-						<a href="../" class="navbar-item">
+						<a class="navbar-item" href="../">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-home-50.png" alt="Home" title="Home">
@@ -40,7 +35,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="../sources/profile.html.php" class="navbar-item">
+						<a class="navbar-item" href="../sources/profile.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-user-50.png" alt="Profile"
@@ -49,7 +44,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="../sources/camera.html.php" class="navbar-item">
+						<a class="navbar-item" href="../sources/camera.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-add-50.png" alt="Post" title="Post">
@@ -57,7 +52,7 @@
 								</br>
 							</div>
 						</a>
-						<a href="../controllers/logout.php" class="navbar-item">
+						<a class="navbar-item" href="../controllers/logout.php">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-logout-50.png" alt="Log out"
@@ -67,28 +62,6 @@
 							</div>
 						</a>
 					</div>
-					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							Menu
-						</a>
-
-						<div class="navbar-dropdown">
-							<a class="navbar-item" href="../">
-								Home
-							</a>
-							<a class="navbar-item" href="../sources/profile.html.php">
-								Profile
-							</a>
-							<a class="navbar-item" href="../sources/camera.html.php">
-								Post
-							</a>
-							<hr class="navbar-divider">
-							<a class="navbar-item" href="../controllers/logout.php">
-								Log out
-							</a>
-						</div>
-					</div>
 				</div>
 			</div>
-		</div>
 	</nav>
