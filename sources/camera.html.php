@@ -186,4 +186,5 @@
 <?php include_once '../includes/footer.html.php'; ?>
 
 <script src="../public/scripts/camera.js"></script>
+<script src="../public/scripts/navbar.js"></script>
 <!-- <script src="../public/scripts/test.js"></script> -->

@@ -17,3 +17,5 @@ L
 controllers/verification.php,6/e/6e1edf5eecb28f20b257a0dc1c2c64f3c00fa0e9
 L
 controllers/registration.php,5/7/57979619c32c2713317942ce3d6c9981132e1860
+G
+sources/camera.html.php,e/0/e0d2f07f8f330b8915b390e3eb56098b49b9bf38

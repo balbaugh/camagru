@@ -16,6 +16,11 @@
 			<a href="" class="navbar-item">
 				<img src="../public/logo/camagruText.png" alt="">
 			</a>
+			<div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 			<div class="navbar-start">
 				<div class="navbar-item">
 

@@ -83,7 +83,7 @@ if (isset($_POST['submit_registration'])) {
 		$message .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
 		$message .= "<a href='$url'>Click here to verify your account.</a>";
 
-		$headers = "From: Brian Albaugh <info@hive.fi>\r\n";
+		$headers = "From: balbaugh <info@hive.fi>\r\n";
 		$headers .= "Reply-To: info@hive.fi\r\n";
 		$headers .= "Content-type: text/html\r\n";
 
