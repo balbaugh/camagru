@@ -1,13 +1,14 @@
 <!-- setup file for creating the database -->
 <?php
 
+
 $DB_HOST = 'mysql:host=localhost';
 $DB_USER = 'root';
 $DB_PASSWORD = 'pizzza';
 
 $sql = "
-		CREATE DATABASE IF NOT EXISTS `camaguru`;
-		CREATE TABLE IF NOT EXISTS camaguru. `users` (
+		CREATE DATABASE IF NOT EXISTS `camagru`;
+		CREATE TABLE IF NOT EXISTS camagru. `users` (
 			`id_user`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`username`				VARCHAR(255) NOT NULL,
 			`email`					VARCHAR(255) NOT NULL,
@@ -17,16 +18,14 @@ $sql = "
 			`notifications`			TINYINT(1) NOT NULL DEFAULT 1,
 			`creation_date`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camaguru. `images` (
+		CREATE TABLE IF NOT EXISTS camagru. `images` (
 			`id_image`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
-			`image_name`			VARCHAR(255) NOT NULL,
-			`description`			VARCHAR(255) NOT NULL,
-			`image_path`			LONGBLOB NOT NULL,
+			`image_name`			LONGBLOB NOT NULL,
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camaguru. `likes` (
+		CREATE TABLE IF NOT EXISTS camagru. `likes` (
 			`id_like`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
@@ -34,7 +33,7 @@ $sql = "
 			`liked`					INT DEFAULT 0 NOT NULL,
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
-		CREATE TABLE IF NOT EXISTS camaguru. `comments` (
+		CREATE TABLE IF NOT EXISTS camagru. `comments` (
 			`id_comment`			INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_image`				INT(11) UNSIGNED NOT NULL,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
@@ -50,6 +49,7 @@ $sql = "
 // display a message to the user, via output.html.php, to let them know the database and tables have been created
 // if there is an error, display the error message to the user, via output.html.php
 // set the connection to null to close the connection to the database. this is good practice and helps to prevent memory leaks.
+
 try {
 	$conn = new PDO($DB_HOST, $DB_USER, $DB_PASSWORD);
 

@@ -1,4 +1,10 @@
-<?php include_once '../includes/headNav.html.php'; ?>
+<?php
+
+session_start();
+
+include_once '../includes/headNav.html.php';
+
+?>
 
 <section class="section">
 	<div class="columns is-centered">
@@ -16,7 +22,7 @@
 
 				<div id="stickerPanel" class="card mt-3">
 					<header class="card-header">
-						<h2 class="card-header-title">Stickers</h2>
+						<h2 class="card-header-title">Sticker Examples</h2>
 						<button class="card-header-icon card-toggle">
 							<span class="icon">
 								<img src="../public/icons/MaterialIcons/icons8-expand-arrow-48.png" alt="Options"
@@ -31,15 +37,15 @@
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
 										<img src="../public/stickers/bolt.png" class="button sticker frame is-white"
-											id="sticker1" alt="boltSticker">
+											id="img1" alt="bolt">
 									</figure>
 								</div>
 							</div>
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/camagruStealie.png"
-											class="button sticker frame is-white" id="sticker2" alt="camagruSticker">
+										<img src="../public/stickers/stealie.png" class="button sticker frame is-white"
+											id="img2" alt="stealie">
 									</figure>
 								</div>
 							</div>
@@ -48,14 +54,23 @@
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/StealYourFaceEmpty.png"
-											class="button sticker frame is-white" id="sticker3" alt="emptySticker">
+										<img src="../public/stickers/stealieBlank.png"
+											class="button sticker frame is-white" id="img3" alt="stealieBlank">
+									</figure>
+								</div>
+							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child is-1">
+									<figure class="image is-128x128">
+										<img src="../public/stickers/silent.png" class="button sticker frame is-white"
+											id="img4" alt="stealie">
 									</figure>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 
 				<div id="webcamCard" class="card mt-2">
 					<div class="block has-text-centered" id="captureImage">
@@ -68,27 +83,138 @@
 								</span>
 							</button>
 						</header>
+
 						<div class="card-content is-hidden" id="cameraView">
 							<div id="videoStream" class="block">
-								<video id="video" autoplay muted></video>
-								<canvas id="canvas" hidden></canvas>
-								<input type="hidden" id="webcam-file" value="" name="webcam_file">
-								<canvas id="canvasSticker" hidden></canvas>
-								<input type="hidden" id="sticker1_path" value="" name="sticker1_path">
-								<input type="hidden" id="sticker2_path" value="" name="sticker2_path">
-								<input type="hidden" id="sticker3_path" value="" name="sticker3_path">
+								<div class="video-wrap">
+									<video id="video" playsinline autoplay muted></video>
+								</div>
+								<div>
+									<canvas class="" id="canvas"></canvas>
+								</div>
 							</div>
 
-							<div class="control">
-								<button class="button is-normal is-fullwidth is-focused is-link is-light is-responsive"
-									id="startButton" type="submit">
-									Start Camera
-								</button>
-								<button
-									class="button is-normal is-fullwidth is-focused is-link is-light is-responsive is-hidden"
-									id="captureButton" type="submit">
-									Capture
-								</button>
+
+
+							<div class="field is-grouped is-grouped-centered">
+								<!-- <p class="control">
+									<button
+										class="button is-normal is-rounded is-same is-focused is-success is-light is-responsive mt-2 is-inline-block"
+										id="startButton">
+										Start
+									</button>
+								</p>
+								<p class="control">
+									<button
+										class="button is-danger is-rounded is-same is-focused is-success is-light is-responsive mt-2 is-inline-block is-hidden"
+										id="stopButton">
+										Stop
+									</button>
+								</p> -->
+								<p class="control">
+									<button
+										class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
+										id="snap">
+										Capture
+									</button>
+								</p>
+							</div>
+							<div class="field is-grouped is-grouped-centered">
+								<p class="control">
+									<button
+										class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
+										id="clear">
+										Clear
+									</button>
+								</p>
+								<!-- <form onsubmit="submitForm(event)">
+									<input type="hidden" name="image" id="image" accept="image/*">
+									<p class="control">
+										<button
+											class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
+											id="save">
+											Save
+										</button>
+									</p>
+								</form> -->
+								<p class="control" action="">
+									<button
+										class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
+										id="save" type="submit">
+										Save
+									</button>
+								</p>
+							</div>
+
+							<div class="field-group">
+
+								<div class="field is-inline-block mt-2">
+									<label class="label">Sticker Select</label>
+									<div class="control">
+										<div class="select is-primary is-small is-rounded m-2">
+											<select id="mySelect">
+												<option selected="selected" value="img0">None</option>
+												<option value="img1">Bolt</option>
+												<option value="img2">Stealie</option>
+												<option value="img3">Stealie Blank</option>
+												<option value="img4">Silent Emoji</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<!--
+								<div class="field is-inline-block">
+									<label class="label">Sticker Right</label>
+									<div class="control">
+										<div class="select is-primary is-small is-rounded m-2">
+											<select id="mySelect2">
+												<option selected="selected" value="img0">None</option>
+												<option value="img1">Bolt</option>
+												<option value="img2">Stealie</option>
+												<option value="img3">Stealie Blank</option>
+												<option value="img4">Silent Emoji</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="field is-inline-block">
+									<label class="label">Sticker Bottom</label>
+									<div class="control">
+										<div class="select is-primary is-small is-rounded m-2">
+											<select id="mySelect3">
+												<option selected="selected" value="img0">None</option>
+												<option value="img1">Bolt</option>
+												<option value="img2">Stealie</option>
+												<option value="img3">Stealie Blank</option>
+												<option value="img4">Silent Emoji</option>
+											</select>
+										</div>
+									</div>
+								</div>
+ -->
+							</div>
+
+							<div id="commentForm" class="card mt-2" hidden>
+								<div class="field">
+									<div class="control pt-3 px-5">
+										<textarea class="input" id="imageDescription" type="text"
+											name="imageDescription" placeholder="Image Description"></textarea>
+									</div>
+									<?php if (isset($_GET['comment_error'])) { ?>
+									<p class="help is-danger">
+										<?php echo $_GET['comment_error']; ?>
+									</p>
+									<?php } ?>
+									<div class="control py-3 px-5">
+										<button
+											class="button is-normal is-fullwidth is-focused is-success is-light is-responsive"
+											id="saveButton" type="submit">
+											Save
+										</button>
+									</div>
+								</div>
 							</div>
 
 						</div>
@@ -123,10 +249,30 @@
 								</span>
 							</label>
 						</div>
+						<div id="commentForm" class="card mt-2" hidden>
+							<div class="field">
+								<div class="control pt-3 px-5">
+									<textarea class="input" id="imageDescription" type="text" name="imageDescription"
+										placeholder="Image Description"></textarea>
+								</div>
+								<?php if (isset($_GET['comment_error'])) { ?>
+								<p class="help is-danger">
+									<?php echo $_GET['comment_error']; ?>
+								</p>
+								<?php } ?>
+								<div class="control py-3 px-5">
+									<button
+										class="button is-normal is-fullwidth is-focused is-success is-light is-responsive"
+										id="saveButton" type="submit">
+										Save
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				<div id="commentForm" class="card mt-2" hidden>
+				<!-- <div id="commentForm" class="card mt-2" hidden>
 					<div class="field">
 						<div class="control pt-3 px-5">
 							<textarea class="input" id="imageDescription" type="text" name="imageDescription"
@@ -144,7 +290,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div id="libraryPanel" class="card mt-3">
 					<header class="card-header">
@@ -169,7 +315,7 @@
 							<div class="tile is-parent">
 								<div class="tile is-child is-1">
 									<figure class="image is-128x128">
-										<img src="../public/stickers/camagruStealie.png" class="button frame is-white"
+										<img src="../public/stickers/stealie.png" class="button frame is-white"
 											id="camagru">
 									</figure>
 								</div>
@@ -186,5 +332,5 @@
 <?php include_once '../includes/footer.html.php'; ?>
 
 
-<!-- <script src="../public/scripts/camera2.js"></script> -->
 <script src="../public/scripts/camera.js"></script>
+<!-- <script src="../public/scripts/cameraOld.js"></script> -->

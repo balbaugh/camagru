@@ -99,6 +99,20 @@ screen and (-ms-high-contrast: none) {
 }
 
 
+/* Button Same Width Helper */
+.button.is-same {
+	min-width: 130px;
+}
+
+.button.is-different {
+	min-width: 270px;
+}
+
+/* Canvas */
+canvas {
+	max-width: 100%;
+	height: auto;
+}
 
 /* END OF ADDED STYLES */
 

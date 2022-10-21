@@ -9,8 +9,6 @@ K
 includes/headNavIn.html.php,8/3/832662daef0a4415aeb954172f0963c99916ed45
 I
 sources/oldies/camera.php,0/d/0dae15e9dbc12b8e19d67eafffb3d2cc40c72952
-F
-controllers/camera.php,4/f/4ffd2dced87ddd118e4a20d251f1596e805b7e0a
 M
 sources/verification.html.php,e/7/e74c56da8ccf0c8c7143121c212e0b87ccf75469
 L
