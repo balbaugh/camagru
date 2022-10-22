@@ -118,7 +118,7 @@ save.addEventListener("click", () => {
 	request.onload = () => {
 		console.log(request.responseText, request);
 	}
-	request.open("POST", "/camagru/controllers/camera.php");
+	request.open("POST", "http://localhost:8080/camagru/controllers/camera.php", false);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send("img=" + encodeURIComponent(data));
 	window.location.reload();

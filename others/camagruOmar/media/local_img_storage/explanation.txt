@@ -1,1 +1,0 @@
-This folder where local images will be saved

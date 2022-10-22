@@ -1,12 +1,12 @@
 <?php
 
-require_once 'config/setup.php';
-
 session_start();
 
+require_once 'config/setup.php';
 
+date_default_timezone_set('Europe/Helsinki');
 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 	header('Location: ./sources/home.html.php');
 } else {
 	header('Location: ./sources/login.html.php');

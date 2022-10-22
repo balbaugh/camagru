@@ -4,6 +4,8 @@ session_start();
 
 include_once '../config/dbconnect.php';
 
+date_default_timezone_set('Europe/Helsinki');
+
 // controller for verifying user account with token sent to email and submitted by user
 // in sources/verification.html.php. If token is correct, user verify_token is set to 1 and
 // user is redirected to login page. If token is incorrect, user is redirected to

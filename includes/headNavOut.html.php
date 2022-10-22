@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../public/styles/bulma.css">
 	<title>camagru</title>
+	<link rel="shortcut icon" type="image/jpg" href="../public/images/whiteFavicon.png" />
 </head>
 
 <body class="main">
@@ -35,28 +36,20 @@
 								</br>
 							</div>
 						</a>
-						<a href="../sources/profile.html.php" class="navbar-item">
-							<div class="level-item">
-								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-user-50.png" alt="Profile"
-										title="Profile">
-								</span>
-								</br>
-							</div>
-						</a>
-						<a href="../sources/camera.html.php" class="navbar-item">
-							<div class="level-item">
-								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-add-50.png" alt="Post" title="Post">
-								</span>
-								</br>
-							</div>
-						</a>
 						<a href="../sources/login.html.php" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-login-50.png" alt="Log in"
 										title="Log in">
+								</span>
+								</br>
+							</div>
+						</a>
+						<a class="navbar-item" href="../controllers/logout.php">
+							<div class="level-item">
+								<span class="icon is-medium">
+									<img src="../public/icons/MaterialIcons/icons8-logout-50.png" alt="Log out"
+										title="Log out">
 								</span>
 								</br>
 							</div>

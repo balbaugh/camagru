@@ -1,4 +1,10 @@
-<?php include_once '../includes/headNavOut.html.php'; ?>
+<?php
+
+session_start();
+
+include_once '../includes/headNavOut.html.php';
+
+?>
 
 <?php if (isset($_GET['logout_success'])) { ?>
 <p class="help is-success"><?php echo $_GET['logout_success']; ?> </p>

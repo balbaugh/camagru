@@ -1,4 +1,10 @@
-<?php include_once '../includes/headNav.html.php'; ?>
+<?php
+
+session_start();
+
+include_once '../includes/headNav.html.php';
+
+?>
 
 <section class="is-relative section py-20 has-background-light">
 	<div class="is-relative container">

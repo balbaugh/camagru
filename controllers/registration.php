@@ -4,6 +4,8 @@ session_start();
 
 include_once '../config/dbconnect.php';
 
+date_default_timezone_set('Europe/Helsinki');
+
 if (isset($_POST['submit_registration'])) {
 	$email = $_POST['email'];
 	$username = htmlspecialchars($_POST['username']);

@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../public/styles/bulma.css">
+	<link rel="shortcut icon" type="image/jpg" href="../public/images/whiteFavicon.png" />
 	<title>camagru</title>
 </head>
 
@@ -35,19 +36,19 @@
 								</br>
 							</div>
 						</a>
-						<a class="navbar-item" href="../sources/profile.html.php">
-							<div class="level-item">
-								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-user-50.png" alt="Profile"
-										title="Profile">
-								</span>
-								</br>
-							</div>
-						</a>
 						<a class="navbar-item" href="../sources/camera.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
 									<img src="../public/icons/MaterialIcons/icons8-add-50.png" alt="Post" title="Post">
+								</span>
+								</br>
+							</div>
+						</a>
+						<a class="navbar-item" href="../sources/settings.html.php">
+							<div class="level-item">
+								<span class="icon is-medium">
+									<img src="../public/icons/MaterialIcons/icons8-settings-50.png" alt="Settings"
+										title="Settings">
 								</span>
 								</br>
 							</div>

@@ -1,10 +1,14 @@
 <?php
 
-// controller to process user login from login.html.php
-
 session_start();
 
 include_once '../config/dbconnect.php';
+
+date_default_timezone_set('Europe/Helsinki');
+
+// controller to process user login from login.html.php
+
+
 
 if (isset($_POST['submit_login'])) {
 	$email = $_POST['email'];
@@ -34,20 +38,22 @@ if (isset($_POST['submit_login'])) {
 
 	try {
 		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT id_user, username, email, password, verified FROM users WHERE email = ?");
+		$stmt = $conn->prepare("SELECT id_user, username, email, password, verified, notifications FROM users WHERE email = ?");
 		$stmt->execute([$email]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result) {
 			if (password_verify($password, $result['password'])) {
 				if ($result['verified'] == 1) {
-					$user = array(
-						'id_user' => $result['id_user'],
-						'username' => $result['username'],
-						'email' => $result['email'],
+					session_start();
+					$_SESSION['logged_in'] = true;
+					$_SESSION['id_user'] = $result['id_user'];
+					$_SESSION['username'] = $result['username'];
+					$_SESSION['email'] = $result['email'];
+					$_SESSION['verified'] = $result['verified'];
+					$_SESSION['notifications'] = $result['notifications'];
 
-					);
-					$_SESSION['user'] = $user;
-					header("Location: ../sources/home.html.php?login_success=You are logged in!");
+
+					header("Location: ../sources/home.html.php");
 					exit();
 				} else {
 					header("Location: ../sources/login.html.php?login_error=Your account is not verified!");

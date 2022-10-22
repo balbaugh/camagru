@@ -22,7 +22,7 @@ $sql = "
 			`id_image`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`id_user`				INT(11) UNSIGNED NOT NULL,
 			`username`				VARCHAR(255) NOT NULL,
-			`image_name`			LONGBLOB NOT NULL,
+			`image_name`			VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL,
 			`date_added`			TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		);
 		CREATE TABLE IF NOT EXISTS camagru. `likes` (

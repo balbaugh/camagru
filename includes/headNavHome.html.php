@@ -1,9 +1,7 @@
 <?php
 
-session_start();
-
-if (isset($_SESSION['user'])) {
-    include_once '../includes/headNavIn.html.php';
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+	include_once '../includes/headNavIn.html.php';
 } else {
-    include_once '../includes/headNavOut.html.php';
+	include_once '../includes/headNavOut.html.php';
 }

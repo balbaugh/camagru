@@ -1,8 +1,10 @@
 <?php
 
+session_start();
+
 include_once '../config/dbconnect.php';
 
-session_start();
+date_default_timezone_set('Europe/Helsinki');
 
 
 // check if user is logged in and update user information based on form input
