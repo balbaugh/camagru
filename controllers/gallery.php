@@ -12,13 +12,11 @@ date_default_timezone_set('Europe/Helsinki');
 // if user not logged in, redirect to home page for gallery with less features.
 
 // check if user is logged in and get images from database
-if (isset($_SESSION['user'])) {
-	$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
-	$stmt->execute();
-}
+
 
 function getImages()
 {
+	$conn = dbConnect();
 	$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
 	$stmt->execute();
 	$images = $stmt->fetchAll();
@@ -27,6 +25,7 @@ function getImages()
 
 function getLikes()
 {
+	$conn = dbConnect();
 	$stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
 	$stmt->execute();
 	$likes = $stmt->fetchAll();
@@ -35,6 +34,7 @@ function getLikes()
 
 function getComments()
 {
+	$conn = dbConnect();
 	$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
 	$stmt->execute();
 	$comments = $stmt->fetchAll();

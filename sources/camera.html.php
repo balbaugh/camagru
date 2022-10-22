@@ -97,20 +97,6 @@ include_once '../includes/headNav.html.php';
 
 
 							<div class="field is-grouped is-grouped-centered">
-								<!-- <p class="control">
-									<button
-										class="button is-normal is-rounded is-same is-focused is-success is-light is-responsive mt-2 is-inline-block"
-										id="startButton">
-										Start
-									</button>
-								</p>
-								<p class="control">
-									<button
-										class="button is-danger is-rounded is-same is-focused is-success is-light is-responsive mt-2 is-inline-block is-hidden"
-										id="stopButton">
-										Stop
-									</button>
-								</p> -->
 								<p class="control">
 									<button
 										class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
@@ -119,6 +105,7 @@ include_once '../includes/headNav.html.php';
 									</button>
 								</p>
 							</div>
+
 							<div class="field is-grouped is-grouped-centered">
 								<p class="control">
 									<button
@@ -127,16 +114,6 @@ include_once '../includes/headNav.html.php';
 										Clear
 									</button>
 								</p>
-								<!-- <form onsubmit="submitForm(event)">
-									<input type="hidden" name="image" id="image" accept="image/*">
-									<p class="control">
-										<button
-											class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
-											id="save">
-											Save
-										</button>
-									</p>
-								</form> -->
 								<p class="control" action="">
 									<button
 										class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
@@ -147,7 +124,6 @@ include_once '../includes/headNav.html.php';
 							</div>
 
 							<div class="field-group">
-
 								<div class="field is-inline-block mt-2">
 									<label class="label">Sticker Select</label>
 									<div class="control">
@@ -162,61 +138,7 @@ include_once '../includes/headNav.html.php';
 										</div>
 									</div>
 								</div>
-
-								<!--
-								<div class="field is-inline-block">
-									<label class="label">Sticker Right</label>
-									<div class="control">
-										<div class="select is-primary is-small is-rounded m-2">
-											<select id="mySelect2">
-												<option selected="selected" value="img0">None</option>
-												<option value="img1">Bolt</option>
-												<option value="img2">Stealie</option>
-												<option value="img3">Stealie Blank</option>
-												<option value="img4">Silent Emoji</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="field is-inline-block">
-									<label class="label">Sticker Bottom</label>
-									<div class="control">
-										<div class="select is-primary is-small is-rounded m-2">
-											<select id="mySelect3">
-												<option selected="selected" value="img0">None</option>
-												<option value="img1">Bolt</option>
-												<option value="img2">Stealie</option>
-												<option value="img3">Stealie Blank</option>
-												<option value="img4">Silent Emoji</option>
-											</select>
-										</div>
-									</div>
-								</div>
- -->
 							</div>
-
-							<div id="commentForm" class="card mt-2" hidden>
-								<div class="field">
-									<div class="control pt-3 px-5">
-										<textarea class="input" id="imageDescription" type="text"
-											name="imageDescription" placeholder="Image Description"></textarea>
-									</div>
-									<?php if (isset($_GET['comment_error'])) { ?>
-									<p class="help is-danger">
-										<?php echo $_GET['comment_error']; ?>
-									</p>
-									<?php } ?>
-									<div class="control py-3 px-5">
-										<button
-											class="button is-normal is-fullwidth is-focused is-success is-light is-responsive"
-											id="saveButton" type="submit">
-											Save
-										</button>
-									</div>
-								</div>
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -237,60 +159,83 @@ include_once '../includes/headNav.html.php';
 							<figure class="image is-4by3">
 								<img id="uploadedPhoto" alt="" src="" />
 							</figure>
+							<div>
+								<canvas class="" id="canvas2"></canvas>
+							</div>
 						</div>
-						<div class="file is-normal is-boxed is-centered is-info" id="uploadButtonDiv">
-							<label class="file-label">
-								<input class="file-input" type="file" name="Upload" id="uploadImage"
-									accept="image/png, image/jpg">
-								<span class="file-cta">
-									<span class="file-label" id="uploadButton">
-										Choose File
-									</span>
-								</span>
-							</label>
+
+						<!-- upload file to uploadedPhoto figure, then when capture is clicked, it will be saved to
+						canvasUpload with the selected sticker and then saved to the database when save is clicked.
+						?? include upload.js // upload.php ?? -->
+
+
+
+
+
+
+
+
+						<div class="field is-grouped is-grouped-centered">
+							<p class="control">
+								<button
+									class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
+									id="snap2">
+									Capture
+								</button>
+							</p>
 						</div>
-						<div id="commentForm" class="card mt-2" hidden>
-							<div class="field">
-								<div class="control pt-3 px-5">
-									<textarea class="input" id="imageDescription" type="text" name="imageDescription"
-										placeholder="Image Description"></textarea>
+
+						<div class="field is-grouped is-grouped-centered">
+							<p class="control">
+								<button
+									class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
+									id="clear2">
+									Clear
+								</button>
+							</p>
+							<p class="control" action="">
+								<button
+									class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
+									id="save2" type="submit">
+									Save
+								</button>
+							</p>
+						</div>
+
+						<div class="level">
+							<div class="level-item">
+								<div class="field is-inline-block mt-2">
+									<label class="label">Sticker Select</label>
+									<div class="control">
+										<div class="select is-primary is-small is-rounded">
+											<select id="mySelect2">
+												<option selected="selected" value="img0">None</option>
+												<option value="img1">Bolt</option>
+												<option value="img2">Stealie</option>
+												<option value="img3">Stealie Blank</option>
+												<option value="img4">Silent Emoji</option>
+											</select>
+										</div>
+									</div>
 								</div>
-								<?php if (isset($_GET['comment_error'])) { ?>
-								<p class="help is-danger">
-									<?php echo $_GET['comment_error']; ?>
-								</p>
-								<?php } ?>
-								<div class="control py-3 px-5">
-									<button
-										class="button is-normal is-fullwidth is-focused is-success is-light is-responsive"
-										id="saveButton" type="submit">
-										Save
-									</button>
+							</div>
+							<div class="level-item">
+								<div class="file is-small is-boxed is-info mt-5" id="uploadButtonDiv">
+									<label class="file-label">
+										<input class="file-input" type="file" name="Upload" id="uploadImage"
+											accept="image/png, image/jpg">
+										<span class="file-cta">
+											<span class="file-label" id="uploadButton">
+												Choose File
+											</span>
+										</span>
+									</label>
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
-
-				<!-- <div id="commentForm" class="card mt-2" hidden>
-					<div class="field">
-						<div class="control pt-3 px-5">
-							<textarea class="input" id="imageDescription" type="text" name="imageDescription"
-								placeholder="Image Description"></textarea>
-						</div>
-						<?php if (isset($_GET['comment_error'])) { ?>
-						<p class="help is-danger">
-							<?php echo $_GET['comment_error']; ?>
-						</p>
-						<?php } ?>
-						<div class="control py-3 px-5">
-							<button class="button is-normal is-fullwidth is-focused is-success is-light is-responsive"
-								id="saveButton" type="submit">
-								Save
-							</button>
-						</div>
-					</div>
-				</div> -->
 
 				<div id="libraryPanel" class="card mt-3">
 					<header class="card-header">
@@ -333,4 +278,5 @@ include_once '../includes/headNav.html.php';
 
 
 <script src="../public/scripts/camera.js"></script>
+<script src="../public/scripts/upload.js"></script>
 <!-- <script src="../public/scripts/cameraOld.js"></script> -->

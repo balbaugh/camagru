@@ -6,6 +6,20 @@ require_once '../config/dbconnect.php';
 
 include_once '../includes/headNav.html.php';
 
+/* if (!isset($_SESSION['id_user'])) {
+	header('location:login.html.php');
+} else {
+	// save the user_id into a variable
+	$id_user = $_SESSION['id_user'];
+	$logged_user = $_SESSION['username'];
+}
+ */
+
+/*
+$username = $_SESSION['username'];
+$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
+$stmt->execute();
+ */
 
 if (!isset($_SESSION['id_user'])) {
 	header('location:login.php');
