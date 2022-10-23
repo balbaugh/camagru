@@ -114,6 +114,14 @@ canvas {
 	height: auto;
 }
 
+/* Comments Scrollable */
+.card-content.is-scrollable {
+	overflow-y: scroll;
+	width: auto;
+	max-height: 100px;
+}
+
+
 /* END OF ADDED STYLES */
 
 

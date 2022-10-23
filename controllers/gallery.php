@@ -16,27 +16,56 @@ date_default_timezone_set('Europe/Helsinki');
 
 function getImages()
 {
-	$conn = dbConnect();
-	$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
-	$stmt->execute();
-	$images = $stmt->fetchAll();
-	return $images;
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
+		$stmt->execute();
+		$images = $stmt->fetchAll();
+		return $images;
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
+}
+
+function getGallery(int $offset, int $pageMax)
+{
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC LIMIT $offset, $pageMax");
+		$stmt->execute();
+		$images = $stmt->fetchAll();
+		return $images;
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
 }
 
 function getLikes()
 {
-	$conn = dbConnect();
-	$stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
-	$stmt->execute();
-	$likes = $stmt->fetchAll();
-	return $likes;
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
+		$stmt->execute();
+		$likes = $stmt->fetchAll();
+		return $likes;
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
 }
 
 function getComments()
 {
-	$conn = dbConnect();
-	$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
-	$stmt->execute();
-	$comments = $stmt->fetchAll();
-	return $comments;
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
+		$stmt->execute();
+		$comments = $stmt->fetchAll();
+		return $comments;
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
 }

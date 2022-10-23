@@ -3,30 +3,47 @@
 session_start();
 
 require_once '../config/dbconnect.php';
+
+// include_once '../controllers/comments.php';
+
 include_once '../controllers/gallery.php';
 
 include_once '../includes/headNav.html.php';
 
 
 
-$images = getImages();
-
-
 $conn = dbConnect();
 
-if (isset($_GET['page']) && $_GET['page'] != "") {
-	$page = $_GET['page'];
-} else {
-	$page = 1;
+$next = 0;
+$prev = 0;
+$page = 1;
+$pageMax = 5;
+
+$imageTotal = count(getImages());
+$totalPages = ceil($imageTotal / $pageMax);
+
+if (isset($_GET['page'])) {
+	$page = intval($_GET['page']);
+	$next = $page + 1;
+	$prev = $page - 1;
+
+	if ($page > $totalPages && $next > $totalPages) {
+		$page = $totalPages;
+		$next = $page;
+		$prev = $page - 1;
+	} elseif ($page < 1) {
+		$page = 1;
+		$next = $page + 1;
+	}
 }
 
-$pageMax = 5;
-$pictures = ($page - 1) * $pageMax;
-$next_page = $page + 1;
-$prev_page = $page - 1;
-$stmt = $conn->query("SELECT COUNT(*) FROM images");
-$total_images = $stmt->fetchColumn();
-$total_pages = ceil($total_images / $pageMax);
+$offset = ($page - 1) * $pageMax;
+
+$images = getGallery($offset, $pageMax);
+
+
+
+
 
 ?>
 
@@ -40,17 +57,13 @@ $total_pages = ceil($total_images / $pageMax);
 			<?php
 
 
-
-
-
-			$start = ($page - 1) * $pageMax;
-
 			try {
 				$conn = dbConnect();
-				$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC LIMIT $start, $pageMax");
+				$stmt = $conn->query("SELECT * FROM images ORDER BY id_image DESC LIMIT $offset, $pageMax");
 				$stmt->execute();
-				$numberResults = $stmt->rowCount();
-				$numberPages = ceil($numberResults / $pageMax);
+				$imageTotal = count(getImages());
+				$totalPages = ceil($imageTotal / $pageMax);
+
 				if ($stmt->execute() && $stmt->rowCount() > 0) {
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						$id_image = $row['id_image'];
@@ -58,21 +71,18 @@ $total_pages = ceil($total_images / $pageMax);
 						$username = $row['username'];
 						$date_added = $row['date_added'];
 						$original_date = $date_added;
-						$new_date = date("d-m-Y", strtotime($original_date));
-						$image_count = $stmt->rowCount();
-
-
+						$post_date = date("d-m-Y", strtotime($original_date));
 
 						$imageURL = '../public/uploads/' . $row["image_name"];
 
-
 			?>
+
+
 
 			<div class="card mt-6">
 				<div class="header">
 					<div class="card-header-title">
 						<h1 class="title is-4"><?php echo "@" . $username; ?></h1>
-
 					</div>
 				</div>
 				<div class="card-image">
@@ -113,21 +123,20 @@ $total_pages = ceil($total_images / $pageMax);
 						</div>
 						<div class="level-right">
 							<div class="level-item has-text-centered">
-								<h1 class="title is-6 has-text-right"><?php echo $new_date; ?></h1>
+								<h1 class="title is-6 has-text-right"><?php echo $post_date; ?></h1>
 							</div>
 						</div>
 					</div>
+					<div class="card-content is-scrollable">
+						<div class="card-content">
+							<p>
+								<strong>@balbaugh</strong>
+							</p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
 
-					<div class="content">
-						<p>
-							<strong>@balbaugh</strong>
-						</p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-						<a>@bulmaio</a>.
-						<a href="#">#css</a>
-						<a href="#">#responsive</a>
-						<br>
-						<time datetime="2018-1-1">11:09 PM - 1 Jan 2018</time>
+							<br>
+							<time datetime="2018-1-1">11:09 PM - 1 Jan 2018</time>
+						</div>
 					</div>
 				</div>
 				<div class="card-footer">
@@ -160,20 +169,29 @@ $total_pages = ceil($total_images / $pageMax);
 				echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 				exit();
 			}
-
 			?>
-			<div class="pagination">
-				<a class="arrows" <?php if ($page > 1) {
-										echo "href='?page_no=$prev_page'";
-									} ?>> ⬅ </a>&nbsp&nbsp&nbsp&nbsp&nbsp
-				<?php echo $page; ?>&nbsp&nbsp&nbsp&nbsp&nbsp
-				<a class="arrows" <?php if ($page < $total_pages) {
-										echo "href='?page_no=$next_page'";
-									} ?>> ➡ </a>
-			</div>
-		</div>
-	</div>
-</section>
 
+		</div>
+
+	</div>
+
+</section>
+<nav class="pagination level is-rounded mt-5" role="navigation">
+	<div class="level-item has-text-centered">
+		<?php
+		if ($page < $totalPages && $page > 1) {
+			echo '<a class="pagination-previous" href="home.html.php?page=' . $prev . '">' . 'Previous' . '</a>';
+
+			echo '<a class="pagination-next" href="home.html.php?page=' . $next . '">' . 'Next' . '</a>';
+		} elseif ($page == $totalPages && $page > 1) {
+			echo '<a class="pagination-previous" href="home.html.php?page=' . $prev . '">' . 'Previous' . '</a>';
+		}
+		if ($page == 1 && $totalPages != 1) {
+			$next = $page + 1;
+			echo '<a class="pagination-next" href="home.html.php?page=' . $next . '">' . 'Next' . '</a>';
+		}
+		?>
+	</div>
+</nav>
 
 <?php include_once '../includes/footer.html.php'; ?>

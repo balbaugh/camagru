@@ -278,5 +278,5 @@ include_once '../includes/headNav.html.php';
 
 
 <script src="../public/scripts/camera.js"></script>
-<script src="../public/scripts/upload.js"></script>
+<!-- <script src="../public/scripts/upload.js"></script> -->
 <!-- <script src="../public/scripts/cameraOld.js"></script> -->
