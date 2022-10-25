@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once '../config/dbconnect.php';
+require_once '../config/dbConnect.php';
 
 include_once '../includes/headNav.html.php';
 

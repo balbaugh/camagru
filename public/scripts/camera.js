@@ -5,26 +5,29 @@
 // card toggle for logo // stickers // initialize other page elements
 document.addEventListener('DOMContentLoaded', function () {
 	let cardToggles = document.getElementsByClassName('card-toggle');
-	for (let i = 0; i < cardToggles.length; i++) {
-		cardToggles[i].addEventListener('click', e => {
+	for (const element of cardToggles) {
+		element.addEventListener('click', e => {
 			e.currentTarget.parentElement.parentElement.childNodes[3].classList.toggle('is-hidden');
 		});
 	}
 });
 
-//var mySticker = "img0";
+
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap = document.getElementById('snap');
-//const reset = document.getElementById('reset');
 const errorMsgElement = document.getElementById('spanErrorMsg');
-var photo = null;
+let photo = null;
 const constraints = {
 	audio: false,
 	video: true
 };
 
 
+/*
+
+// Load init
+init();
 //Access webcam
 async function init() {
 	try {
@@ -34,7 +37,22 @@ async function init() {
 		errorMsgElement.innerHTML = 'navigator.getUserMedia.error:${e.toString()}';
 	}
 }
+*/
 
+
+// EVENT LISTENERS
+window.addEventListener('load', async () => {
+	try {
+		await start_video();
+	} catch (e) {
+		alert("In order to take photos we need your permission to use the webcam");
+	}
+});
+
+const start_video = async() => {
+	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+	video.srcObject = stream;
+}
 
 // Success
 function handleSuccess(stream) {
@@ -42,18 +60,17 @@ function handleSuccess(stream) {
 	video.srcObject = stream;
 }
 
-// Load init
-init();
+
 
 //Draw Image
-var context = canvas.getContext('2d');
+let context = canvas.getContext('2d');
 snap.addEventListener("click", function () {
 	video.classList.add('is-hidden');
 	canvas.classList.remove('is-hidden');
 
-	var mySticker = mySticker_function();
-	// var mySticker2 = mySticker_function2();
-	// var mySticker3 = mySticker_function3();
+	let mySticker = mySticker_function();
+	// let mySticker2 = mySticker_function2();
+	// let mySticker3 = mySticker_function3();
 
 	canvas.width = video.videoWidth;
 	canvas.height = video.videoHeight;
@@ -65,7 +82,6 @@ snap.addEventListener("click", function () {
 });
 
 //Reset Image
-//var context = canvas.getContext('2d');
 document.getElementById('clear').addEventListener('click', function () {
 
 	video.classList.remove('is-hidden');
@@ -108,17 +124,17 @@ uploadedImage.addEventListener('change', function () {
 
 
 // //Save Image
-var saveImage = document.getElementById("save");
+const saveImage = document.getElementById("save");
 
-save.addEventListener("click", () => {
-	var data = canvas.toDataURL();
+saveImage.addEventListener("click", () => {
+	let data = canvas.toDataURL();
 	data = data.replace("data:image/png;base64,", "");
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 
 	request.onload = () => {
 		console.log(request.responseText, request);
 	}
-	request.open("POST", "http://localhost:8080/camagru/controllers/camera.php", false);
+	request.open("POST", "/camagru/controllers/camera.php", false);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	request.send("img=" + encodeURIComponent(data));
 	window.location.reload();
@@ -126,7 +142,7 @@ save.addEventListener("click", () => {
 
 
 function mySticker_function() {
-	var x = document.getElementById("mySelect").value;
+	let x = document.getElementById("mySelect").value;
 	return x;
 }
 

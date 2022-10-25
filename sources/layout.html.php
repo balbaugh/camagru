@@ -64,7 +64,7 @@ display correctly. -->
 								</br>
 							</div>
 						</a>
-						<?php if ($loggedIn) : ?>
+						<?php if ($logged) : ?>
 						<a href="" class="navbar-item">
 							<div class="level-item">
 								<span class="icon is-medium">

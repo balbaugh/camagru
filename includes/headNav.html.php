@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
 	include_once '../includes/headNavIn.html.php';
 } else {
 	header('Location: ../sources/login.html.php?login_error=Please log in');

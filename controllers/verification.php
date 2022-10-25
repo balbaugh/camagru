@@ -2,7 +2,7 @@
 
 session_start();
 
-include_once '../config/dbconnect.php';
+include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
@@ -14,7 +14,7 @@ date_default_timezone_set('Europe/Helsinki');
 function check_token($email, $verify_token)
 {
 	try {
-		$conn = dbconnect();
+		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND verify_token = :verify_token");
 		$stmt->bindParam(':email', $email);
 		$stmt->bindParam(':verify_token', $verify_token);

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
+header('Location: ../index.php');
+}
+?>
+
 <?php include_once '../includes/headNavOut.html.php'; ?>
 
 <section class="is-relative section py-20 has-background-light">

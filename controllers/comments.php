@@ -2,13 +2,57 @@
 
 session_start();
 
-include_once '../config/dbconnect.php';
+include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
+if (isset($_POST['submit'], $_POST['id_image'], $_POST['comment']) && strlen($_POST['comment'])
+    > 0 && strlen($_POST['comment']) < 255) {
+    postComment();
+}
+
+function postComment()
+{
+    try {
+
+        $conn = dbConnect();
+        $stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username :comment)");
+        $stmt->bindParam(':id_image', $_POST['id_image']);
+        $stmt->bindParam(':id_user', $_SESSION['id_user']);
+        $stmt->bindParam(':username', $_SESSION['username']);
+        $stmt->bindParam(':comment', $_POST['comment']);
+        $stmt->execute();
+        header("Location: ../sources/home.html.php");
+        exit();
+    } catch (PDOException $e) {
+        echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+        exit();
+    }
+}
+
+
 /*
+function showComments($id_image)
+{
+    try {
+        $conn = dbConnect();
+        $stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
+        $stmt->execute(['id_image' => $id_image]);
+        $comments = $stmt->fetchAll();
+        return $comments;
+        foreach ($comments as $comment) {
+            echo $comment['comment'];
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+        exit();
+    }
+}*/
 
 
+
+
+/*
 $url = "http://localhost:8080/camaguru/sources/verification.html.php";
 $to = $email;
 $subject = "Email Verification";
@@ -102,11 +146,11 @@ function notify_user($image_id, $notif_type, $message = '')
 }
 
  */
-
+/*
 function getComments(int $id_image)
 {
 	try {
-		$conn = dbconnect();
+		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT comment, id_user FROM comments WHERE id_image = :id_image");
 		$stmt->bindParam(':id_image', $id_image);
 		$stmt->execute();
@@ -115,7 +159,7 @@ function getComments(int $id_image)
 		echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
 	}
-}
+}*/
 
 /*
 

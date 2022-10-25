@@ -2,9 +2,11 @@
 
 session_start();
 
-require_once '../config/dbconnect.php';
+require_once '../config/dbConnect.php';
 
-// include_once '../controllers/comments.php';
+include_once '../controllers/comments.php';
+
+include_once '../controllers/likes.php';
 
 include_once '../controllers/gallery.php';
 
@@ -12,46 +14,50 @@ include_once '../includes/headNav.html.php';
 
 
 
-$conn = dbConnect();
 
 $next = 0;
 $prev = 0;
-$page = 1;
-$pageMax = 5;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+$pageMax = 6;
 
 $imageTotal = count(getImages());
 $totalPages = ceil($imageTotal / $pageMax);
-
-if (isset($_GET['page'])) {
-	$page = intval($_GET['page']);
-	$next = $page + 1;
-	$prev = $page - 1;
-
-	if ($page > $totalPages && $next > $totalPages) {
-		$page = $totalPages;
-		$next = $page;
-		$prev = $page - 1;
-	} elseif ($page < 1) {
-		$page = 1;
-		$next = $page + 1;
-	}
-}
-
 $offset = ($page - 1) * $pageMax;
+$start = ($page > 1) ? ($page * $pageMax) - $pageMax : 0;
+$next = ($page < $totalPages) ? $page + 1 : 0;
+$prev = ($page > 1) ? $page - 1 : 0;
 
-$images = getGallery($offset, $pageMax);
 
-
-
+if (!isset($_GET['page'])) {
+    $page = 1;
+}
+if (! (int)$_GET['page']) {
+    $page = 1;
+}
+if ($_GET['page'] < 1) {
+    $page = 1;
+}
+if ($_GET['page'] > $totalPages) {
+    $page = $totalPages;
+}
 
 
 ?>
 
 
 <section class="section">
+    <?php if (empty($_SESSION['logged'])): ?>
+		<div class="notification is-warning">
+			<p class="title is-4">WELCOME TO CAMAGRU</p>
+			<p class="subtitle is-6">You are not logged in.</p>
+			<p class="subtitle is-6">You can still view the gallery,
+				but you will not be able to like or comment or post.</p>
+			<p><a href="register.html.php">Register</a> to start sharing.</p>
+		</div>
+    <?php endif; ?>
 	<div class="columns body-columns">
 		<div class="column is-half is-offset-one-quarter">
-
 			<h1 class="title is-1">Gallery</h1>
 
 			<?php
@@ -66,6 +72,7 @@ $images = getGallery($offset, $pageMax);
 
 				if ($stmt->execute() && $stmt->rowCount() > 0) {
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
 						$id_image = $row['id_image'];
 						$id_user = $row['id_user'];
 						$username = $row['username'];
@@ -93,69 +100,99 @@ $images = getGallery($offset, $pageMax);
 				<div class="card-content">
 					<div class="level is-mobile">
 						<div class="level-left">
-							<?php if ($liked) : ?>
-							<div class="level-item has-text-centered">
-								<div>
-									<a href="">
-										<img src="../public/icons/MaterialIcons/icons8-liked-50.png" alt="Liked"
-											title="Liked">
-									</a>
+							<form id="<?php echo $id_image; ?>"
+								  action="../controllers/likes.php"
+								  method="post">
+								<?php if ($_SESSION['logged'] && likedBy($id_image, $_SESSION['id_user'])): ?>
+								<div class="level-item has-text-centered">
+									<div class="heart" id="likeImage" onclick="imageLike(<?php echo $id_image; ?>)">
+										<figure class="image is-32x32">
+											<img id="likeImage" src="../public/icons/MaterialIcons/icons8-liked-50.png" alt="Liked"
+												 title="liked">
+										</figure>
+									</div>
 								</div>
-							</div>
-							<?php else : ?>
-							<div class="level-item has-text-centered">
-								<div>
-									<a href="">
-										<img src="../public/icons/MaterialIcons/icons8-like-50.png" alt="Like"
-											title="Like">
-									</a>
+								<?php elseif ($_SESSION['logged'] && (!likedBy($id_image, $_SESSION['id_user']))): ?>
+								<div class="level-item has-text-centered">
+									<div class="heart" id="likeImage" onclick="imageLike(<?php echo $id_image; ?>)">
+										<figure class="image is-32x32">
+											<img id="likeImage" src="../public/icons/MaterialIcons/icons8-like-50.png" alt="Like" title="like">
+										</figure>
+									</div>
 								</div>
-							</div>
-							<?php endif; ?>
-							<div class="level-item has-text-centered">
+								<?php else: ?>
+								<div class="level-item has-text-centered">
+									<div class="heart">
+										<figure class="image is-32x32">
+											<img src="../public/icons/MaterialIcons/icons8-like-50.png" alt="Like" title="Like">
+										</figure>
+									</div>
+								</div>
+								<?php endif; ?>
+							</form>
+
+							<h1 class="title is-6 pl-2">
+								<?php
+                                if (likeCount($id_image) < 1) {
+									echo "";
+								} elseif (likeCount($id_image) == 1) {
+									echo likeCount($id_image) . " Like";
+								} else {
+									echo likeCount($id_image) . " Likes";
+								}
+								?>
+							</h1>
+
+							<!--<div class="level-item has-text-centered">
 								<div>
-									<a href="">
+									<figure class="image is-32x32">
 										<img src="../public/icons/MaterialIcons/icons8-comments-50.png" alt="Comment"
 											title="Comment">
-									</a>
+									</figure>
 								</div>
-							</div>
+							</div>-->
+
 						</div>
 						<div class="level-right">
 							<div class="level-item has-text-centered">
-								<h1 class="title is-6 has-text-right"><?php echo $post_date; ?></h1>
+								<h1 class="title is-6 has-text-right"><?php
+									echo "Created: " . $post_date; ?></h1>
 							</div>
 						</div>
 					</div>
-					<div class="card-content is-scrollable">
-						<div class="card-content">
-							<p>
-								<strong>@balbaugh</strong>
-							</p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+					<div class="card-footer">
+						<div class="card-content is-scrollable">
+							<div class="card-content">
+								<p>
+									<strong>@balbaugh</strong>
+								</p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
 
-							<br>
-							<time datetime="2018-1-1">11:09 PM - 1 Jan 2018</time>
+								<br>
+								<time datetime="2018-1-1">11:09 PM - 1 Jan 2018</time>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="card-footer">
-					<div class="columns is-mobile">
-						<div class="column is-11">
-							<div class="field">
-								<div class="control">
-									<input class="input is-medium" type="text" placeholder="Add a comment . . .">
-								</div>
-							</div>
-						</div>
-						<div class="level-item has-text-centered">
-							<div>
-								<button class="button is-primary" href="">
+					<?php if (isset($_SESSION['logged'])): ?>
+					<form id="comment_<?php echo $id_image; ?>" action="../controllers/comments.php" method="post">
+						<div class="field has-addons">
+							<p class="control is-expanded">
+								<label for="comment">
+									<input id="comment" name="comment" class="input is-medium" type="text" placeholder="Add a comment . . .">
+								</label>
+							</p>
+							<p class="control">
+								<button data="<?php echo $id_image; ?>"
+										class="button is-info is-medium"
+										type="submit">
 									Submit
 								</button>
-							</div>
+							</p>
 						</div>
-					</div>
+					</form>
+					<?php endif; ?>
 				</div>
 			</div>
 			<?php }
@@ -170,12 +207,11 @@ $images = getGallery($offset, $pageMax);
 				exit();
 			}
 			?>
-
 		</div>
-
 	</div>
-
 </section>
+
+<!-- pagination -->
 <nav class="pagination level is-rounded mt-5" role="navigation">
 	<div class="level-item has-text-centered">
 		<?php
@@ -183,15 +219,18 @@ $images = getGallery($offset, $pageMax);
 			echo '<a class="pagination-previous" href="home.html.php?page=' . $prev . '">' . 'Previous' . '</a>';
 
 			echo '<a class="pagination-next" href="home.html.php?page=' . $next . '">' . 'Next' . '</a>';
-		} elseif ($page == $totalPages && $page > 1) {
+		} elseif ($page > 1  && $page == $totalPages) {
 			echo '<a class="pagination-previous" href="home.html.php?page=' . $prev . '">' . 'Previous' . '</a>';
 		}
-		if ($page == 1 && $totalPages != 1) {
+		if ($page === 1 && $totalPages > 1) {
 			$next = $page + 1;
 			echo '<a class="pagination-next" href="home.html.php?page=' . $next . '">' . 'Next' . '</a>';
 		}
 		?>
 	</div>
 </nav>
+
+
+<script src="../public/scripts/gallery.js"></script>
 
 <?php include_once '../includes/footer.html.php'; ?>

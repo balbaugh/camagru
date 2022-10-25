@@ -2,7 +2,7 @@
 
 session_start();
 
-include_once '../config/dbconnect.php';
+include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
@@ -11,7 +11,7 @@ function auth($login, $password)
 {
 	$res = 0;
 	try {
-		$conn = connection();
+		$conn = dbConnect();
 		$sql = "SELECT username, password, verify_token FROM users ";
 		$qry = $conn->query($sql);
 		$result = $qry->fetchAll(PDO::FETCH_ASSOC);

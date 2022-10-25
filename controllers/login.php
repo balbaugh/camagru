@@ -2,7 +2,7 @@
 
 session_start();
 
-include_once '../config/dbconnect.php';
+include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
@@ -22,16 +22,16 @@ if (isset($_POST['submit_login'])) {
 	if (empty($empty_email)) {
 		header("Location: ../sources/login.html.php?email_error=Email is required!");
 		exit();
-	} else if (empty($empty_password)) {
+	} elseif (empty($empty_password)) {
 		header("Location: ../sources/login.html.php?password_error=Password is required!");
 		exit();
-	} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/login.html.php?email_error=Invalid email format!");
 		exit();
-	} else if (strlen($password) < 8) {
+	} elseif (strlen($password) < 8) {
 		header("Location: ../sources/login.html.php?password_error=Password must be at least 8 characters long!");
 		exit();
-	} else if (!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) {
+	} elseif (!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) {
 		header("Location: ../sources/login.html.php?email_error=Invalid email address!");
 		exit();
 	}
@@ -45,7 +45,7 @@ if (isset($_POST['submit_login'])) {
 			if (password_verify($password, $result['password'])) {
 				if ($result['verified'] == 1) {
 					session_start();
-					$_SESSION['logged_in'] = true;
+					$_SESSION['logged'] = true;
 					$_SESSION['id_user'] = $result['id_user'];
 					$_SESSION['username'] = $result['username'];
 					$_SESSION['email'] = $result['email'];

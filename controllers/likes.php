@@ -2,15 +2,45 @@
 
 session_start();
 
-include_once '../config/dbconnect.php';
+include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
 
+function likedBy(int $id_image, int $id_user): bool {
+    try {
+        $conn = dbConnect();
+        $stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image AND id_user = :id_user");
+        $stmt->bindParam(':id_image', $id_image);
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->execute();
+
+        return $stmt->rowCount() != 0 ? true : false;
+    } catch (PDOException $e) {
+        echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+        exit();
+    }
+}
+
+function likeCount(int $id_image) {
+    try {
+        $conn = dbConnect();
+        $stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
+        $stmt->bindParam(':id_image', $id_image);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt->rowCount();
+        } else {
+            return 0;
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+        exit();
+    }
+}
 
 
-
-
+/*
 $url = "http://localhost:8080/camaguru/sources/verification.html.php";
 		$to = $email;
 		$subject = "Email Verification";
@@ -29,3 +59,4 @@ $url = "http://localhost:8080/camaguru/sources/verification.html.php";
 		header("Location: ../sources/verification.html.php?success_message=Registration successful, please check email for verification code!");
 		exit();
 	}
+    */

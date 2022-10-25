@@ -1,7 +1,7 @@
 <!-- Test for Reusable Database Connector in database.php -->
 <!-- open test.php in browser to test connection -->
 <?php
-require_once './dbconnect.php';
+require_once './dbConnect.php';
 
 if ($conn = dbConnect()) {
 	echo "Database connection test successful!";
