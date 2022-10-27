@@ -1,16 +1,0 @@
-
-_php:S1036"KSplit this 124 characters long line (which is greater than 120 authorized).(ÿÁÜ£
-_php:S103K"KSplit this 128 characters long line (which is greater than 120 authorized).(ÿÁÜ£
-_php:S103^"KSplit this 144 characters long line (which is greater than 120 authorized).(âñóØ
-V	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(ƒ’±Ÿüÿÿÿÿ
-Q	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(º§È®
-V	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(İ‰œíıÿÿÿÿ
-Q	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(„óÿ
-V	php:S1793""<Replace this "else if" keyword sequence by "elseif" keyword.(œ–×´ûÿÿÿÿ
-V	php:S1793%"<Replace this "else if" keyword sequence by "elseif" keyword.(–ÌÀ‘üÿÿÿÿ
-Q	php:S1793("<Replace this "else if" keyword sequence by "elseif" keyword.(É†½Ş
-D	php:S5869%"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869%"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869%"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869%"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Ç´Àöüÿÿÿÿ

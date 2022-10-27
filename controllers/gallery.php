@@ -28,6 +28,9 @@ function getImages()
 	}
 }
 
+
+
+/*
 function getGallery(int $offset, int $pageMax)
 {
 	try {
@@ -40,32 +43,27 @@ function getGallery(int $offset, int $pageMax)
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
 	}
-}
+}*/
 
-function getLikes()
-{
+// delete user image from database and from server
+/*if (isset($_POST['delete_picture']) && !empty($_POST['delete_picture'])) {
+	$img_id = $_POST['delete_picture'];
+
+	if (img_by_user($img_id, $_SESSION['user_id'])) {
+		unlink("../public/uploads/" . get_img_path_by_id($img_id));
+	}
+
 	try {
-		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image");
+		$conn = connect();
+		$stmt = $conn->prepare("DELETE FROM user_images WHERE id = :img_id AND uploader_id = :user_id");
+		$stmt->bindParam(':img_id', $img_id);
+		$stmt->bindParam(':user_id', $_SESSION['user_id']);
 		$stmt->execute();
-		$likes = $stmt->fetchAll();
-		return $likes;
 	} catch (PDOException $e) {
-		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-		exit();
+		echo "Error: " . $e->getMessage();
 	}
 }
-
-function getComments()
-{
-	try {
-		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
-		$stmt->execute();
-		$comments = $stmt->fetchAll();
-		return $comments;
-	} catch (PDOException $e) {
-		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-		exit();
-	}
-}
+if (isset($_SERVER['HTTP_REFERER']))
+	header("location: " . $_SERVER['HTTP_REFERER']);
+else
+	header('location: home.html.php'); */

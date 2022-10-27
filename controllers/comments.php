@@ -6,30 +6,51 @@ include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
-if (isset($_POST['submit'], $_POST['id_image'], $_POST['comment']) && strlen($_POST['comment'])
-    > 0 && strlen($_POST['comment']) < 255) {
-    postComment();
-}
+if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
+	if (strlen($_POST['postComment']) <= 255) {
+		$comment = htmlspecialchars($_POST['postComment']);
+		$id_image = ($_POST['id_image']);
+		$id_user = $_SESSION['id_user'];
 
-function postComment()
+		postComment($id_image, $id_user, $comment);
+		// notifyUser($id_image, 1, $id_user, $comment);
+	}
+}
+header('Location: ../sources/home.html.php');
+
+
+function postComment($id_image, $id_user, $comment)
 {
-    try {
-
-        $conn = dbConnect();
-        $stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username :comment)");
-        $stmt->bindParam(':id_image', $_POST['id_image']);
-        $stmt->bindParam(':id_user', $_SESSION['id_user']);
-        $stmt->bindParam(':username', $_SESSION['username']);
-        $stmt->bindParam(':comment', $_POST['comment']);
-        $stmt->execute();
-        header("Location: ../sources/home.html.php");
-        exit();
-    } catch (PDOException $e) {
-        echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-        exit();
-    }
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username :comment)");
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->bindParam(':id_user', $id_user);
+		$stmt->bindParam(':username', $_SESSION['username']);
+		$stmt->bindParam(':comment', $comment);
+		$stmt->execute();
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
 }
 
+
+/*
+function getComments($id_image)
+{
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
+		$stmt->execute(['id_image' => $id_image]);
+		$comments = $stmt->fetchAll();
+		return $comments;
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
+}
+ */
 
 /*
 function showComments($id_image)

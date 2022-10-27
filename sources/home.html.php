@@ -4,7 +4,7 @@ session_start();
 
 require_once '../config/dbConnect.php';
 
-include_once '../controllers/comments.php';
+// include_once '../controllers/comments.php';
 
 include_once '../controllers/likes.php';
 
@@ -30,16 +30,16 @@ $prev = ($page > 1) ? $page - 1 : 0;
 
 
 if (!isset($_GET['page'])) {
-    $page = 1;
+	$page = 1;
 }
-if (! (int)$_GET['page']) {
-    $page = 1;
+if (!(int)$_GET['page']) {
+	$page = 1;
 }
 if ($_GET['page'] < 1) {
-    $page = 1;
+	$page = 1;
 }
 if ($_GET['page'] > $totalPages) {
-    $page = $totalPages;
+	$page = $totalPages;
 }
 
 
@@ -47,15 +47,15 @@ if ($_GET['page'] > $totalPages) {
 
 
 <section class="section">
-    <?php if (empty($_SESSION['logged'])): ?>
-		<div class="notification is-warning">
-			<p class="title is-4">WELCOME TO CAMAGRU</p>
-			<p class="subtitle is-6">You are not logged in.</p>
-			<p class="subtitle is-6">You can still view the gallery,
-				but you will not be able to like or comment or post.</p>
-			<p><a href="register.html.php">Register</a> to start sharing.</p>
-		</div>
-    <?php endif; ?>
+	<?php if (empty($_SESSION['logged'])) : ?>
+	<div class="notification is-warning">
+		<p class="title is-4">WELCOME TO CAMAGRU</p>
+		<p class="subtitle is-6">You are not logged in.</p>
+		<p class="subtitle is-6">You can still view the gallery,
+			but you will not be able to like or comment or post.</p>
+		<p><a href="register.html.php">Register</a> to start sharing.</p>
+	</div>
+	<?php endif; ?>
 	<div class="columns body-columns">
 		<div class="column is-half is-offset-one-quarter">
 			<h1 class="title is-1">Gallery</h1>
@@ -81,10 +81,7 @@ if ($_GET['page'] > $totalPages) {
 						$post_date = date("d-m-Y", strtotime($original_date));
 
 						$imageURL = '../public/uploads/' . $row["image_name"];
-
 			?>
-
-
 
 			<div class="card mt-6">
 				<div class="header">
@@ -100,49 +97,45 @@ if ($_GET['page'] > $totalPages) {
 				<div class="card-content">
 					<div class="level is-mobile">
 						<div class="level-left">
-							<form id="<?php echo $id_image; ?>"
-								  action="../controllers/likes.php"
-								  method="post">
-								<?php if ($_SESSION['logged'] && likedBy($id_image, $_SESSION['id_user'])): ?>
-								<div class="level-item has-text-centered">
-									<div class="heart" id="likeImage" onclick="imageLike(<?php echo $id_image; ?>)">
-										<figure class="image is-32x32">
-											<img id="likeImage" src="../public/icons/MaterialIcons/icons8-liked-50.png" alt="Liked"
-												 title="liked">
+							<?php if ($_SESSION['verified'] == "1") : ?>
+							<div class="level-item has-text-centered">
+								<div class="heart">
+									<form id="<?php echo $id_image ?>" action="../controllers/likes.php" method="post">
+										<?php if (checkLikes($id_image, $id_user)) : ?>
+										<figure class="image is-32x32 is-clickable" title="Liked"
+											id="<?php echo $id_image; ?>">
+											<img data="<?php echo $id_image ?>"
+												src="../public/icons/MaterialIcons/icons8-liked-50.png"
+												id="like_post" />
+											<input class="like_input" type="hidden" name="unlike"
+												value="<?php echo $id_image ?>">
 										</figure>
-									</div>
-								</div>
-								<?php elseif ($_SESSION['logged'] && (!likedBy($id_image, $_SESSION['id_user']))): ?>
-								<div class="level-item has-text-centered">
-									<div class="heart" id="likeImage" onclick="imageLike(<?php echo $id_image; ?>)">
-										<figure class="image is-32x32">
-											<img id="likeImage" src="../public/icons/MaterialIcons/icons8-like-50.png" alt="Like" title="like">
+										<?php else : ?>
+										<figure class="image is-32x32
+												is-clickable" title="notLiked" id="<?php echo $id_image; ?>">
+											<img data="<?php echo $id_image ?>"
+												src="../public/icons/MaterialIcons/icons8-like-50.png" id="like_post" />
+											<input class="like_input" type="hidden" name="like"
+												value="<?php echo $id_image ?>">
 										</figure>
-									</div>
+										<?php endif; ?>
+									</form>
 								</div>
-								<?php else: ?>
-								<div class="level-item has-text-centered">
-									<div class="heart">
-										<figure class="image is-32x32">
-											<img src="../public/icons/MaterialIcons/icons8-like-50.png" alt="Like" title="Like">
-										</figure>
-									</div>
-								</div>
-								<?php endif; ?>
-							</form>
-
-							<h1 class="title is-6 pl-2">
-								<?php
-                                if (likeCount($id_image) < 1) {
-									echo "";
-								} elseif (likeCount($id_image) == 1) {
-									echo likeCount($id_image) . " Like";
-								} else {
-									echo likeCount($id_image) . " Likes";
-								}
-								?>
-							</h1>
-
+							</div>
+							<?php endif; ?>
+							<div class="level-item has-text-centered">
+								<h1 class="title is-6 pl-1">
+									<?php
+												if (countLikes($id_image) < 1) {
+													echo "";
+												} elseif (countLikes($id_image) == 1) {
+													echo countLikes($id_image) . " Like";
+												} else {
+													echo countLikes($id_image) . " Likes";
+												}
+												?>
+								</h1>
+							</div>
 							<!--<div class="level-item has-text-centered">
 								<div>
 									<figure class="image is-32x32">
@@ -151,12 +144,20 @@ if ($_GET['page'] > $totalPages) {
 									</figure>
 								</div>
 							</div>-->
+							<?php if ($row['id_user'] === $_SESSION['id_user']) : ?>
+							<div id="delete" class="level-item">
+								<figure id="imageDelete" class="image
+									is-32x32" onClick="return confirm('Are you sure you want to delete this image?')">
+									<img src="../public/icons/MaterialIcons/icons8-delete-50.png" alt="Delete"
+										title="Delete">
+								</figure>
+							</div>
+							<?php endif; ?>
 
 						</div>
 						<div class="level-right">
 							<div class="level-item has-text-centered">
-								<h1 class="title is-6 has-text-right"><?php
-									echo "Created: " . $post_date; ?></h1>
+								<h1 class="title is-6 has-text-right"><?php echo "Created: " . $post_date; ?></h1>
 							</div>
 						</div>
 					</div>
@@ -174,19 +175,20 @@ if ($_GET['page'] > $totalPages) {
 						</div>
 					</div>
 				</div>
-				<div class="card-footer">
-					<?php if (isset($_SESSION['logged'])): ?>
+				<div class="card-content">
+					<?php if (isset($_SESSION['logged'])) : ?>
 					<form id="comment_<?php echo $id_image; ?>" action="../controllers/comments.php" method="post">
 						<div class="field has-addons">
 							<p class="control is-expanded">
 								<label for="comment">
-									<input id="comment" name="comment" class="input is-medium" type="text" placeholder="Add a comment . . .">
+									<input id="comment" name="postComment" class="comment-input" type="text"
+										placeholder="Add a comment . . .">
+									<input type="hidden" name="id_image" value="<?php echo $id_image; ?>">
 								</label>
 							</p>
 							<p class="control">
-								<button data="<?php echo $id_image; ?>"
-										class="button is-info is-medium"
-										type="submit">
+								<button data="<?php echo $id_image; ?>" class="comment-icon button is-info"
+									type="submit">
 									Submit
 								</button>
 							</p>

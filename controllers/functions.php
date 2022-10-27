@@ -6,6 +6,23 @@ include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
+
+function destroySession()
+{
+    $_SESSION=array();
+    if (session_id() != "" || isset($_COOKIE[session_name()])) setcookie(session_name(), '', time()-2592000, '/');
+    session_destroy();
+}
+
+function sanitizeString($var)
+{
+    global $connection;
+    $var = strip_tags($var); $var = htmlentities($var); if (get_magic_quotes_gpc())
+    $var = stripslashes($var);
+    return $connection->real_escape_string($var);
+}
+
+
 //checks that the login and password match and also if the user account is activated
 function auth($login, $password)
 {
@@ -46,3 +63,4 @@ function numberCheck($str)
 	}
 	return 0;
 }
+
