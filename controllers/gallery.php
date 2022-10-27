@@ -28,6 +28,19 @@ function getImages()
 	}
 }
 
+function getComments($id_image)
+{
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image ORDER BY id_comment ASC");
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
+}
 
 
 /*

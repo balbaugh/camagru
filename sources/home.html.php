@@ -4,7 +4,7 @@ session_start();
 
 require_once '../config/dbConnect.php';
 
-// include_once '../controllers/comments.php';
+// include_once '../controllers/comments.php'
 
 include_once '../controllers/likes.php';
 
@@ -161,38 +161,44 @@ if ($_GET['page'] > $totalPages) {
 							</div>
 						</div>
 					</div>
-					<div class="card-footer">
-						<div class="card-content is-scrollable">
-							<div class="card-content">
-								<p>
-									<strong>@balbaugh</strong>
-								</p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
 
+					<div class="card-content is-scrollable">
+						<div class="card-content">
+							<?php
+										$comments = getComments($id_image);
+										foreach ($comments as $comment) {
+										?>
+							<div class="block">
+								<p class="comment_username">
+									<strong><?php echo $comment['username']; ?></strong>
+								</p>
+								<p class="comment_text">
+									<?php echo $comment['comment']; ?>
+								</p>
 								<br>
-								<time datetime="2018-1-1">11:09 PM - 1 Jan 2018</time>
 							</div>
+							<?php } ?>
 						</div>
 					</div>
+
 				</div>
 				<div class="card-content">
 					<?php if (isset($_SESSION['logged'])) : ?>
-					<form id="comment_<?php echo $id_image; ?>" action="../controllers/comments.php" method="post">
-						<div class="field has-addons">
-							<p class="control is-expanded">
-								<label for="comment">
-									<input id="comment" name="postComment" class="comment-input" type="text"
-										placeholder="Add a comment . . .">
-									<input type="hidden" name="id_image" value="<?php echo $id_image; ?>">
-								</label>
-							</p>
-							<p class="control">
-								<button data="<?php echo $id_image; ?>" class="comment-icon button is-info"
-									type="submit">
-									Submit
-								</button>
-							</p>
+					<form id="comment_<?php echo $id_image; ?>" class="field has-addons"
+						action="../controllers/comments.php" method="post">
+						<div class="control is-expanded">
+							<label for="comment">
+								<input id="postComment" name="postComment" class="input" type="text"
+									placeholder="Add a comment . . .">
+								<input type="hidden" name="id_image" value="<?php echo $id_image; ?>">
+							</label>
 						</div>
+						<p class="control">
+							<button data="<?php echo $id_image; ?>" class="comment-icon button is-info" id="commentBtn"
+								type="submit">
+								Submit
+							</button>
+						</p>
 					</form>
 					<?php endif; ?>
 				</div>

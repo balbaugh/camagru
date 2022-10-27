@@ -22,9 +22,9 @@ function imageLike(id_image) {
 }
 */
 
-const page_active = document.querySelector("#pageActive");
+const page_active = document.querySelector("#pagective");
 const like_post = document.querySelectorAll("#like_post");
-const comment = document.querySelectorAll(".comment-icon");
+const comment = document.querySelectorAll("#commentBtn");
 
 let user = "<?php echo $_SESSION['id_user'] ?>"
 
@@ -38,7 +38,7 @@ if (user) {
 }
 
 for (let j = 0; j < comment.length; j++) {
-	comment[j].addEventListener("click", e => {
+	comment[j].addEventListener("click", (e) => {
 		document.getElementById("comment_" + e.target.attributes.data.value).submit();
 	})
 }

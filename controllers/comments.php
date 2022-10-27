@@ -6,6 +6,7 @@ include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
+
 if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
 	if (strlen($_POST['postComment']) <= 255) {
 		$comment = htmlspecialchars($_POST['postComment']);
@@ -23,7 +24,7 @@ function postComment($id_image, $id_user, $comment)
 {
 	try {
 		$conn = dbConnect();
-		$stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username :comment)");
+		$stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username, :comment)");
 		$stmt->bindParam(':id_image', $id_image);
 		$stmt->bindParam(':id_user', $id_user);
 		$stmt->bindParam(':username', $_SESSION['username']);
@@ -36,21 +37,21 @@ function postComment($id_image, $id_user, $comment)
 }
 
 
-/*
-function getComments($id_image)
+
+/* function getComments($id_image)
 {
 	try {
 		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image");
-		$stmt->execute(['id_image' => $id_image]);
-		$comments = $stmt->fetchAll();
-		return $comments;
+		$stmt = $conn->prepare("SELECT * FROM comments WHERE id_image = :id_image ORDER BY id_comment DESC");
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->execute();
+		return $stmt->fetchAll();
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
 	}
-}
- */
+} */
+
 
 /*
 function showComments($id_image)
