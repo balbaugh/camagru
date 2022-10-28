@@ -3,10 +3,87 @@
 session_start();
 
 include_once '../config/dbConnect.php';
+include_once '../controllers/security.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
 
+if (isset($_POST['newEmail'])) {
+	newEmail($_POST['newEmail']);
+}
+
+if (isset($_POST['newUsername'])) {
+	newUsername($_POST['newUsername']);
+}
+
+if (isset($_POST['newPassword'])) {
+	newPassword($_POST['newPassword']);
+}
+
+if (isset($_POST['deleteAccount'])) {
+	deleteAccount();
+}
+
+function newEmail($newEmail)
+{
+	if (filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+		try {
+			$conn = dbConnect();
+			$stmt = $conn->prepare("UPDATE users SET email = :email WHERE id_user = :id_user");
+			$stmt->bindParam(':email', $newEmail);
+			$stmt->bindParam(':id_user', $_SESSION['id_user']);
+			$stmt->execute();
+			$_SESSION['email'] = $newEmail;
+			header('Location: ../sources/settings.html.php?success=Email changed successfully');
+		} catch (PDOException $e) {
+			echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+			exit();
+		}
+	} else {
+		header('Location: ../views/settings.html.php?error=invalid email');
+	}
+}
+
+function newUsername($newUsername)
+{
+	if (preg_match('/^[a-zA-Z0-9]+$/', $newUsername)) {
+		try {
+			$newUsername = validateData($newUsername);
+			$conn = dbConnect();
+			$checkUsername = $conn->prepare("SELECT * FROM users WHERE username = $newUsername");
+			$checkUsername->execute();
+			if ($checkUsername->rowCount() > 0) {
+				header('Location: ../views/settings.html.php?error=username already taken');
+			} else {
+				$_POST = array();
+
+				$stmtUsername = $conn->prepare("UPDATE users SET username = $newUsername WHERE id_user = :id_user");
+				$stmtUsername->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtUsername->execute();
+
+				$stmtImages = $conn->prepare("UPDATE images SET username = $newUsername WHERE id_user = :id_user");
+				$stmtImages->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtImages->execute();
+
+				$stmtComments = $conn->prepare("UPDATE comments SET username = $newUsername WHERE id_user = :id_user");
+				$stmtComments->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtComments->execute();
+
+				$_SESSION['username'] = $newUsername;
+				header('Location: ../sources/settings.html.php?success=username changed successfully');
+			}
+		} catch (PDOException $e) {
+			echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+			exit();
+		}
+	} else {
+		header('Location: ../views/settings.html.php?error=invalid username');
+	}
+}
+
+
+
+/*
 // check if user is logged in and update user information based on form input
 if (isset($_SESSION['user'] && $_POST['submit_settings'])) {
 	$username = htmlspecialchars($_POST['username']);
@@ -58,30 +135,4 @@ if (isset($_SESSION['user'] && $_POST['submit_settings'])) {
 		echo "Unable to
 		connect to database: " . $e->getMessage();
 	}
-
-
-
-
-
-
-
-
-
-	$url = "http://localhost:8080/camaguru/sources/verification.html.php";
-	$to = $email;
-	$subject = "Email Verification";
-	$message = '<p>Thank you for registering with camagru!</p>.</br>';
-	$message .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
-	$message .= "<a href='$url'>Click here to verify your account.</a>";
-
-	$headers = "From: balbaugh <info@hive.fi>\r\n";
-	$headers .= "Reply-To: info@hive.fi\r\n";
-	$headers .= "Content-type: text/html\r\n";
-
-	mail($to, $subject, $message, $headers);
-
-	$email_log = "Registration was successful and verification email has been sent to $email.";
-
-	header("Location: ../sources/verification.html.php?success_message=Registration successful, please check email for verification code!");
-	exit();
-}
+ */

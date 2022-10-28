@@ -6,12 +6,8 @@ include_once '../config/dbConnect.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
-// connect to database and start session then check if user is logged in.
-// if logged in, display the gallery page with all user images from database
-// images will be listed chronologically.
-// if user not logged in, redirect to home page for gallery with less features.
 
-// check if user is logged in and get images from database
+// ?? ADD LIKES AND COMMENTS HERE ??
 
 
 function getImages()

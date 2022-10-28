@@ -1,28 +1,8 @@
 'use strict';
 
-/*
+// ?? ADD LIKES AND COMMENTS HERE ??
 
-function imageLike(id_image) {
-	let xml = new XMLHttpRequest();
-	let likeButton = document.getElementById(id_image);
-	let status = likeButton.title;
-
-	xml.open('POST', '../controllers/likes.php', true);
-	xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-	if (status == 'Liked') {
-		xml.send('like=1&id_image=' + id_image+'&status=Liked');
-		likeButton.title = 'notLiked';
-	}
-
-	if (status == 'notLiked') {
-		xml.send('like=1&id_image=' + id_image+'&status=notLiked');
-		likeButton.title = 'Liked';
-	}
-}
-*/
-
-const page_active = document.querySelector("#pagective");
+// const page_active = document.querySelector("#pagective");
 const like_post = document.querySelectorAll("#like_post");
 const comment = document.querySelectorAll("#commentBtn");
 
