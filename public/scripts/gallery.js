@@ -43,5 +43,13 @@ for (let j = 0; j < comment.length; j++) {
 	})
 }
 
+function confirmDelete() {
+	let confirm = window.confirm("Are you sure you want to delete this image ?");
 
-
+	if (confirm) {
+		document.getElementById("deleteImage").submit();
+	}
+	else {
+		return false;
+	}
+}

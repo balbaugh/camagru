@@ -145,15 +145,16 @@ if ($_GET['page'] > $totalPages) {
 								</div>
 							</div>-->
 							<?php if ($row['id_user'] === $_SESSION['id_user']) : ?>
-							<div id="delete" class="level-item">
-								<figure id="imageDelete" class="image
-									is-32x32" onClick="return confirm('Are you sure you want to delete this image?')">
-									<img src="../public/icons/MaterialIcons/icons8-delete-50.png" alt="Delete"
-										title="Delete">
-								</figure>
+							<div id="deleteForm" class="level-item">
+								<form action="../controllers/gallery.php" method="post">
+									<button class="button is-ghost" type="submit" name="deleteButton" value="Delete">
+										<img class="image is-32x32"
+											src="../public/icons/MaterialIcons/icons8-delete-50.png" width="25">
+									</button>
+									<input type="hidden" name="id_image" value=<?php echo $id_image; ?>>
+								</form>
 							</div>
 							<?php endif; ?>
-
 						</div>
 						<div class="level-right">
 							<div class="level-item has-text-centered">

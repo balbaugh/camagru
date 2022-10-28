@@ -42,6 +42,39 @@ function getComments($id_image)
 	}
 }
 
+// delete image from database and delete image file from server if image is owned by user logged in
+
+if (!empty($_POST['deleteButton']) && isset($_POST['id_image'])) {
+	deleteImage($_POST['id_image']);
+}
+
+function deleteImage($id_image)
+{
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT * FROM images WHERE id_image = :id_image");
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->execute();
+		$image = $stmt->fetch();
+		if ($image['id_user'] == $_SESSION['id_user']) {
+			$stmt = $conn->prepare("DELETE FROM images WHERE id_image = :id_image");
+			$stmt->bindParam(':id_image', $id_image);
+			$stmt->execute();
+			$stmt = $conn->prepare("DELETE FROM comments WHERE id_image = :id_image");
+			$stmt->bindParam(':id_image', $id_image);
+			$stmt->execute();
+			$stmt = $conn->prepare("DELETE FROM likes WHERE id_image = :id_image");
+			$stmt->bindParam(':id_image', $id_image);
+			$stmt->execute();
+			unlink('../uploads/' . $image['image_name']);
+			header('Location: ../sources/home.html.php');
+		}
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
+	}
+}
+
 
 /*
 function getGallery(int $offset, int $pageMax)
