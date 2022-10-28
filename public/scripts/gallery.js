@@ -47,7 +47,7 @@ function confirmDelete() {
 	let confirm = window.confirm("Are you sure you want to delete this image ?");
 
 	if (confirm) {
-		document.getElementById("deleteImage").submit();
+		return true;
 	}
 	else {
 		return false;

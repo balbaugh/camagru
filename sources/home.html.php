@@ -147,7 +147,8 @@ if ($_GET['page'] > $totalPages) {
 							<?php if ($row['id_user'] === $_SESSION['id_user']) : ?>
 							<div id="deleteForm" class="level-item">
 								<form action="../controllers/gallery.php" method="post">
-									<button class="button is-ghost" type="submit" name="deleteButton" value="Delete">
+									<button class="button is-ghost" type="submit" name="deleteButton" value="Delete"
+										onClick="return confirmDelete()">
 										<img class="image is-32x32"
 											src="../public/icons/MaterialIcons/icons8-delete-50.png" width="25">
 									</button>
