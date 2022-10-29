@@ -63,7 +63,7 @@ function deleteImage($id_image)
 			$stmt->bindParam(':id_image', $id_image);
 			$stmt->execute();
 			unlink('../uploads/' . $image['image_name']);
-			header('Location: ../sources/home.html.php');
+			header('Location: ../sources/home.html.php?success=Image deleted!');
 		}
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();

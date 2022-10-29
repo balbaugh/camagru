@@ -3,6 +3,7 @@
 session_start();
 
 include_once '../config/dbConnect.php';
+include_once '../controllers/security.php';
 
 date_default_timezone_set('Europe/Helsinki');
 

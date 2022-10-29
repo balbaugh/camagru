@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
-    header('Location: ../index.php');
+	header('Location: ../index.php');
 }
 
 include_once '../includes/headNavOut.html.php';
@@ -31,11 +31,6 @@ include_once '../includes/headNavOut.html.php';
 								<input class="input" type="email" name="email" id="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
-							<?php if (isset($_GET['email_error'])) { ?>
-							<p class="help is-danger">
-								<?php echo $_GET['email_error']; ?>
-							</p>
-							<?php } ?>
 						</div>
 
 						<div class=" field">
@@ -45,18 +40,7 @@ include_once '../includes/headNavOut.html.php';
 								<input class="input" type="text" name="verify_token" id="verify_token"
 									placeholder="********" required>
 							</div>
-							<?php if (isset($_GET['success_message'])) { ?>
-							<p class="help is-success">
-								<?php echo $_GET['success_message']; ?>
-							</p>
-							<?php } ?>
-							<?php if (isset($_GET['token_error'])) { ?>
-							<p class="help is-danger">
-								<?php echo $_GET['token_error']; ?>
-							</p>
-							<?php } ?>
 						</div>
-
 						<div class="field">
 							<div class="control">
 								<button class="button is-primary is-fullwidth" type="submit" name="submit_verification"

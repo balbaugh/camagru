@@ -20,7 +20,9 @@ function checkLikes($id_image, $id_user)
 	try {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT * FROM likes WHERE id_image = :id_image AND id_user = :id_user");
-		$stmt->execute(['id_image' => $id_image, 'id_user' => $id_user]);
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->bindParam(':id_user', $_SESSION['id_user']);
+		$stmt->execute();
 		$likes = $stmt->fetchAll();
 		return $likes;
 	} catch (PDOException $e) {
@@ -36,7 +38,7 @@ function postLikes($id_image, $id_user)
 		$conn = dbConnect();
 		$stmt = $conn->prepare("INSERT INTO likes (id_image, id_user, liked) VALUES (:id_image, :id_user, 1)");
 		$stmt->bindParam(':id_image', $id_image);
-		$stmt->bindParam(':id_user', $id_user);
+		$stmt->bindParam(':id_user', $_SESSION['id_user']);
 		$stmt->execute();
 		header("Location: ../sources/home.html.php");
 		exit();
@@ -67,7 +69,9 @@ function deleteLikes($id_image, $id_user)
 	try {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("DELETE FROM likes WHERE id_image = :id_image AND id_user = :id_user");
-		$stmt->execute(['id_image' => $id_image, 'id_user' => $id_user]);
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->bindParam(':id_user', $_SESSION['id_user']);
+		$stmt->execute();
 		header("Location: ../sources/home.html.php");
 		exit();
 	} catch (PDOException $e) {

@@ -3,18 +3,14 @@
 session_start();
 
 if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
-    header('Location: ../');
+	header('Location: ../');
 }
 
 include_once '../includes/headNavOut.html.php';
 
 ?>
 
-<?php if (isset($_GET['logout_success'])) { ?>
-<p class="help is-success"><?php echo $_GET['logout_success']; ?> </p>
-<?php } ?>
-
-<section class="is-relative section py-20 has-background-light">
+<section class="is-relative section py-20">
 	<div class="is-relative container">
 		<div class="columns is-vcentered">
 			<div class="column is-6 mb-8 mb-0-desktop">
@@ -35,15 +31,6 @@ include_once '../includes/headNavOut.html.php';
 								<input class="input" type="email" name="email" id="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
-							<?php if (isset($_GET['email_error'])) { ?>
-							<p class="help is-danger"><?php echo $_GET['email_error']; ?> </p>
-							<?php } ?>
-							<?php if (isset($_GET['login_error'])) { ?>
-							<p class="help is-danger"><?php echo $_GET['login_error']; ?> </p>
-							<?php } ?>
-							<?php if (isset($_GET['token_success'])) { ?>
-							<p class="help is-success"><?php echo $_GET['token_success']; ?> </p>
-							<?php } ?>
 						</div>
 
 						<div class=" field">
@@ -52,12 +39,9 @@ include_once '../includes/headNavOut.html.php';
 								<input class="input" type="password" name="password" id="password"
 									placeholder="********" required>
 							</div>
-							<?php if (isset($_GET['password_error'])) { ?>
-							<p class="help is-danger"><?php echo $_GET['password_error']; ?> </p>
-							<?php } ?>
 						</div>
 
-						<div class="field">
+						<div class="field pb-2">
 							<div class="control">
 								<button class="button is-primary is-fullwidth" type="submit" name="submit_login"
 									id="submit_login">Log In
@@ -65,7 +49,7 @@ include_once '../includes/headNavOut.html.php';
 							</div>
 						</div>
 						<hr class="dropdown-divider">
-						<div class="block has-text-centered">
+						<div class="block has-text-centered pt-2">
 							<a href="forgot.html.php">Forgot your password?</a>
 						</div>
 					</form>
@@ -77,4 +61,5 @@ include_once '../includes/headNavOut.html.php';
 		</div>
 	</div>
 </section>
+
 <?php include_once '../includes/footer.html.php'; ?>

@@ -1,0 +1,7 @@
+
+Qphp:S105"EReplace all tab characters in this file by sequences of white-spaces.
+3php:S113"'Add a new line at the end of this file.
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¹Ü”öùÿÿÿÿ
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(õùàø
+k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Üí¦¬øÿÿÿÿ
+g	php:S4833Ø"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ

@@ -6,6 +6,8 @@
 	</div>
 </footer>
 </body>
+
 <script src="../public/scripts/navbar.js"></script>
+<script src="../public/scripts/notifications.js"></script>
 
 </html>
