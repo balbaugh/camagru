@@ -10,7 +10,7 @@ include_once '../includes/headNavOut.html.php';
 
 ?>
 
-<section class="is-relative section py-20 has-background-light">
+<section class="is-relative section py-20">
 	<div class="is-relative container">
 		<div class="columns is-vcentered">
 			<div class="column is-6 mb-8 mb-0-desktop">

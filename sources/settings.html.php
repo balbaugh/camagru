@@ -49,12 +49,17 @@ include_once '../includes/headNav.html.php';
 								</p>
 							</div>
 						</form>
+
 						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
 							<label for="password" class="label">Change Password</label>
-							<div class="field has-addons">
+							<div class="control is-expanded">
+								<input class="input" type="password" name="newPassword" id="newPassword"
+									placeholder="New Password" onChange="onChange();">
+							</div>
+							<div class="field has-addons pt-2">
 								<div class="control is-expanded">
-									<input class="input" type="password" name="newPassword" id="newPassword"
-										placeholder="********">
+									<input class="input" type="password" name="confirmPassword" id="confirmPassword"
+										placeholder="Confirm New Password" onChange="onChange();">
 								</div>
 								<p class="control">
 									<button class="button is-info" type="submit" name="changePassword">
@@ -98,12 +103,25 @@ include_once '../includes/headNav.html.php';
 </section>
 
 <script>
+// Delete Account Confirmation
 function confirmDelete() {
 	let confirm = window.confirm(" Are you sure you want to delete your account?");
 	if (confirm) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+// Password Validation
+function onChange() {
+	const newPassword = document.querySelector('input[name=newPassword]');
+	const confirmPassword = document.querySelector('input[name=confirmPassword]');
+
+	if (confirmPassword.value === newPassword.value) {
+		confirmPassword.setCustomValidity('');
+	} else {
+		confirmPassword.setCustomValidity('Passwords do not match');
 	}
 }
 </script>

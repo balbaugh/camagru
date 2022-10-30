@@ -144,7 +144,7 @@ if ($_GET['page'] > $totalPages) {
 									</figure>
 								</div>
 							</div>-->
-							<?php if ($row['id_user'] === $_SESSION['id_user']) : ?>
+							<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>
 							<div id="deleteForm" class="level-item">
 								<form action="../controllers/gallery.php" method="post">
 									<button class="button is-ghost" type="submit" name="deleteButton" value="Delete"
@@ -164,24 +164,24 @@ if ($_GET['page'] > $totalPages) {
 						</div>
 					</div>
 
+					<?php $comments = getComments($id_image);
+								if ($comments) : ?>
 					<div class="card-content is-scrollable">
 						<div class="card-content">
-							<?php
-										$comments = getComments($id_image);
-										foreach ($comments as $comment) {
-										?>
+							<?php foreach ($comments as $comment) : ?>
 							<div class="block">
-								<p class="comment_username">
-									<strong><?php echo $comment['username']; ?></strong>
+								<p class="comment_username is-italic is-underlined">
+									<strong><?php echo $comment['username'] . ":"; ?></strong>
 								</p>
-								<p class="comment_text">
+								<p class="comment_text has-text-weight-medium">
 									<?php echo $comment['comment']; ?>
 								</p>
 								<br>
 							</div>
-							<?php } ?>
+							<?php endforeach; ?>
 						</div>
 					</div>
+					<?php endif; ?>
 
 				</div>
 				<div class="card-content">
@@ -242,5 +242,16 @@ if ($_GET['page'] > $totalPages) {
 
 
 <script src="../public/scripts/gallery.js"></script>
+
+<script>
+function confirmDelete() {
+	let confirm = window.confirm("Are you sure you want to delete your image?");
+	if (confirm) {
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>
 
 <?php include_once '../includes/footer.html.php'; ?>

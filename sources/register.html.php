@@ -9,7 +9,7 @@ include_once '../includes/headNavOut.html.php';
 
 ?>
 
-<section class="is-relative section py-20 has-background-light">
+<section class="is-relative section py-20">
 	<div class="is-relative container">
 		<div class="columns is-vcentered">
 			<div class="column is-6 mb-8 mb-0-desktop">
@@ -44,7 +44,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="password" class="label">Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
-									placeholder="********" required>
+									placeholder="********" required onChange="onChange();">
 							</div>
 
 							<strong>
@@ -56,7 +56,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="confirmPassword" class="label">Confirm Password</label>
 							<div class="control">
 								<input class="input" type="password" name="confirmPassword" id="confirmPassword"
-									placeholder="********" required>
+									placeholder="********" required onChange="onChange();">
 							</div>
 						</div>
 
@@ -69,8 +69,7 @@ include_once '../includes/headNavOut.html.php';
 						</div>
 					</form>
 					<div class="box has-text-centered">
-						<strong>Already have an account? <a href="login.html.php">Log
-								in</a></strong>
+						<strong>Already have an account? <a href="login.html.php">Log in</a></strong>
 					</div>
 				</div>
 			</div>
@@ -78,6 +77,17 @@ include_once '../includes/headNavOut.html.php';
 	</div>
 </section>
 
-<script src="../public/scripts/confirmPassword.js"></script>
+<script>
+function onChange() {
+	const password = document.querySelector('input[name=password]');
+	const confirmPassword = document.querySelector('input[name=confirmPassword]');
+
+	if (confirmPassword.value === password.value) {
+		confirmPassword.setCustomValidity('');
+	} else {
+		confirmPassword.setCustomValidity('Passwords do not match');
+	}
+}
+</script>
 
 <?php include_once '../includes/footer.html.php'; ?>

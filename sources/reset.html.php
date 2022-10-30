@@ -42,7 +42,7 @@ include_once '../includes/headNavHome.html.php';
 							<label for="password" class="label">Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
-									placeholder="********" required>
+									placeholder="********" required onChange="onChange();">
 							</div>
 
 							<strong>
@@ -54,7 +54,7 @@ include_once '../includes/headNavHome.html.php';
 							<label for="confirmPassword" class="label">Confirm Password</label>
 							<div class="control">
 								<input class="input" type="password" name="confirmPassword" id="confirmPassword"
-									placeholder="********" required>
+									placeholder="********" required onChange="onChange();">
 							</div>
 						</div>
 						<div class="field pt-2">
@@ -74,6 +74,17 @@ include_once '../includes/headNavHome.html.php';
 	</div>
 </section>
 
+<script>
+function onChange() {
+	const password = document.querySelector('input[name=password]');
+	const confirmPassword = document.querySelector('input[name=confirmPassword]');
 
+	if (confirmPassword.value === password.value) {
+		confirmPassword.setCustomValidity('');
+	} else {
+		confirmPassword.setCustomValidity('Passwords do not match');
+	}
+}
+</script>
 
 <?php include_once '../includes/footer.html.php'; ?>

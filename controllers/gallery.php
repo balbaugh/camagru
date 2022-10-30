@@ -53,6 +53,8 @@ function deleteImage($id_image)
 		$stmt->execute();
 		$image = $stmt->fetch();
 		if ($image['id_user'] == $_SESSION['id_user']) {
+			$imagePath = $image['image_name'];
+			unlink("../public/uploads/" . $imagePath);
 			$stmt = $conn->prepare("DELETE FROM images WHERE id_image = :id_image");
 			$stmt->bindParam(':id_image', $id_image);
 			$stmt->execute();
@@ -62,7 +64,7 @@ function deleteImage($id_image)
 			$stmt = $conn->prepare("DELETE FROM likes WHERE id_image = :id_image");
 			$stmt->bindParam(':id_image', $id_image);
 			$stmt->execute();
-			unlink('../uploads/' . $image['image_name']);
+			// unlink('../uploads/' . $image['image_name']);
 			header('Location: ../sources/home.html.php?success=Image deleted!');
 		}
 	} catch (PDOException $e) {
