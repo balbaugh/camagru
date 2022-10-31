@@ -94,77 +94,79 @@ include_once '../controllers/gallery.php';
 						</div>
 
 						<div class="tab-pane content-upload">
-							<div class="content" id="uploadForm">
-								<div class="card-image p-3 is-hidden" id="uploadedDiv">
-									<figure class="image is-4by3">
-										<img id="uploadedPhoto" alt="" src="" />
-									</figure>
-									<div id="canvasDiv2">
-										<canvas class="is-hidden" id="canvas2"></canvas>
-									</div>
-								</div>
-
-								<div class="block is-hidden">
-									<div class="field is-grouped is-grouped-centered">
-										<p class="control">
-											<button
-												class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
-												id="snap2">
-												Capture
-											</button>
-										</p>
+							<form method="POST" action="" enctype="multipart/form-data">
+								<div class="content" id="uploadForm">
+									<div class="card-image p-3 is-hidden" id="uploadedDiv">
+										<figure class="image is-4by3">
+											<img id="uploadedPhoto" alt="" src="" />
+										</figure>
+										<div id="canvasDiv2">
+											<canvas class="is-hidden" id="canvas2"></canvas>
+										</div>
 									</div>
 
-									<div class="field is-grouped is-grouped-centered">
-										<p class="control">
-											<button
-												class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
-												id="clear2">
-												Clear
-											</button>
-										</p>
-										<p class="control" action="">
-											<button
-												class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
-												id="save2" type="submit">
-												Save
-											</button>
-										</p>
-									</div>
-								</div>
+									<div class="block is-hidden">
+										<div class="field is-grouped is-grouped-centered">
+											<p class="control">
+												<button
+													class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
+													id="snap2">
+													Capture
+												</button>
+											</p>
+										</div>
 
-								<div class="level">
-									<div class="level-item">
-										<div class="field is-inline-block mt-2">
-											<label class="label">Sticker Select</label>
-											<div class="control">
-												<div class="select is-primary is-small is-rounded">
-													<select id="mySelect2">
-														<option selected="selected" value="img1">Bolt</option>
-														<option value="img2">Stealie</option>
-														<option value="img3">Stealie Blank</option>
-														<option value="img4">Silent Emoji</option>
-													</select>
+										<div class="field is-grouped is-grouped-centered">
+											<p class="control">
+												<button
+													class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
+													id="clear2">
+													Clear
+												</button>
+											</p>
+											<p class="control" action="">
+												<button
+													class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
+													id="save2" type="submit">
+													Save
+												</button>
+											</p>
+										</div>
+									</div>
+
+									<div class="level">
+										<div class="level-item">
+											<div class="field is-inline-block mt-2">
+												<label class="label">Sticker Select</label>
+												<div class="control">
+													<div class="select is-primary is-small is-rounded">
+														<select id="mySelect2">
+															<option selected="selected" value="img1">Bolt</option>
+															<option value="img2">Stealie</option>
+															<option value="img3">Stealie Blank</option>
+															<option value="img4">Silent Emoji</option>
+														</select>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="level-item">
-										<div class="file is-small is-boxed is-info mt-5" id="uploadButtonDiv">
-											<label class="file-label">
-												<input class="file-input" type="file" name="Upload" id="uploadImage"
-													accept="image/png, image/jpg">
-												<span class="file-cta">
-													<span class="file-label" id="uploadButton">
-														Choose File
+										<div class="level-item">
+											<div class="file is-small is-boxed is-info mt-5" id="uploadButtonDiv">
+												<label class="file-label">
+													<input class="file-input" type="file" name="UploadImage"
+														id="uploadImage" accept="image/png, image/jpg, image/jpeg">
+													<span class="file-cta">
+														<span class="file-label" id="uploadButton">
+															Choose File
+														</span>
 													</span>
-												</span>
-											</label>
+												</label>
+											</div>
 										</div>
 									</div>
-								</div>
 
-							</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -188,18 +190,23 @@ include_once '../controllers/gallery.php';
 
 						<div class="tab-pane content-library">
 							<div class="content">
-								<figure>
+								<figure class="p-4 postedImage">
 									<?php
 									$images = getImages();
 									foreach ($images as $image) : ?>
 									<?php
-										if ($_SESSION['id_user'] == $image['id_user']) : ?>
-									<img src="../public/uploads/<?php echo $image['image_name']; ?>"
-										alt="<?php echo $image['image_name']; ?>"
-										class="image is-128x128 p-4 js-modal-trigger" data-target="modal-js">
+										if ($_SESSION['id_user'] == $image['id_user']) : {
+												$imageName = $image['image_name']; ?>
+									<img class="image is-128x128 is-clickable postedImageImg"
+										src=" ../public/uploads/<?php echo $imageName; ?>"
+										id="<?php echo $imageName; ?>" alt="<?php echo $imageName; ?>">
+									</img>
+									<?php } ?>
 									<?php endif; ?>
 									<?php endforeach; ?>
+
 								</figure>
+
 							</div>
 
 						</div>
@@ -228,6 +235,7 @@ include_once '../controllers/gallery.php';
 
 
 <script src="../public/scripts/camera.js"></script>
+<script src="../public/scripts/gallery.js"></script>
 <!-- <script src="../public/scripts/upload.js"></script> -->
 <!-- <script src="../public/scripts/cameraOld.js"></script> -->
 
@@ -241,14 +249,17 @@ function onlyOne(checkbox) {
 }
 </script>
 
-<div id="modal-js" class="modal">
+<div id="myModal" class="modal">
 	<div class="modal-background"></div>
-	<img class="modal-content image is-1by1" id="img01">
+	<div class="columns is-mobile is-centered">
+		<div class="column is-half pt-6 mt-6">
+			<p class="image">
+				<img class="modal-content" id="myModalImage" alt="">
+			</p>
+		</div>
+	</div>
 	<button class="modal-close is-large" aria-label="close"></button>
 </div>
-
-
-
 
 
 <?php include_once '../includes/footer.html.php'; ?>

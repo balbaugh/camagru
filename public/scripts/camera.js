@@ -121,7 +121,38 @@ uploadedImage.addEventListener('change', function () {
 	}
 });
  */
+/*
+let uploadImage = document.getElementById('uploadImage');
+uploadImage.addEventListener('change', function (e) {
+	if (e.target.files) {
+		let imageFile = e.target.files[0];
+		let reader = new FileReader();
+		reader.readAsDataURL(imageFile);
+		reader.onloadend = function (e) {
+			let newImage = new Image();
+			newImage.src = e.target.result;
+			newImage.onload = function (ev) {
 
+				let uploadCanvas = document.getElementById('canvas2');
+				let uploadContext = uploadCanvas.getContext('2d');
+				let mySticker2 = mySticker_function2();
+				uploadCanvas.classList.remove('is-hidden');
+				uploadCanvas.width = newImage.width;
+				uploadCanvas.height = newImage.height;
+				uploadContext.drawImage(newImage, 0, 0);
+				uploadContext.drawImage(document.getElementById(mySticker2), 20, 50, 128, 128);
+				let uploadData = uploadCanvas.toDataURL();
+				uploadData = uploadData.replace("data:image/png;base64,", "");
+
+				let request = new XMLHttpRequest();
+
+				request.onload =>
+			}
+		}
+	}
+}, false);
+
+ */
 
 // //Save Image
 const saveImage = document.getElementById("save");
@@ -146,70 +177,15 @@ function mySticker_function() {
 	return x;
 }
 
-/*
+
 function mySticker_function2() {
 	var x = document.getElementById("mySelect2").value;
 	return x;
 }
 
+/*
 function mySticker_function3() {
 	var x = document.getElementById("mySelect3").value;
 	return x;
 }
  */
-
-
-document.addEventListener('DOMContentLoaded', () => {
-	// Functions to open and close a modal
-	function openModal($el) {
-		$el.classList.add('is-active');
-	}
-
-	function closeModal($el) {
-		$el.classList.remove('is-active');
-	}
-
-	function closeAllModals() {
-		(document.querySelectorAll('.modal') || []).forEach(($modal) => {
-			closeModal($modal);
-		});
-	}
-
-	/* 	var images = document.querySelectorAll('.js-modal-trigger');
-		for (let i = 0; i < images.length; i++) {
-			images[i].addEventListener("click", showImageModal);
-		} */
-
-
-
-	// Add a click event on buttons to open a specific modal
-	(document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-		const modal = $trigger.dataset.target;
-		const $target = document.getElementById(modal);
-
-		$trigger.addEventListener('click', () => {
-			openModal($target);
-		});
-	});
-
-	// Add a click event on various child elements to close the parent modal
-	(document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-		const $target = $close.closest('.modal');
-
-		$close.addEventListener('click', () => {
-			closeModal($target);
-		});
-	});
-
-	// Add a keyboard event to close all modals
-	document.addEventListener('keydown', (event) => {
-		const e = event || window.event;
-
-		if (e.keyCode === 27) { // Escape key
-			closeAllModals();
-		}
-	});
-});
-
-
-

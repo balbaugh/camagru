@@ -21,8 +21,6 @@ G
 public/styles/bulma.css,7/e/7e6c9407871e686d43b0eb8b6c1ab638975643be
 H
 public/scripts/camera.js,c/5/c5988d09fa649566f972666a44c5420595ddfc42
-F
-controllers/camera.php,4/f/4ffd2dced87ddd118e4a20d251f1596e805b7e0a
 D
 config/dbConnect.php,8/1/819209f12570da9e3545901ffeda97fed166ec28
 F
@@ -75,3 +73,15 @@ I
 public/scripts/gallery.js,d/2/d2f329d43a37b33c176bcd84ba43f4a5c2b95506
 H
 controllers/comments.php,8/0/807e7badb9e59db0cf85336994fa3dd67cdea075
+H
+controllers/settings.php,1/1/1141ef3ed4f14e2b692bcdb93cc511ede015c59d
+;
+camguru.txt,5/4/54f4f243cb02c759c0c91097fbe0da5815e1fccc
+H
+controllers/security.php,f/c/fc7548bda7d087a9a140c7a1134ad5922f0b788a
+E
+controllers/login.php,7/6/768cbb37f9f76073498dbaa7adcbc6a256a7e221
+E
+controllers/reset.php,d/d/ddab5c039d6ac58d16bb3eec94c2dbfa223cef3b
+F
+controllers/camera.php,4/f/4ffd2dced87ddd118e4a20d251f1596e805b7e0a

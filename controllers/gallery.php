@@ -24,6 +24,7 @@ function getImages()
 	}
 }
 
+
 function getComments($id_image)
 {
 	try {

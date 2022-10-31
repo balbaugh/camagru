@@ -90,8 +90,9 @@ if ($_GET['page'] > $totalPages) {
 					</div>
 				</div>
 				<div class="card-image">
-					<figure class="image is-4by3">
-						<img src="<?php echo $imageURL; ?>" alt="" height="320" width="" />
+					<figure class="image is-4by3 postedImage">
+						<img class="postedImageImg is-clickable" src="<?php echo $imageURL; ?>" alt="" height="320"
+							width="" />
 					</figure>
 				</div>
 				<div class="card-content">
@@ -159,7 +160,7 @@ if ($_GET['page'] > $totalPages) {
 						</div>
 						<div class="level-right">
 							<div class="level-item has-text-centered">
-								<h1 class="title is-6 has-text-right"><?php echo "Created: " . $post_date; ?></h1>
+								<h1 class="title is-6 has-text-right"><?php echo "" . $post_date; ?></h1>
 							</div>
 						</div>
 					</div>
@@ -253,5 +254,17 @@ function confirmDelete() {
 	}
 }
 </script>
+
+<div id="myModal" class="modal is-invisible-mobile">
+	<div class="modal-background"></div>
+	<div class="columns is-centered">
+		<div class="column is-two-thirds pt-6 mt-6">
+			<p class="image">
+				<img class="modal-content" id="myModalImage" alt="">
+			</p>
+		</div>
+	</div>
+	<button class="modal-close is-large" aria-label="close"></button>
+</div>
 
 <?php include_once '../includes/footer.html.php'; ?>
