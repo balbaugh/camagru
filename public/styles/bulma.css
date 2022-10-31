@@ -1,5 +1,8 @@
 /* ADDED STYLES */
 
+.postedImage {
+	border-radius: 20px;
+}
 
 /* CAMERA TABS */
 
@@ -135,6 +138,10 @@ screen and (-ms-high-contrast: none) {
 	min-width: 270px;
 }
 
+.button.is-same2 {
+	min-width: 185px;
+}
+
 /* Canvas */
 canvas {
 	max-width: 100%;
@@ -145,9 +152,14 @@ canvas {
 .card-content.is-scrollable {
 	overflow-y: scroll;
 	width: auto;
-	max-height: 100px;
+	max-height: 80px;
 }
 
+.card-content.is-scrollable2 {
+	overflow-y: scroll;
+	width: auto;
+	max-height: 550px;
+}
 
 /* END OF ADDED STYLES */
 
@@ -5382,7 +5394,7 @@ print {
 
 .card {
 	background-color: white;
-	border-radius: 0.25rem;
+	border-radius: 5px;
 	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
 	color: #4a4a4a;
 	max-width: 100%;

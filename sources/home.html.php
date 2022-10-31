@@ -61,8 +61,6 @@ if ($_GET['page'] > $totalPages) {
 			<h1 class="title is-1">Gallery</h1>
 
 			<?php
-
-
 			try {
 				$conn = dbConnect();
 				$stmt = $conn->query("SELECT * FROM images ORDER BY id_image DESC LIMIT $offset, $pageMax");
@@ -83,13 +81,30 @@ if ($_GET['page'] > $totalPages) {
 						$imageURL = '../public/uploads/' . $row["image_name"];
 			?>
 
-			<div class="card mt-6">
+			<div class="card card-gallery mt-6 has-background-grey-lighter">
 				<div class="header">
-					<div class="card-header-title">
-						<h1 class="title is-4"><?php echo "@" . $username; ?></h1>
+					<div class="media-content is-pulled-right pr-4 pt-3">
+						<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>
+						<div id="deleteForm" class="level-item">
+							<form action="../controllers/gallery.php" method="post">
+								<span class="tag is-warning">
+									Delete Post
+									<button class="delete is-small" type="submit" name="deleteButton" value="Delete"
+										onClick="return confirmDelete()"></button>
+									<input type="hidden" name="id_image" value=<?php echo $id_image; ?>>
+							</form>
+							</span>
+						</div>
+						<?php endif; ?>
+					</div>
+
+					<div class="media-content">
+						<p class="title is-4 pl-3 pt-2"><?php echo "@" . $username; ?></p>
+						<p class="subtitle has-text-weight-medium is-6 pl-4 pb-2"><?php echo "posted: " . $post_date; ?>
+						</p>
 					</div>
 				</div>
-				<div class="card-image">
+				<div class="card-image px-4">
 					<figure class="image is-4by3 postedImage">
 						<img class="postedImageImg is-clickable" src="<?php echo $imageURL; ?>" alt="" height="320"
 							width="" />
@@ -126,8 +141,7 @@ if ($_GET['page'] > $totalPages) {
 							<?php endif; ?>
 							<div class="level-item has-text-centered">
 								<h1 class="title is-6 pl-1">
-									<?php
-												if (countLikes($id_image) < 1) {
+									<?php if (countLikes($id_image) < 1) {
 													echo "";
 												} elseif (countLikes($id_image) == 1) {
 													echo countLikes($id_image) . " Like";
@@ -137,47 +151,22 @@ if ($_GET['page'] > $totalPages) {
 												?>
 								</h1>
 							</div>
-							<!--<div class="level-item has-text-centered">
-								<div>
-									<figure class="image is-32x32">
-										<img src="../public/icons/MaterialIcons/icons8-comments-50.png" alt="Comment"
-											title="Comment">
-									</figure>
-								</div>
-							</div>-->
-							<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>
-							<div id="deleteForm" class="level-item">
-								<form action="../controllers/gallery.php" method="post">
-									<button class="button is-ghost" type="submit" name="deleteButton" value="Delete"
-										onClick="return confirmDelete()">
-										<img class="image is-32x32"
-											src="../public/icons/MaterialIcons/icons8-delete-50.png" width="25">
-									</button>
-									<input type="hidden" name="id_image" value=<?php echo $id_image; ?>>
-								</form>
-							</div>
-							<?php endif; ?>
-						</div>
-						<div class="level-right">
-							<div class="level-item has-text-centered">
-								<h1 class="title is-6 has-text-right"><?php echo "" . $post_date; ?></h1>
-							</div>
 						</div>
 					</div>
 
 					<?php $comments = getComments($id_image);
 								if ($comments) : ?>
-					<div class="card-content is-scrollable">
+					<div class="card-content is-scrollable is-outlined">
 						<div class="card-content">
 							<?php foreach ($comments as $comment) : ?>
-							<div class="block">
+							<div class="card-footer py-1">
 								<p class="comment_username is-italic is-underlined">
-									<strong><?php echo $comment['username'] . ":"; ?></strong>
+									<strong><?php echo $comment['username'] . " "; ?></strong>
+									<br>
 								</p>
-								<p class="comment_text has-text-weight-medium">
-									<?php echo $comment['comment']; ?>
+								<p class="comment_content">
+									<?php echo "  -> " . $comment['comment']; ?>
 								</p>
-								<br>
 							</div>
 							<?php endforeach; ?>
 						</div>
