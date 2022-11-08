@@ -8,28 +8,24 @@ include_once '../controllers/gallery.php';
 ?>
 
 <section class="section">
-	<div class="card card-gallery mt-6 is-shadowless">
+	<div class="notification is-info is-light pb-3">
+		<button class="delete"></button>
+		<div class="content">
+			<h2>Webcam Guide</h2>
+			<ul>
+				<li class="is-size-4"><strong>1.</strong> Choose Sticker <strong>2.</strong> Take Picture
+					<strong>3.</strong> Save Your Creation
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="card card-gallery pb-6 is-shadowless">
 		<div class="container is-max-widescreen">
-			<div class="notification is-info is-light pb-6">
-				<button class="delete"></button>
-				<div class="content">
-					<h2>Webcam Guide</h2>
-					<ul>
-						<li class="is-size-4">Choose A Sticker</li>
-						<li class="is-size-4">Take a Picture</li>
-						<li class="is-size-4">Save Your Creation</li>
-						<p class="is-size-4 has-text-weight-bold pt-3">- OR -</p>
-						<li class="is-size-4">Choose A sticker</li>
-						<li class="is-size-4">Upload a Picture</li>
-						<li class="is-size-4">Save Your Creation</li>
-					</ul>
-				</div>
-
-			</div>
-			<div class="columns is-centered pt-5">
+			<div class="columns is-centered py-5">
 				<div class="column is-6 is-6-desktop is-6-widescreen">
 					<div class="block">
 						<!-- Nav tabs -->
+
 						<input type="radio" id="camera" name="nav-tab">
 						<input type="radio" id="upload" name="nav-tab">
 
@@ -38,15 +34,20 @@ include_once '../controllers/gallery.php';
 								<li><label class="button is-same2 is-focused mb-2 mr-1"
 										for="camera"><a><strong>Camera</strong></a></label>
 								</li>
+
+								<!--
 								<li><label class="button is-same2 is-focused mb-2 ml-1"
 										for="upload"><a><strong>Upload</strong></a></label>
 								</li>
+								 -->
+
 							</ul>
 						</div>
 
 						<!-- Tab panes -->
+
 						<div class="tab-content">
-							<div class="tab-pane content-camera">
+							<div class="tab-pane content-camera ">
 								<div class="content mt-2" id="cameraView">
 									<div id="videoStream" class="block">
 										<div class="video-wrap">
@@ -61,6 +62,16 @@ include_once '../controllers/gallery.php';
 										<p class="control">
 											<button
 												class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
+												id="start">
+												Start Camera
+											</button>
+										</p>
+									</div>
+
+									<div class="field is-grouped is-grouped-centered">
+										<p class="control">
+											<button
+												class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block is-hidden"
 												id="snap">
 												Capture
 											</button>
@@ -70,14 +81,14 @@ include_once '../controllers/gallery.php';
 									<div class="field is-grouped is-grouped-centered">
 										<p class="control">
 											<button
-												class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
+												class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block is-hidden"
 												id="clear">
 												Clear
 											</button>
 										</p>
 										<p class="control" action="">
 											<button
-												class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
+												class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block is-hidden"
 												id="save" type="submit">
 												Save
 											</button>
@@ -111,15 +122,15 @@ include_once '../controllers/gallery.php';
 									<div class="content" id="uploadForm">
 										<div class="card-image p-3 is-hidden" id="uploadedDiv">
 											<figure class="image is-4by3">
-												<img id="uploadedPhoto" alt="" src="" />
+												<img id="uploadImage" alt="" src="" />
 											</figure>
 											<div id="canvasDiv2">
-												<canvas class="is-hidden" id="canvas2"></canvas>
+												<canvas class="is-hidden" id="uploadCanvas"></canvas>
 											</div>
 
 										</div>
 
-										<div class="block is-hidden">
+										<div class="block">
 											<div class="field is-grouped is-grouped-centered">
 												<p class="control">
 													<button
@@ -258,9 +269,11 @@ include_once '../controllers/gallery.php';
 
 
 <script src="../public/scripts/camera.js"></script>
+
 <script src="../public/scripts/gallery.js"></script>
+
 <!-- <script src="../public/scripts/upload.js"></script> -->
-<!-- <script src="../public/scripts/cameraOld.js"></script> -->
+
 
 <script>
 // code to make checkboxes behave like radio buttons
@@ -286,9 +299,3 @@ function onlyOne(checkbox) {
 
 
 <?php include_once '../includes/footer.html.php'; ?>
-
-
-<!--
-upload file to uploadedPhoto figure, then when capture is clicked, it will be saved to
-canvasUpload with the selected sticker and then saved to the database when save is clicked.
-?? include upload.js // upload.php ?? -->

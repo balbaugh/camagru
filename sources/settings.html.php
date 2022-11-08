@@ -69,7 +69,7 @@ include_once '../includes/headNav.html.php';
 							</div>
 						</form>
 						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
-							<label for="notifications" class="label">Notifications Preference</label>
+							<label for="notifications" class="label">Email Notifications</label>
 							<div class="field has-addons">
 								<div class="select is-fullwidth">
 									<select name="newNotifications" id="newNotifications">

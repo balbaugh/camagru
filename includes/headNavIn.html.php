@@ -42,7 +42,17 @@
 						<a class="navbar-item" href="../sources/camera.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-add-50.png" alt="Post" title="Post">
+									<img src="../public/icons/MaterialIcons/icons8-camera-50.png" alt="Camera"
+										title="Camera">
+								</span>
+								</br>
+							</div>
+						</a>
+						<a class="navbar-item" href="../sources/upload.html.php">
+							<div class="level-item">
+								<span class="icon is-medium">
+									<img src="../public/icons/MaterialIcons/icons8-upload-50.png" alt="Upload"
+										title="Upload">
 								</span>
 								</br>
 							</div>

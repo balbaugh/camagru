@@ -81,7 +81,7 @@ if ($_GET['page'] > $totalPages) {
 						$imageURL = '../public/uploads/' . $row["image_name"];
 			?>
 
-			<div class="card card-gallery mt-6 has-background-grey-lighter">
+			<div class="card card-gallery mt-6">
 				<div class="header">
 					<div class="media-content is-pulled-right pr-4 pt-3">
 						<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>

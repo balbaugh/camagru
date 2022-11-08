@@ -1,58 +1,32 @@
-
-
 'use strict';
-
-// card toggle for logo // stickers // initialize other page elements
-document.addEventListener('DOMContentLoaded', function () {
-	let cardToggles = document.getElementsByClassName('card-toggle');
-	for (const element of cardToggles) {
-		element.addEventListener('click', e => {
-			e.currentTarget.parentElement.parentElement.childNodes[3].classList.toggle('is-hidden');
-		});
-	}
-});
-
 
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap = document.getElementById('snap');
+const start = document.getElementById('start');
+const save = document.getElementById('save');
+const clear = document.getElementById('clear');
 const errorMsgElement = document.getElementById('spanErrorMsg');
+
 let photo = null;
+
 const constraints = {
 	audio: false,
 	video: true
 };
 
 
-/*
-
-// Load init
-init();
-//Access webcam
-async function init() {
-	try {
-		const stream = await navigator.mediaDevices.getUserMedia(constraints);
-		handleSuccess(stream);
-	} catch (e) {
-		errorMsgElement.innerHTML = 'navigator.getUserMedia.error:${e.toString()}';
-	}
-}
-*/
-
-
 // EVENT LISTENERS
-window.addEventListener('load', async () => {
-	try {
-		await start_video();
-	} catch (e) {
-		alert("In order to take photos we need your permission to use the webcam");
-	}
+
+start.addEventListener('click', async function () {
+	event.preventDefault();
+	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+	video.classList.remove("is-hidden");
+	snap.classList.remove("is-hidden");
+	start.classList.add("is-hidden");
+	video.srcObject = stream;
 });
 
-const start_video = async () => {
-	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-	video.srcObject = stream;
-}
 
 // Success
 function handleSuccess(stream) {
@@ -61,98 +35,47 @@ function handleSuccess(stream) {
 }
 
 
-
 //Draw Image
 let context = canvas.getContext('2d');
 snap.addEventListener("click", function () {
 	video.classList.add('is-hidden');
 	canvas.classList.remove('is-hidden');
+	save.classList.remove("is-hidden");
+	clear.classList.remove("is-hidden");
+	snap.classList.add("is-hidden");
 
 	let mySticker = mySticker_function();
-	// let mySticker2 = mySticker_function2();
-	// let mySticker3 = mySticker_function3();
+
 
 	canvas.width = video.videoWidth;
 	canvas.height = video.videoHeight;
 
 	context.drawImage(video, 0, 0);
 	context.drawImage(document.getElementById(mySticker), 20, 50, 128, 128);
-	// context.drawImage(document.getElementById(mySticker2), 490, 50, 128, 128);
-	// context.drawImage(document.getElementById(mySticker3), 240, 320, 128, 128);
+
 });
 
-//Reset Image
+
+// Webcam Stickers
+function mySticker_function() {
+	let x = document.getElementById("mySelect").value;
+	return x;
+}
+
+
+//Reset Webcam Image
 document.getElementById('clear').addEventListener('click', function () {
 
 	video.classList.remove('is-hidden');
 	canvas.classList.add('is-hidden');
+	save.classList.add("is-hidden");
+	clear.classList.add("is-hidden");
+	snap.classList.remove("is-hidden");
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
 }, false);
 
 
-/*
-// UPLOAD
-let uploadedImage = null;
-uploadedImage = document.querySelector('#uploadImage');
-
-uploadedImage.addEventListener('change', function () {
-	const reader = new FileReader();
-	if (this.files[0].size > 4 * 1024 * 1024) {
-		alert("File is too big! Please upload a file smaller than 4MB.");
-		this.value = "";
-	} else {
-		reader.addEventListener("load", () => {
-			const uploadedImage = reader.result;
-
-			if (isImage(uploadedImage)) {
-				testImage(uploadedImage)
-					.then(() => {
-						pic.src = uploadedImage;
-					})
-					.catch(() => {
-						alert("File is not an image! Please upload an image file.");
-					});
-			} else {
-				alert("Wrong format! Please upload a jpeg or png.");
-			}
-		});
-		reader.readAsDataURL(this.files[0]);
-	}
-});
- */
-/*
-let uploadImage = document.getElementById('uploadImage');
-uploadImage.addEventListener('change', function (e) {
-	if (e.target.files) {
-		let imageFile = e.target.files[0];
-		let reader = new FileReader();
-		reader.readAsDataURL(imageFile);
-		reader.onloadend = function (e) {
-			let newImage = new Image();
-			newImage.src = e.target.result;
-			newImage.onload = function (ev) {
-
-				let uploadCanvas = document.getElementById('canvas2');
-				let uploadContext = uploadCanvas.getContext('2d');
-				let mySticker2 = mySticker_function2();
-				uploadCanvas.classList.remove('is-hidden');
-				uploadCanvas.width = newImage.width;
-				uploadCanvas.height = newImage.height;
-				uploadContext.drawImage(newImage, 0, 0);
-				uploadContext.drawImage(document.getElementById(mySticker2), 20, 50, 128, 128);
-				let uploadData = uploadCanvas.toDataURL();
-				uploadData = uploadData.replace("data:image/png;base64,", "");
-
-				let request = new XMLHttpRequest();
-
-				request.onload =>
-			}
-		}
-	}
-}, false);
-
- */
 
 // //Save Image
 const saveImage = document.getElementById("save");
@@ -172,20 +95,3 @@ saveImage.addEventListener("click", () => {
 });
 
 
-function mySticker_function() {
-	let x = document.getElementById("mySelect").value;
-	return x;
-}
-
-
-function mySticker_function2() {
-	var x = document.getElementById("mySelect2").value;
-	return x;
-}
-
-/*
-function mySticker_function3() {
-	var x = document.getElementById("mySelect3").value;
-	return x;
-}
- */
