@@ -83,15 +83,6 @@ function deleteLikes($id_image, $id_user)
 
 
 
-
-
-
-
-
-
-
-
-
 /*
 $url = "http://localhost:8080/camaguru/sources/verification.html.php";
     $to = $email;

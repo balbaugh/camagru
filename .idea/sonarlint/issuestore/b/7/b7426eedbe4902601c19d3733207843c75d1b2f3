@@ -1,8 +1,0 @@
-
-Qphp:S105"EReplace all tab characters in this file by sequences of white-spaces.
-3php:S113"'Add a new line at the end of this file.
-3php:S125	"Remove this commented out code.(ÍèßÖ
-3php:S125"Remove this commented out code.(–±Ù
-k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¹Ü”öùÿÿÿÿ
-k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Üí¦¬øÿÿÿÿ
-f	php:S48339"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ

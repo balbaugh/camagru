@@ -21,7 +21,8 @@ include_once '../includes/headNavHome.html.php';
 						<figure class="image level is-mobile is-square">
 							<img src="../public/logo/camagruStealie.png" alt="StealieLogo">
 						</figure>
-						<p class="is-size-6 has-text-info p-3">Enter your email and we will send you a verification
+						<p class="is-size-6 has-text-info p-3">Enter your
+							email so that we can send you a verification
 							code to reset your password.</p>
 						<div class="field pt-2">
 							<label for="email" class="label">Email</label>

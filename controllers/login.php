@@ -7,8 +7,6 @@ include_once '../controllers/security.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
-// controller to process user login from login.html.php
-
 
 
 if (isset($_POST['submit_login'])) {

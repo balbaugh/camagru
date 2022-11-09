@@ -86,7 +86,7 @@ include_once '../controllers/gallery.php';
 												Clear
 											</button>
 										</p>
-										<p class="control" action="">
+										<p class="control">
 											<button
 												class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block is-hidden"
 												id="save" type="submit">
@@ -102,7 +102,7 @@ include_once '../controllers/gallery.php';
 												<div class="control">
 													<div class="select is-primary is-small is-rounded">
 														<select id="mySelect">
-															<!-- <option selected="selected" value="img0">None</option> -->
+
 															<option selected="selected" value="img1">Bolt</option>
 															<option value="img2">Stealie</option>
 															<option value="img3">Stealie Blank</option>
@@ -149,7 +149,7 @@ include_once '../controllers/gallery.php';
 														Clear
 													</button>
 												</p>
-												<p class="control" action="">
+												<p class="control">
 													<button
 														class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
 														id="save2" type="submit">
@@ -234,7 +234,7 @@ include_once '../controllers/gallery.php';
 											<img class="image is-128x128 mx-3 is-clickable postedImageImg"
 												src=" ../public/uploads/<?php echo $imageName; ?>"
 												id="<?php echo $imageName; ?>" alt="<?php echo $imageName; ?>">
-											</img>
+
 											<?php } ?>
 											<?php endif; ?>
 											<?php endforeach; ?>
@@ -272,13 +272,13 @@ include_once '../controllers/gallery.php';
 
 <script src="../public/scripts/gallery.js"></script>
 
-<!-- <script src="../public/scripts/upload.js"></script> -->
+
 
 
 <script>
 // code to make checkboxes behave like radio buttons
 function onlyOne(checkbox) {
-	var checkboxes = document.getElementsByName('nav-tab1')
+	let checkboxes = document.getElementsByName('nav-tab1')
 	checkboxes.forEach((item) => {
 		if (item !== checkbox) item.checked = false
 	})

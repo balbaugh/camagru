@@ -1,11 +1,13 @@
 
-HWeb:ImgWithoutAltCheck€"%Add an "alt" attribute to this image.(‘§’
-MWeb:ImgWithoutAltCheck‡"%Add an "alt" attribute to this image.(°ŞÌşÿÿÿÿ
-JWeb:AvoidCommentedOutCodeCheck™"Remove this commented out code.(‰±¤€
-OWeb:AvoidCommentedOutCodeCheckš"Remove this commented out code.(ô°Ø¨øÿÿÿÿ
 Qphp:S105"EReplace all tab characters in this file by sequences of white-spaces.
-_php:S103f"KSplit this 124 characters long line (which is greater than 120 authorized).(•˜ó„
-`php:S103µ"KSplit this 123 characters long line (which is greater than 120 authorized).(•˜ó„
+_php:S103@"KSplit this 126 characters long line (which is greater than 120 authorized).(•˜ó„
+ephp:S103J"KSplit this 136 characters long line (which is greater than 120 authorized).(ªË¢	8Íµ–ßÅ0
+kphp:S103T"KSplit this 131 characters long line (which is greater than 120 authorized).(Ë‹èŠûÿÿÿÿ8¶ÑßÅ0
+fphp:S103["KSplit this 128 characters long line (which is greater than 120 authorized).(ë¾‘±8·ÑßÅ0
+`php:S103‰"KSplit this 128 characters long line (which is greater than 120 authorized).(•˜ó„
+lphp:S103“"KSplit this 123 characters long line (which is greater than 120 authorized).(â•Œîùÿÿÿÿ8Ïµ–ßÅ0
 3php:S113"'Add a new line at the end of this file.
 k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Üí¦¬øÿÿÿÿ
-g	php:S4833•"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ
+m	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(õùàø8Ğµ–ßÅ0
+g	php:S4833­"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ
+UWeb:AvoidCommentedOutCodeCheck&"Remove this commented out code.(‹òá¤ıÿÿÿÿ8Øµ–ßÅ0

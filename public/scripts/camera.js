@@ -6,7 +6,7 @@ const snap = document.getElementById('snap');
 const start = document.getElementById('start');
 const save = document.getElementById('save');
 const clear = document.getElementById('clear');
-const errorMsgElement = document.getElementById('spanErrorMsg');
+
 
 let photo = null;
 

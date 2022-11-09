@@ -7,9 +7,6 @@ include_once '../config/dbConnect.php';
 date_default_timezone_set('Europe/Helsinki');
 
 
-// ?? ADD LIKES AND COMMENTS HERE ??
-
-
 function getImages()
 {
 	try {
@@ -65,7 +62,7 @@ function deleteImage($id_image)
 			$stmt = $conn->prepare("DELETE FROM likes WHERE id_image = :id_image");
 			$stmt->bindParam(':id_image', $id_image);
 			$stmt->execute();
-			// unlink('../uploads/' . $image['image_name']);
+
 			header('Location: ../sources/home.html.php?success=Image deleted!');
 		}
 	} catch (PDOException $e) {
@@ -73,42 +70,3 @@ function deleteImage($id_image)
 		exit();
 	}
 }
-
-
-/*
-function getGallery(int $offset, int $pageMax)
-{
-	try {
-		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC LIMIT $offset, $pageMax");
-		$stmt->execute();
-		$images = $stmt->fetchAll();
-		return $images;
-	} catch (PDOException $e) {
-		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-		exit();
-	}
-}*/
-
-// delete user image from database and from server
-/*if (isset($_POST['delete_picture']) && !empty($_POST['delete_picture'])) {
-	$img_id = $_POST['delete_picture'];
-
-	if (img_by_user($img_id, $_SESSION['user_id'])) {
-		unlink("../public/uploads/" . get_img_path_by_id($img_id));
-	}
-
-	try {
-		$conn = connect();
-		$stmt = $conn->prepare("DELETE FROM user_images WHERE id = :img_id AND uploader_id = :user_id");
-		$stmt->bindParam(':img_id', $img_id);
-		$stmt->bindParam(':user_id', $_SESSION['user_id']);
-		$stmt->execute();
-	} catch (PDOException $e) {
-		echo "Error: " . $e->getMessage();
-	}
-}
-if (isset($_SERVER['HTTP_REFERER']))
-	header("location: " . $_SERVER['HTTP_REFERER']);
-else
-	header('location: home.html.php'); */

@@ -1,16 +1,11 @@
 
 Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8ñöŠÁ0
-_php:S103`"KSplit this 138 characters long line (which is greater than 120 authorized).(âñóØ
+kphp:S103'"KSplit this 155 characters long line (which is greater than 120 authorized).(·›ù¨øÿÿÿÿ8¾Œ“àÅ0
+fphp:S103d"KSplit this 130 characters long line (which is greater than 120 authorized).( ³×û8¾Œ“àÅ0
 :php:S113"'Add a new line at the end of this file.8ûöŠÁ0
-V	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(ƒ’±Ÿüÿÿÿÿ
-Q	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(º§È®
-V	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(İ‰œíıÿÿÿÿ
-Q	php:S1793!"<Replace this "else if" keyword sequence by "elseif" keyword.(„óÿ
-V	php:S1793$"<Replace this "else if" keyword sequence by "elseif" keyword.(œ–×´ûÿÿÿÿ
-V	php:S1793'"<Replace this "else if" keyword sequence by "elseif" keyword.(–ÌÀ‘üÿÿÿÿ
-Q	php:S1793*"<Replace this "else if" keyword sequence by "elseif" keyword.(É†½Ş
-D	php:S5869'"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869'"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869'"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
-D	php:S5869'"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
+D	php:S5869+"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
+D	php:S5869+"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
+D	php:S5869+"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
+D	php:S5869+"*Remove duplicates in this character class.(–ÌÀ‘üÿÿÿÿ
 f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
+r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìşŒÿÿÿÿÿÿ8¿Œ“àÅ0

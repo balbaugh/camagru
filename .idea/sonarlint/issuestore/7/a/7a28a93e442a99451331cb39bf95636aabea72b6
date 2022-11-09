@@ -1,3 +1,5 @@
 
-f	php:S4833	"QReplace "include_once" with namespace import mechanism through the "use" keyword.(„µ„σ
-f	php:S4833T"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…Γ
+Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8ναξήΕ0
+:php:S113"'Add a new line at the end of this file.8ξαξήΕ0
+r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(„ΙΌ‹ϊÿÿÿÿ8οαξήΕ0
+f	php:S4833]"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…Γ

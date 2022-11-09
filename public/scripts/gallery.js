@@ -1,8 +1,6 @@
 'use strict';
 
-// ?? ADD LIKES AND COMMENTS HERE ??
 
-// const page_active = document.querySelector("#pagective");
 const like_post = document.querySelectorAll("#like_post");
 const comment = document.querySelectorAll("#commentBtn");
 
@@ -39,7 +37,7 @@ function confirmDelete() {
 // JS FOR IMAGE MODAL
 function attachImgEvents() {
 	// attach the click event on each posted img
-	var postedImages = document.getElementsByClassName("postedImageImg");
+	let postedImages = document.getElementsByClassName("postedImageImg");
 	for (let i = 0; i < postedImages.length; i++) {
 		postedImages[i].addEventListener("click", function () {
 			modalShowImage(this);
@@ -48,8 +46,8 @@ function attachImgEvents() {
 }
 
 // modal & modalImg will be set in the initialiseModalBox() call.
-var modal;
-var modalImg;
+let modal;
+let modalImg;
 
 function initialiseModalBox() {
 	// set the modal & modalImg variables
@@ -57,7 +55,7 @@ function initialiseModalBox() {
 	modal = document.getElementById("myModal");
 	modalImg = document.getElementById("myModalImage")
 	// Get the <span> element that closes the modal
-	var button = document.getElementsByClassName("modal-close")[0];
+	let button = document.getElementsByClassName("modal-close")[0];
 	// When the user clicks on <span> (x), close the modal
 	button.onclick = function () {
 		modal.style.display = "none";

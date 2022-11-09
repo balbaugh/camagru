@@ -31,6 +31,11 @@ SHOW PAST PHOTOS IN CAMERA PAGE //  GALLERY DISPLAY FUNCTION IN CAMERA PAGE
 - FINSH THE MODAL GALLERY AND CAMERA PAGES
 - THUMBNAILS ON CAMERA PAGE
 - SCROLLABLE THUMBNAILS ON CAMERA PAGE
+UPLOAD PHOTO AND EDIT THEN SAVE TO DATABASE
+- STOP WEBCAM TO ALLOW UPLOADED PIC TO DISPLAY ?? BUGGY
+- ( ??? REQUIRE STICKER FOR UPLOAD ??? )
+- PROTECT FROM BLACK PICTURES AFTER WEBCAM IS BLOCKED BY USER THEN THEY CLICK CAPTURE OR SAVE?
+
 
 
 ––
@@ -51,13 +56,9 @@ TO _ DO
 
 FIX
 --- CAMERA.HTML.PHP HAS JAVASCRIPT BUG FOR NOTIFICATIONS PANEL
-=== MOBILE NAVBURGER BROKEN
+=== ?? MOBILE NAVBURGER BROKEN ?? ===
 
-
-UPLOAD PHOTO AND EDIT THEN SAVE TO DATABASE
-- STOP WEBCAM TO ALLOW UPLOADED PIC TO DISPLAY ?? BUGGY
-
-( ??? REQUIRE STICKER FOR UPLOAD ??? )
+-- LIMIT UPLOAD IMAGE SIZE AND FORMAT // STICKERS WON"T DISPLAY ON LG --
 
 
 SESSION DESTROY DURING DATABASE SETUP.PHP
@@ -80,14 +81,8 @@ IMAGE MANIPULATION STARTS SERVER SIDE ??
 -- DOES THIS MEAN THE IMAGE CONVERSION ON THE SERVER SIDE FROM CANVAS TO PNG ??
 -- OR STICKER IS ADDED IN PHP THEN WE DRAW THE RESULTING IMAGE ON THE CANVAS ??
 
-
-PROTECT FROM BLACK PICTURES AFTER WEBCAM IS BLOCKED BY USER THEN THEY CLICK CAPTURE OR SAVE?
-
-
 CHECK SERVER LOGS IN MAMP CONFIGURE FOR ERRORS
 
-
-SAVE PHOTOS ???
 
 
 MAKE ENTRY POINT TO ACCOUNT CREATE // REGISTRATION  MORE OBVIOUS TO USER
@@ -105,4 +100,58 @@ CHARACTER COUNT (255) ON IMAGE COMMENTS
 
 COMPRESS ALL IMAGE FILES IN SITE FOLDERS
 
-- ??? ADD DELETE PHOTOS FROM CAMERA VIEW???
+
+??? ADD DELETE PHOTOS FROM CAMERA VIEW???
+
+
+LET USER DOWNLOAD ?? SAVE PHOTOS ???
+
+
+
+
+
+[mail function]
+; For Win32 only.
+; https://php.net/smtp
+SMTP = localhost
+; https://php.net/smtp-port
+smtp_port = 25
+
+; For Win32 only.
+; https://php.net/sendmail-from
+;sendmail_from = balbaugh@outlook.com
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+; https://php.net/sendmail-path
+sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
+
+
+mamp/php/etc/php.ini
+
+***   outlook accepts emails from localhost   ***
+
+
+
+
+
+
+
+
+
+
+
+
+CAMERA
+
+<video> element
+- The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the <audio> element may provide a more appropriate user experience.
+
+- autoplay
+-- A Boolean attribute; if specified, the video automatically begins to play back as soon as it can do so without stopping to finish loading the data.
+
+- muted
+-- Boolean attribute to mute video audio by default.
+-- In some browsers (e.g. Chrome 70.0) autoplay doesn't work if no muted attribute is present.
+
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-autoplay

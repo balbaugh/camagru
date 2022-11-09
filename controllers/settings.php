@@ -17,7 +17,7 @@ if (isset($_POST['newEmail']) && $_POST['newEmail'] != '') {
 } elseif (isset($_POST['newNotifications'])) {
 	newNotifications($_POST['newNotifications']);
 } elseif (isset($_POST['deleteAccount'])) {
-	deleteAccount($_POST['deleteAccount']);
+	deleteAccount();
 } else {
 	header('Location: ../sources/settings.html.php?error=invalid action!');
 }

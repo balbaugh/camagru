@@ -88,7 +88,7 @@ include_once '../controllers/gallery.php';
 
 									<div class="block pt-3">
 										<div class="field is-grouped is-grouped-centered">
-											<p class="control" action="">
+											<p class="control">
 												<button
 													class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
 													id="save" type="submit">
@@ -138,7 +138,7 @@ include_once '../controllers/gallery.php';
 											<img class="image is-128x128 mx-3 is-clickable postedImageImg"
 												src=" ../public/uploads/<?php echo $imageName; ?>"
 												id="<?php echo $imageName; ?>" alt="<?php echo $imageName; ?>">
-											</img>
+
 											<?php } ?>
 											<?php endif; ?>
 											<?php endforeach; ?>
@@ -179,7 +179,7 @@ include_once '../controllers/gallery.php';
 <script>
 // code to make checkboxes behave like radio buttons
 function onlyOne(checkbox) {
-	var checkboxes = document.getElementsByName('nav-tab1')
+	let checkboxes = document.getElementsByName('nav-tab1')
 	checkboxes.forEach((item) => {
 		if (item !== checkbox) item.checked = false
 	})

@@ -12,7 +12,8 @@ imgInput.addEventListener('change', function (e) {
 			myImage.onload = function (ev) {
 				let mySticker = mySticker_function();
 				let myCanvas = document.getElementById("myCanvas"); // Creates a canvas object
-				var myContext = myCanvas.getContext("2d"); // Creates a context object
+				let myContext = myCanvas.getContext("2d"); // Creates a
+				// context object
 				myCanvas.width = myImage.width; // Assigns image's width to canvas
 				myCanvas.height = myImage.height; // Assigns image's height to canvas
 				myContext.drawImage(myImage, 0, 0); // Draws the image on canvas
@@ -46,44 +47,4 @@ saveImage.addEventListener("click", () => {
 	request.send("img=" + encodeURIComponent(data));
 	window.location.reload();
 });
-
-
-/*
-saveImage.addEventListener("click", () => {
-	let data = canvas.toDataURL();
-	data = data.replace("data:image/png;base64,", "");
-	let request = new XMLHttpRequest();
-
-	request.onload = () => {
-		console.log(request.responseText, request);
-	}
-	request.open("POST", "/camagru/controllers/camera.php", false);
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send("img=" + encodeURIComponent(data));
-	window.location.reload();
-});
-
-
-//Save Image
-const saveImage = document.getElementById("save");
-
-saveImage.addEventListener("click", () => {
-	let myCanvas = document.getElementById("myCanvas");
-	let data = myCanvas.toDataURL();
-	data = data.replace("data:image/png;base64,", "");
-	let request = new XMLHttpRequest();
-
-	request.onload = () => {
-		if (request.status === 200) {
-			console.log(request.responseText);
-		} else {
-			console.log("Error");
-		}
-	}
-	request.open("POST", "/camagru/controllers/camera.php", false);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.send("image=" + data);
-});
-
- */
 

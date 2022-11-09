@@ -92,8 +92,8 @@ if ($_GET['page'] > $totalPages) {
 									<button class="delete is-small" type="submit" name="deleteButton" value="Delete"
 										onClick="return confirmDelete()"></button>
 									<input type="hidden" name="id_image" value=<?php echo $id_image; ?>>
+								</span>
 							</form>
-							</span>
 						</div>
 						<?php endif; ?>
 					</div>
@@ -122,7 +122,7 @@ if ($_GET['page'] > $totalPages) {
 											id="<?php echo $id_image; ?>">
 											<img data="<?php echo $id_image ?>"
 												src="../public/icons/MaterialIcons/icons8-liked-50.png"
-												id="like_post" />
+												id="like_post" alt="<?php echo $id_image ?>" />
 											<input class="like_input" type="hidden" name="unlike"
 												value="<?php echo $id_image ?>">
 										</figure>
@@ -130,7 +130,7 @@ if ($_GET['page'] > $totalPages) {
 										<figure class="image is-32x32
 												is-clickable" title="notLiked" id="<?php echo $id_image; ?>">
 											<img data="<?php echo $id_image ?>"
-												src="../public/icons/MaterialIcons/icons8-like-50.png" id="like_post" />
+												src="../public/icons/MaterialIcons/icons8-like-50.png" id="like_post" alt="<?php echo $id_image ?>" />
 											<input class="like_input" type="hidden" name="like"
 												value="<?php echo $id_image ?>">
 										</figure>
