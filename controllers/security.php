@@ -7,6 +7,24 @@ include_once '../config/dbConnect.php';
 date_default_timezone_set('Europe/Helsinki');
 
 
+// force username to be alphanumeric, greater than 0 and less than 32 characters
+$clean = array();
+$length = mb_strlen($_POST['username']);
+if (ctype_alnum($_POST['username']) && ($length > 0) && ($length <= 32)) {
+	$clean['username'] = $_POST['username'];
+} else {
+	/* ERROR */
+}
+
+// This filter allows only alphabetic characters, spaces, hyphens, and single quotes (apostrophes), and it uses a whitelist approach as described earlier. In this case, the whitelist is the list of valid characters.
+$clean = array();
+if (preg_match("/[^A-Za-z \'\-]/", $_POST['last_name'])) { /* ERROR */
+} else {
+	$clean['last_name'] = $_POST['last_name'];
+}
+
+
+
 // checks the characters in the string for special characters that could be used to hack the database
 // also in functions.php
 function characterCheck($user)
