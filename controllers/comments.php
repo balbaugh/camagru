@@ -10,7 +10,7 @@ date_default_timezone_set('Europe/Helsinki');
 
 if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
 	if (strlen($_POST['postComment']) <= 255) {
-		$comment = htmlspecialchars($_POST['postComment']);
+		$comment = htmlentities($_POST['postComment'], ENT_QUOTES, 'UTF-8');
 		$id_image = ($_POST['id_image']);
 		$id_user = $_SESSION['id_user'];
 
@@ -57,5 +57,3 @@ mail($to, $subject, $message, $headers);
 $email_log = "Registration was successful and verification email has been sent to $email.";
 
  */
-
-

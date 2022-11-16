@@ -54,7 +54,8 @@ function countLikes($id_image)
 	try {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_image = :id_image");
-		$stmt->execute(['id_image' => $id_image]);
+		$stmt->bindParam(':id_image', $id_image);
+		$stmt->execute();
 		$count = $stmt->fetchColumn();
 		return $count;
 	} catch (PDOException $e) {

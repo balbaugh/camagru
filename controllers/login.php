@@ -38,7 +38,8 @@ if (isset($_POST['submit_login'])) {
 	try {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT id_user, username, email, password, verified, notifications FROM users WHERE email = ?");
-		$stmt->execute([$empty_email]);
+		$stmt->bindParam(1, $empty_email);
+		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result) {
 			if (password_verify($empty_password, $result['password'])) {

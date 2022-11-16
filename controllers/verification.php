@@ -14,7 +14,7 @@ date_default_timezone_set('Europe/Helsinki');
 
 
 if (isset($_POST['submit_verification'])) {
-	$email = $_POST['email'];
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 	$verify_token = $_POST['verify_token'];
 	if (check_token($email, $verify_token)) {
 		header("Location: ../sources/login.html.php?success=Your account has been verified! Please log in.");

@@ -10,9 +10,9 @@ date_default_timezone_set('Europe/Helsinki');
 
 if (isset($_POST['submit_registration'])) {
 	$email = $_POST['email'];
-	$username = htmlspecialchars($_POST['username']);
+	$username = htmlentities($_POST['username']);
 	$password = $_POST['password'];
-	$verify_token = rand(100000, 999999);
+	$verify_token = random_int($min = 100000, $max = 999999);
 
 	//server-side form validation
 

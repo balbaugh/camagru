@@ -33,7 +33,7 @@ function newEmail($newEmail)
 			if ($checkEmail->rowCount() > 0) {
 				header('Location: ../sources/settings.html.php?error=email already in use!');
 			} else {
-				$newToken = rand(100000, 999999);
+				$newToken = random_int(100000, 999999);
 				$stmt = $conn->prepare("UPDATE users SET email = :newEmail, verify_token = :newToken, verified = 0 WHERE id_user = :id_user");
 				$stmt->bindParam(':newEmail', $newEmail);
 				$stmt->bindParam(':newToken', $newToken);
