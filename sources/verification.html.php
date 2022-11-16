@@ -21,7 +21,8 @@ include_once '../includes/headNavOut.html.php';
 			</div>
 			<div class="column is-5">
 				<div class="container p-6 px-10-desktop py-12-desktop">
-					<form class="box" id="verification_form" action="../controllers/verification.php" method="post">
+					<form class="box box-settings is-shadowless" id="verification_form"
+						action="../controllers/verification.php" method="post">
 						<figure class="image level is-mobile is-square">
 							<img src="../public/logo/camagruStealie.png" alt="StealieLogo">
 						</figure>

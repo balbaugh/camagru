@@ -1,4 +1,4 @@
-<footer class="footer has-background-white-bis">
+<footer class="footer has-background-white">
 	<div class="content has-text-centered">
 		<p>
 			&#169 2022 <strong>camagru</strong> from <a href="https://balbaugh.com">balbaugh</a>

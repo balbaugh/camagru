@@ -11,10 +11,6 @@ M
 camguru.txt,5/4/54f4f243cb02c759c0c91097fbe0da5815e1fccc
 @
 config/.htaccess,d/b/db31a1a87b4842a03e6daf41ae24e60a1fa7d757
-C
-config/database.php,6/9/69e3bd8ddf957a32ec5a3b80a87f8cc4bfe36a27
-@
-config/setup.php,8/b/8b592efb8c1cc743379544524fadd6aee0225f8e
 D
 config/dbConnect.php,8/1/819209f12570da9e3545901ffeda97fed166ec28
 ?
@@ -83,3 +79,7 @@ K
 includes/headNavIn.html.php,8/3/832662daef0a4415aeb954172f0963c99916ed45
 H
 public/scripts/upload.js,2/e/2eb9f6c848bd68fc3c103fcb203d08243893bef8
+C
+config/database.php,6/9/69e3bd8ddf957a32ec5a3b80a87f8cc4bfe36a27
+@
+config/setup.php,8/b/8b592efb8c1cc743379544524fadd6aee0225f8e

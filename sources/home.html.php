@@ -10,7 +10,7 @@ include_once '../controllers/likes.php';
 
 include_once '../controllers/gallery.php';
 
-include_once '../includes/headNav.html.php';
+include_once '../includes/headNavHome.html.php';
 
 
 
@@ -53,7 +53,8 @@ if ($_GET['page'] > $totalPages) {
 		<p class="subtitle is-6">You are not logged in.</p>
 		<p class="subtitle is-6">You can still view the gallery,
 			but you will not be able to like or comment or post.</p>
-		<p><a href="register.html.php">Register</a> to start sharing.</p>
+		<p class="subtitle is-6"><a href="login.html.php">LOGIN</a> to access your account.</p>
+		<p class="subtitle is-6"><a href="register.html.php">REGISTER</a> to start sharing.</p>
 	</div>
 	<?php endif; ?>
 	<div class="columns body-columns">
@@ -81,7 +82,7 @@ if ($_GET['page'] > $totalPages) {
 						$imageURL = '../public/uploads/' . $row["image_name"];
 			?>
 
-			<div class="card card-gallery mt-6">
+			<div class="card card-gallery is-shadowless mt-6">
 				<div class="header">
 					<div class="media-content is-pulled-right pr-4 pt-3">
 						<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>
@@ -120,8 +121,7 @@ if ($_GET['page'] > $totalPages) {
 										<?php if (checkLikes($id_image, $id_user)) : ?>
 										<figure class="image is-32x32 is-clickable" title="Liked"
 											id="<?php echo $id_image; ?>">
-											<img data="<?php echo $id_image ?>"
-												src="../public/icons/MaterialIcons/icons8-liked-50.png"
+											<img data="<?php echo $id_image ?>" src="../public/icons/liked-50.png"
 												id="like_post" alt="<?php echo $id_image ?>" />
 											<input class="like_input" type="hidden" name="unlike"
 												value="<?php echo $id_image ?>">
@@ -129,8 +129,8 @@ if ($_GET['page'] > $totalPages) {
 										<?php else : ?>
 										<figure class="image is-32x32
 												is-clickable" title="notLiked" id="<?php echo $id_image; ?>">
-											<img data="<?php echo $id_image ?>"
-												src="../public/icons/MaterialIcons/icons8-like-50.png" id="like_post" alt="<?php echo $id_image ?>" />
+											<img data="<?php echo $id_image ?>" src="../public/icons/like-50.png"
+												id="like_post" alt="<?php echo $id_image ?>" />
 											<input class="like_input" type="hidden" name="like"
 												value="<?php echo $id_image ?>">
 										</figure>
@@ -140,7 +140,7 @@ if ($_GET['page'] > $totalPages) {
 							</div>
 							<?php endif; ?>
 							<div class="level-item has-text-centered">
-								<h1 class="title is-6 pl-1">
+								<h1 class="is-size-5 has-text-weight-medium">
 									<?php if (countLikes($id_image) < 1) {
 													echo "";
 												} elseif (countLikes($id_image) == 1) {
@@ -188,7 +188,7 @@ if ($_GET['page'] > $totalPages) {
 						<p class="control">
 							<button data="<?php echo $id_image; ?>" class="comment-icon button is-info" id="commentBtn"
 								type="submit">
-								Submit
+								Post
 							</button>
 						</p>
 					</form>

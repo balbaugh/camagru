@@ -203,26 +203,26 @@ $empty_username = trim($_POST['username']);
 $empty_password = trim($_POST['password']);
 
 if (empty($empty_email)) {
-header("Location: ../sources/settings.html.php?email_error=Email is required!");
+header("Location: ../sources/settings.html.php?error=Email is required!");
 exit();
 } else if (empty($empty_username)) {
-header("Location: ../sources/settings.html.php?username_error=Username is required!");
+header("Location: ../sources/settings.html.php?error=Username is required!");
 exit();
 } else if (empty($empty_password)) {
-header("Location: ../sources/settings.html.php?password_error=Password is required!");
+header("Location: ../sources/settings.html.php?error=Password is required!");
 exit();
 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-header("Location: ../sources/settings.html.php?email_error=Invalid email format!");
+header("Location: ../sources/settings.html.php?error=Invalid email format!");
 exit();
 } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-header("Location: ../sources/settings.html.php?username_error=Invalid username!");
+header("Location: ../sources/settings.html.php?error=Invalid username!");
 exit();
-} else if (strlen($password) < 8) { header("Location: ../sources/settings.html.php?password_error=Password must be at
+} else if (strlen($password) < 8) { header("Location: ../sources/settings.html.php?error=Password must be at
 	least 8 characters long!"); exit(); } else if
 	(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) { header("Location:
-	../sources/settings.html.php?email_error=Invalid email address!"); exit(); } else if (preg_match("/[<>=\{\}\/]/",
+	../sources/settings.html.php?error=Invalid email address!"); exit(); } else if (preg_match("/[<>=\{\}\/]/",
 	$empty_username)) {
-	header("Location: ../sources/settings.html.php?username_error=Username cannot contain special characters!");
+	header("Location: ../sources/settings.html.php?error=Username cannot contain special characters!");
 	exit();
 	}
 

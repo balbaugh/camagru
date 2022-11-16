@@ -11,8 +11,8 @@ $sql = "
 		CREATE DATABASE IF NOT EXISTS `camagru`;
 		CREATE TABLE IF NOT EXISTS camagru. `users` (
 			`id_user`				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			`username`				VARCHAR(255) NOT NULL,
-			`email`					VARCHAR(255) NOT NULL,
+			`username`				VARCHAR(255) NOT NULL UNIQUE,
+			`email`					VARCHAR(255) NOT NULL UNIQUE,
 			`password`				VARCHAR(255) NOT NULL,
 			`verify_token`			VARCHAR(255) NOT NULL,
 			`verified`				TINYINT(1) NOT NULL DEFAULT 0,
@@ -56,6 +56,3 @@ try {
 }
 
 $conn = null;
-
-
-

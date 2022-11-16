@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>-->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>-->
 	<script src="../public/scripts/navbar.js"></script>
 	<script src="../public/scripts/notifications.js"></script>
 	<link rel="stylesheet" href="../public/styles/bulma.css">
@@ -34,7 +34,7 @@
 						<a class="navbar-item" href="../">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-home-50.png" alt="Home" title="Home">
+									<img src="../public/icons/home-50.png" alt="Home" title="Home">
 								</span>
 								</br>
 							</div>
@@ -42,8 +42,7 @@
 						<a class="navbar-item" href="../sources/camera.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-camera-50.png" alt="Camera"
-										title="Camera">
+									<img src="../public/icons/camera-50.png" alt="Camera" title="Camera">
 								</span>
 								</br>
 							</div>
@@ -51,8 +50,7 @@
 						<a class="navbar-item" href="../sources/upload.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-upload-50.png" alt="Upload"
-										title="Upload">
+									<img src="../public/icons/upload-50.png" alt="Upload" title="Upload">
 								</span>
 								</br>
 							</div>
@@ -60,8 +58,7 @@
 						<a class="navbar-item" href="../sources/settings.html.php">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-settings-50.png" alt="Settings"
-										title="Settings">
+									<img src="../public/icons/settings-50.png" alt="Settings" title="Settings">
 								</span>
 								</br>
 							</div>
@@ -69,8 +66,7 @@
 						<a class="navbar-item" href="../controllers/logout.php">
 							<div class="level-item">
 								<span class="icon is-medium">
-									<img src="../public/icons/MaterialIcons/icons8-logout-50.png" alt="Log out"
-										title="Log out">
+									<img src="../public/icons/logout-50.png" alt="Log out" title="Log out">
 								</span>
 								</br>
 							</div>

@@ -21,7 +21,8 @@ include_once '../includes/headNavOut.html.php';
 			</div>
 			<div class="column is-5">
 				<div class="container p-6 px-10-desktop py-12-desktop">
-					<form class="box" id="login_form" action="../controllers/login.php" method="post">
+					<form class="box box-settings is-shadowless" id="login_form" action="../controllers/login.php"
+						method="post">
 						<figure class="image level is-mobile is-square">
 							<img src="../public/logo/camagruStealie.png" alt="StealieLogo">
 						</figure>
@@ -53,7 +54,7 @@ include_once '../includes/headNavOut.html.php';
 							<a href="forgot.html.php">Forgot your password?</a>
 						</div>
 					</form>
-					<div class="box has-text-centered">
+					<div class="box box-settings is-shadowless has-text-centered">
 						Need an account? <a href="register.html.php">Register</a>
 					</div>
 				</div>

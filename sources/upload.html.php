@@ -23,7 +23,7 @@ include_once '../controllers/gallery.php';
 		</div>
 	</div>
 
-	<div class="card card-gallery pb-6 is-shadowless">
+	<div class="card pb-6 is-shadowless">
 		<div class="container is-max-widescreen">
 			<div class="columns is-centered py-5">
 				<div class="column is-6 is-6-desktop is-6-widescreen">

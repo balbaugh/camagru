@@ -4,6 +4,14 @@
 	border-radius: 20px;
 }
 
+.card-gallery {
+	border: 1px solid #dbdbdb;
+}
+
+.box-settings {
+	border: 1px solid #dbdbdb;
+}
+
 /* CAMERA TABS */
 
 /* camera / upload tab */

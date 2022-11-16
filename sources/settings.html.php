@@ -17,7 +17,7 @@ include_once '../includes/headNav.html.php';
 			</div>
 			<div class="column is-5">
 				<div class="container p-6 px-10-desktop py-12-desktop">
-					<div class="box">
+					<div class="box box-settings is-shadowless">
 						<figure class="image level is-mobile is-square">
 							<img src="../public/logo/camagruStealie.png" alt="StealieLogo">
 						</figure>
@@ -85,7 +85,7 @@ include_once '../includes/headNav.html.php';
 							</div>
 						</form>
 					</div>
-					<div class="box has-text-centered">
+					<div class="box box-settings is-shadowless has-text-centered">
 						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
 							<div class="field">
 								<div class="control">
