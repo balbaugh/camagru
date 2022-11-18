@@ -25,16 +25,10 @@ F
 sources/reset.html.php,c/a/cab6a79b42f64ba39f67761460e54bbe932a65ae
 I
 sources/register.html.php,7/a/7a28a93e442a99451331cb39bf95636aabea72b6
-F
-sources/login.html.php,6/e/6e593007e263d6e4c558e366db61c567b6bd3816
-E
-sources/home.html.php,5/8/583b90dcf09b6f1f90e5cc87619b06cd541115e7
 G
 sources/forgot.html.php,6/4/641c7bfe29c76d5efae7f2b7ce0cb7fb43424edb
 G
 public/styles/bulma.css,7/e/7e6c9407871e686d43b0eb8b6c1ab638975643be
-H
-public/scripts/camera.js,c/5/c5988d09fa649566f972666a44c5420595ddfc42
 I
 public/scripts/gallery.js,d/2/d2f329d43a37b33c176bcd84ba43f4a5c2b95506
 H
@@ -51,8 +45,6 @@ F
 controllers/camera.php,4/f/4ffd2dced87ddd118e4a20d251f1596e805b7e0a
 F
 controllers/logout.php,b/2/b293fef571728ba389f804a5a8d6f00ef0e0aef4
-H
-controllers/security.php,f/c/fc7548bda7d087a9a140c7a1134ad5922f0b788a
 E
 controllers/reset.php,d/d/ddab5c039d6ac58d16bb3eec94c2dbfa223cef3b
 F
@@ -61,8 +53,6 @@ E
 controllers/users.php,a/c/ac18afad111fe5baffee844e4d372b85fc57db70
 L
 controllers/verification.php,6/e/6e1edf5eecb28f20b257a0dc1c2c64f3c00fa0e9
-H
-controllers/settings.php,1/1/1141ef3ed4f14e2b692bcdb93cc511ede015c59d
 L
 controllers/registration.php,5/7/57979619c32c2713317942ce3d6c9981132e1860
 E
