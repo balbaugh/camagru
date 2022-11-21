@@ -2,6 +2,15 @@
 
 session_start();
 
+if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
+	if (($_SESSION['check']) != hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])) {
+		session_destroy();
+		header('Location: ../sources/login.html.php?error=Session expired!');
+	} else {
+		$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+	}
+}
+
 include_once '../config/dbConnect.php';
 include_once '../controllers/security.php';
 
@@ -25,6 +34,7 @@ if (isset($_POST['newEmail']) && $_POST['newEmail'] != '') {
 
 function newEmail($newEmail)
 {
+	$newEmail = trim($newEmail);
 	if (filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
 		try {
 			$conn = dbConnect();
@@ -33,11 +43,14 @@ function newEmail($newEmail)
 			if ($checkEmail->rowCount() > 0) {
 				header('Location: ../sources/settings.html.php?error=email already in use!');
 			} else {
+				session_start();
+				session_regenerate_id(true);
+
 				$newToken = random_int(100000, 999999);
 				$stmt = $conn->prepare("UPDATE users SET email = :newEmail, verify_token = :newToken, verified = 0 WHERE id_user = :id_user");
-				$stmt->bindParam(':newEmail', $newEmail);
-				$stmt->bindParam(':newToken', $newToken);
-				$stmt->bindParam(':id_user', $_SESSION['id_user']);
+				$stmt->bindParam(':newEmail', $newEmail, PDO::PARAM_STR);
+				$stmt->bindParam(':newToken', $newToken, PDO::PARAM_INT);
+				$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmt->execute();
 			}
 		} catch (PDOException $e) {
@@ -74,27 +87,28 @@ function newEmail($newEmail)
 
 function newUsername($newUsername)
 {
+	$newUsername = sanitize($newUsername);
 	if (preg_match('/^[a-zA-Z0-9]+$/', $newUsername)) {
 		try {
-			$newUsername = validateData($newUsername);
 			$conn = dbConnect();
 			$checkUsername = $conn->query("SELECT * FROM users WHERE username = '$newUsername'");
 			$checkUsername->fetch();
 			if ($checkUsername->rowCount() > 0) {
 				header('Location: ../sources/settings.html.php?error=username already taken');
 			} else {
-				$_POST = array();
+				session_start();
+				session_regenerate_id(true);
 
 				$stmtUsername = $conn->prepare("UPDATE users SET username = '$newUsername' WHERE id_user = :id_user");
-				$stmtUsername->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtUsername->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmtUsername->execute();
 
 				$stmtImages = $conn->prepare("UPDATE images SET username = '$newUsername' WHERE id_user = :id_user");
-				$stmtImages->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtImages->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmtImages->execute();
 
 				$stmtComments = $conn->prepare("UPDATE comments SET username = '$newUsername' WHERE id_user = :id_user");
-				$stmtComments->bindParam(':id_user', $_SESSION['id_user']);
+				$stmtComments->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmtComments->execute();
 
 				$_SESSION['username'] = $newUsername;
@@ -112,7 +126,7 @@ function newUsername($newUsername)
 
 function newPassword($newPassword)
 {
-	if (validatePassword($newPassword) == true) {
+	if (validatePassword($newPassword)) {
 		try {
 			$conn = dbConnect();
 			$comparePassword = $conn->query("SELECT * FROM users WHERE id_user = '$_SESSION[id_user]'");
@@ -120,10 +134,13 @@ function newPassword($newPassword)
 			if (password_verify($newPassword, $comparePassword['password'])) {
 				header('Location: ../sources/settings.html.php?error=New password cannot be the same as the old one!');
 			} else {
+				session_start();
+				session_regenerate_id(true);
+
 				$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 				$stmt = $conn->prepare("UPDATE users SET password = :newPassword WHERE id_user = :id_user");
-				$stmt->bindParam(':newPassword', $newPassword);
-				$stmt->bindParam(':id_user', $_SESSION['id_user']);
+				$stmt->bindParam(':newPassword', $newPassword, PDO::PARAM_STR);
+				$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmt->execute();
 				session_destroy();
 				header('Location: ../sources/login.html.php?success=Password change successful! Please login.');
@@ -141,10 +158,13 @@ function newPassword($newPassword)
 function newNotifications($newNotifications)
 {
 	try {
+		session_start();
+		session_regenerate_id(true);
+
 		$conn = dbConnect();
 		$stmt = $conn->prepare("UPDATE users SET notifications = :newNotifications WHERE id_user = :id_user");
-		$stmt->bindParam(':newNotifications', $newNotifications);
-		$stmt->bindParam(':id_user', $_SESSION['id_user']);
+		$stmt->bindParam(':newNotifications', $newNotifications, PDO::PARAM_INT);
+		$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 		$stmt->execute();
 		header('Location: ../sources/settings.html.php?success=Notifications preference changed successfully!');
 	} catch (PDOException $e) {
@@ -161,19 +181,19 @@ function deleteAccount()
 			$conn = dbConnect();
 
 			$stmtLikes = $conn->prepare("DELETE FROM likes WHERE id_user = :id_user");
-			$stmtLikes->bindParam(':id_user', $_SESSION['id_user']);
+			$stmtLikes->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 			$stmtLikes->execute();
 
 			$stmtComments = $conn->prepare("DELETE FROM comments WHERE id_user = :id_user");
-			$stmtComments->bindParam(':id_user', $_SESSION['id_user']);
+			$stmtComments->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 			$stmtComments->execute();
 
 			$stmtImages = $conn->prepare("DELETE FROM images WHERE id_user = :id_user");
-			$stmtImages->bindParam(':id_user', $_SESSION['id_user']);
+			$stmtImages->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 			$stmtImages->execute();
 
 			$stmtUser = $conn->prepare("DELETE FROM users WHERE id_user = :id_user");
-			$stmtUser->bindParam(':id_user', $_SESSION['id_user']);
+			$stmtUser->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 			$stmtUser->execute();
 
 			destroySession();
@@ -186,56 +206,3 @@ function deleteAccount()
 		header('Location: ../sources/settings.html.php?error=You are not logged in!');
 	}
 }
-
-
-/*
-// check if user is logged in and update user information based on form input
-if (isset($_SESSION['user'] && $_POST['submit_settings'])) {
-$username = htmlspecialchars($_POST['username']);
-$email = $_POST['email'];
-$password = $_POST['password'];
-$verify_token = rand(100000, 999999);
-
-//server-side form validation
-
-$empty_email = trim($_POST['email']);
-$empty_username = trim($_POST['username']);
-$empty_password = trim($_POST['password']);
-
-if (empty($empty_email)) {
-header("Location: ../sources/settings.html.php?error=Email is required!");
-exit();
-} else if (empty($empty_username)) {
-header("Location: ../sources/settings.html.php?error=Username is required!");
-exit();
-} else if (empty($empty_password)) {
-header("Location: ../sources/settings.html.php?error=Password is required!");
-exit();
-} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-header("Location: ../sources/settings.html.php?error=Invalid email format!");
-exit();
-} else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-header("Location: ../sources/settings.html.php?error=Invalid username!");
-exit();
-} else if (strlen($password) < 8) { header("Location: ../sources/settings.html.php?error=Password must be at
-	least 8 characters long!"); exit(); } else if
-	(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) { header("Location:
-	../sources/settings.html.php?error=Invalid email address!"); exit(); } else if (preg_match("/[<>=\{\}\/]/",
-	$empty_username)) {
-	header("Location: ../sources/settings.html.php?error=Username cannot contain special characters!");
-	exit();
-	}
-
-	try {
-	$conn = dbConnect();
-	$stmt = $conn->prepare("SELECT id_user FROM users WHERE email = ? OR username = ?");
-
-	$stmt->bindParam(1, $email);
-	$stmt->bindParam(2, $username);
-	$stmt->execute();
-	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-	} catch (PDOException $e) {
-	echo "Unable to
-	connect to database: " . $e->getMessage();
-	}
-	*/

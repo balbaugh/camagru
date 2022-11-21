@@ -59,10 +59,6 @@ E
 controllers/login.php,7/6/768cbb37f9f76073498dbaa7adcbc6a256a7e221
 E
 controllers/likes.php,e/b/eb8a77621da7b2b6c5dbf971e824f938cd5e6f0a
-G
-controllers/gallery.php,b/c/bc4d879c4ea92f390b104a1ce633e1f1bf35693b
-H
-controllers/comments.php,8/0/807e7badb9e59db0cf85336994fa3dd67cdea075
 H
 includes/footer.html.php,7/e/7e5dad9480f9328ac18804eb2c0c4601a7949c57
 K

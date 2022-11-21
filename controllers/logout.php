@@ -11,6 +11,9 @@ date_default_timezone_set('Europe/Helsinki');
 if (!isset($_SESSION['logged'])) {
 	header('Location: ../sources/login.html.php?error=You are not logged in!');
 } else {
+	session_start();
+	session_regenerate_id(true);
+
 	$_SESSION = array();
 	if (isset($_COOKIE[session_name()])) :
 		setcookie(session_name(), '', time() - 86400, '/');

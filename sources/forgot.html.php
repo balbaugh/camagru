@@ -2,6 +2,7 @@
 
 session_start();
 
+
 include_once '../includes/headNavHome.html.php';
 
 ?>

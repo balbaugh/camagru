@@ -10,7 +10,7 @@ date_default_timezone_set('Europe/Helsinki');
 
 if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
 	if (strlen($_POST['postComment']) <= 255) {
-		$comment = htmlentities($_POST['postComment'], ENT_QUOTES, 'UTF-8');
+		$comment = sanitize($_POST['postComment']);
 		$id_image = ($_POST['id_image']);
 		$id_user = $_SESSION['id_user'];
 
@@ -23,17 +23,25 @@ header('Location: ../sources/home.html.php');
 
 function postComment($id_image, $id_user, $comment)
 {
-	try {
-		$conn = dbConnect();
-		$stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username, :comment)");
-		$stmt->bindParam(':id_image', $id_image);
-		$stmt->bindParam(':id_user', $id_user);
-		$stmt->bindParam(':username', $_SESSION['username']);
-		$stmt->bindParam(':comment', $comment);
-		$stmt->execute();
-	} catch (PDOException $e) {
-		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-		exit();
+	if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
+		if (($_SESSION['check']) != hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])) {
+			session_destroy();
+			header('Location: ../sources/login.html.php?error=Session expired!');
+		} else {
+			$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+			try {
+				$conn = dbConnect();
+				$stmt = $conn->prepare("INSERT INTO comments (id_image, id_user, username, comment) VALUES (:id_image, :id_user, :username, :comment)");
+				$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
+				$stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+				$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+				$stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+				$stmt->execute();
+			} catch (PDOException $e) {
+				echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+				exit();
+			}
+		}
 	}
 }
 

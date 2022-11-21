@@ -10,47 +10,45 @@ date_default_timezone_set('Europe/Helsinki');
 
 
 if (isset($_POST['submit_login'])) {
-	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$email = trim($_POST['email']);
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	$password = trim($_POST['password']);
 
-	// server-side form validation
-
-	$empty_email = trim($_POST['email']);
-	$empty_password = trim($_POST['password']);
-
-	if (empty($empty_email)) {
+	if (empty($email)) {
 		header("Location: ../sources/login.html.php?error=Email is required!");
 		exit();
-	} elseif (empty($empty_password)) {
+	} elseif (empty($password)) {
 		header("Location: ../sources/login.html.php?error=Password is required!");
 		exit();
-	} elseif (!filter_var($empty_email, FILTER_VALIDATE_EMAIL)) {
+	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/login.html.php?error=Invalid email format!");
 		exit();
-	} elseif (strlen($empty_password) < 8) {
-		header("Location: ../sources/login.html.php?error=Password must be at least 8 characters long!");
-		exit();
-	} elseif (!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) {
-		header("Location: ../sources/login.html.php?error=Invalid email address!");
+	} elseif (!validatePassword($password)) {
+		header("Location: ../sources/login.html.php?error=Incorrect password format!");
 		exit();
 	}
 
 	try {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT id_user, username, email, password, verified, notifications FROM users WHERE email = ?");
-		$stmt->bindParam(1, $empty_email);
+		$stmt->bindParam(1, $email, PDO::PARAM_STR);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result) {
-			if (password_verify($empty_password, $result['password'])) {
+			if (password_verify($password, $result['password'])) {
 				if ($result['verified'] == 1) {
+
 					session_start();
+					session_regenerate_id(true);
+
 					$_SESSION['logged'] = true;
 					$_SESSION['id_user'] = $result['id_user'];
 					$_SESSION['username'] = $result['username'];
 					$_SESSION['email'] = $result['email'];
 					$_SESSION['verified'] = $result['verified'];
 					$_SESSION['notifications'] = $result['notifications'];
+
+					$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
 
 
 					header("Location: ../sources/home.html.php?success=You have been logged in!");

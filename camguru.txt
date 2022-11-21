@@ -35,6 +35,8 @@ UPLOAD PHOTO AND EDIT THEN SAVE TO DATABASE
 - STOP WEBCAM TO ALLOW UPLOADED PIC TO DISPLAY ?? BUGGY
 - ( ??? REQUIRE STICKER FOR UPLOAD ??? )
 - PROTECT FROM BLACK PICTURES AFTER WEBCAM IS BLOCKED BY USER THEN THEY CLICK CAPTURE OR SAVE?
+ADD SECURITY TO SETTINGS.PHP
+USE SECURITY.PHP TOOLS IN CONTROLLER FILES
 
 
 FINISHED SECURITY::
@@ -42,6 +44,28 @@ FINISHED SECURITY::
 FILTER_VAR - FILTER_VALIDATE_EMAIL
 HTMLENTITIES - ENT_QUOTES for COMMENTS
 
+_______
+MAIL MAIL MAIL
+_______
+[mail function]
+; For Win32 only.
+SMTP = localhost
+smtp_port = 25
+
+; For Win32 only.
+;sendmail_from = don@example.com
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
+
+
+mamp/php/etc/php.ini
+
+***   outlook accepts emails from localhost   ***
+_______
+MAIL MAIL MAIL
+_______
 
 
 
@@ -61,6 +85,11 @@ TO _ DO
 –––––––
 ––
 
+
+EVERY LOG WARNING OR ERROR ON SERVER OR WEB CONSOLE IS CONSIDERED A CRASH
+-- UPLOAD.JS CAMERA.JS
+
+
 FIX
 --- CAMERA.HTML.PHP HAS JAVASCRIPT BUG FOR NOTIFICATIONS PANEL
 -- === ?? MOBILE NAVBURGER BROKEN ?? === --
@@ -73,10 +102,6 @@ FIX
 -- )) CANNOT VIEW GALLERY AFTER LOGGING OUT (( --
 
 
-ADD SECURITY TO SETTINGS.PHP
-
-
-??? USE RANDOM_BYTES() FOR PASSWORD RESET TOKEN ???
 
 
 CHECK FOR PROPER HEAD NAV USAGE OF INCLUDES
@@ -87,11 +112,7 @@ SESSION DESTROY DURING DATABASE SETUP.PHP
 
 LOREM IPSUM
 
-
 ERROR PAGES
-
-
-??? CHANGE PHOTO LIBRARY BACK TO USING TILES ???
 
 
 !!!! CHECK APP IN CHROME !!!!
@@ -99,8 +120,6 @@ ERROR PAGES
 
 !!!! CHECK SERVER ERROR LOGS !!!!
 
-
-??? AJAXIFY ???
 
 ??? BLOCK ACCESS TO VERIFICATION PAGE ???
 
@@ -115,20 +134,9 @@ NOTIFICATION EMAILS FOR ::
 - ADD THESE ALL TO THE RESPECTIVE CONTROLLER FILES
 
 
-USE SECURITY.PHP TOOLS IN CONTROLLER FILES
-
-
 IMAGE MANIPULATION STARTS SERVER SIDE ??
 -- DOES THIS MEAN THE IMAGE CONVERSION ON THE SERVER SIDE FROM CANVAS TO PNG ??
 -- OR STICKER IS ADDED IN PHP THEN WE DRAW THE RESULTING IMAGE ON THE CANVAS ??
-
-CHECK SERVER LOGS IN MAMP CONFIGURE FOR ERRORS
-
-
-
-MAKE ENTRY POINT TO ACCOUNT CREATE // REGISTRATION  MORE OBVIOUS TO USER
-__ ADD REGISTRATION BUTTON TO NavOut
-__ SINCE ENTRYPOINT IS INDEX PAGE WHICH IS GALLERY FEED
 
 
 CHARACTER COUNT (255) ON IMAGE COMMENTS
@@ -138,14 +146,6 @@ CHARACTER COUNT (255) ON IMAGE COMMENTS
 	<?php } ?>
 -- NEED TO SETUP DELIVERY OF THE ERROR MESSAGE
 
-
-COMPRESS ALL IMAGE FILES IN SITE FOLDERS
-
-
-??? ADD DELETE PHOTOS FROM CAMERA VIEW???
-
-
-LET USER DOWNLOAD ?? SAVE PHOTOS ???
 
 
 
@@ -166,18 +166,24 @@ smtp_port = 25
 ; https://php.net/sendmail-path
 sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
 
+UPDATED
+
+[mail function]
+; For Win32 only.
+SMTP = localhost
+smtp_port = 25
+
+; For Win32 only.
+;sendmail_from = don@tripleroi.com
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
+
 
 mamp/php/etc/php.ini
 
 ***   outlook accepts emails from localhost   ***
-
-
-
-
-
-
-
-
 
 
 

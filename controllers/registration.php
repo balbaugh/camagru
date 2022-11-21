@@ -9,42 +9,30 @@ include_once '../controllers/security.php';
 date_default_timezone_set('Europe/Helsinki');
 
 if (isset($_POST['submit_registration'])) {
-	$email = $_POST['email'];
-	$username = htmlentities($_POST['username']);
-	$password = $_POST['password'];
+	$email = trim($_POST['email']);
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	$username = sanitize($_POST['username']);
+	$password = trim($_POST['password']);
 	$verify_token = random_int($min = 100000, $max = 999999);
 
-	//server-side form validation
 
-	$empty_email = trim($_POST['email']);
-	$empty_username = trim($_POST['username']);
-	$empty_password = trim($_POST['password']);
-
-	if (empty($empty_email)) {
+	if (empty($email)) {
 		header("Location: ../sources/register.html.php?error=Email is required!");
 		exit();
-	} elseif (empty($empty_username)) {
+	} elseif (empty($username)) {
 		header("Location: ../sources/register.html.php?error=Username is required!");
 		exit();
-	} elseif (empty($empty_password)) {
+	} elseif (empty($password)) {
 		header("Location: ../sources/register.html.php?error=Password is required!");
 		exit();
-	} elseif (!filter_var($empty_email, FILTER_VALIDATE_EMAIL)) {
+	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/register.html.php?error=Invalid email format!");
 		exit();
-	} elseif (!preg_match("/^[a-zA-Z0-9]*$/", $empty_username)) {
-		header("Location: ../sources/register.html.php?error=Invalid username!");
+	} elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+		header("Location: ../sources/register.html.php?error=Username must be alphanumberic!");
 		exit();
-	} elseif (!validatePassword($empty_password)) {
+	} elseif (!validatePassword($password)) {
 		header("Location: ../sources/register.html.php?error=Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number!");
-	} elseif (strlen($empty_password) < 8) {
-		header("Location: ../sources/register.html.php?error=Password must be at least 8 characters long!");
-		exit();
-	} elseif (!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $empty_email)) {
-		header("Location: ../sources/register.html.php?error=Invalid email address!");
-		exit();
-	} elseif (preg_match("/[<>=\{\}\/]/", $empty_username)) {
-		header("Location: ../sources/register.html.php?error=Username cannot contain special characters!");
 		exit();
 	}
 
@@ -52,30 +40,30 @@ if (isset($_POST['submit_registration'])) {
 		$conn = dbConnect();
 		$stmt = $conn->prepare("SELECT id_user FROM users WHERE email = ? OR username = ?");
 
-		$stmt->bindParam(1, $empty_email);
-		$stmt->bindParam(2, $empty_username);
+		$stmt->bindParam(1, $email, PDO::PARAM_STR);
+		$stmt->bindParam(2, $username, PDO::PARAM_STR);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	} catch (PDOException $e) {
 		echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
 	}
-	if ($result == $empty_email) {
+	if ($result == $email) {
 		header("Location: ../sources/register.html.php?error=Email already exists!");
 		exit();
 	}
-	if ($result == $empty_username) {
+	if ($result == $username) {
 		header("Location: ../sources/register.html.php?error=Username already exists!");
 		exit();
 	} else {
-		$hashedPassword = password_hash($empty_password, PASSWORD_DEFAULT);
+		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		try {
 			$conn = dbConnect();
 			$stmt = $conn->prepare("INSERT INTO users (email, username, password, verify_token) VALUES (?, ?, ?, ?)");
-			$stmt->bindParam(1, $empty_email);
-			$stmt->bindParam(2, $empty_username);
-			$stmt->bindParam(3, $hashedPassword);
-			$stmt->bindParam(4, $verify_token);
+			$stmt->bindParam(1, $email, PDO::PARAM_STR);
+			$stmt->bindParam(2, $username, PDO::PARAM_STR);
+			$stmt->bindParam(3, $hashedPassword, PDO::PARAM_STR);
+			$stmt->bindParam(4, $verify_token, PDO::PARAM_INT);
 			$stmt->execute();
 		} catch (PDOException $e) {
 			echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
@@ -83,21 +71,26 @@ if (isset($_POST['submit_registration'])) {
 		}
 
 		$url = "http://localhost:8080/camaguru/sources/verification.html.php";
-		$to = $empty_email;
+		$to = $email;
 		$subject = "Email Verification";
 		$message = '<p>Thank you for registering with camagru!</p>.</br>';
 		$message .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
 		$message .= "<a href='$url'>Click here to verify your account.</a>";
 
-		$headers = "From: balbaugh <info@hive.fi>\r\n";
-		$headers .= "Reply-To: info@hive.fi\r\n";
-		$headers .= "Content-type: text/html\r\n";
+		$headers = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		$headers .= 'From: balbaugh <info@hive.fi>' . "\r\n";
+		$headers .= 'Reply-To: info@hive.fi' . "\r\n";
+		//$headers .= 'From: balbaugh <balbaugh@balbaughs-iMac.localdomain>' . "\r\n";
+		//$headers .= 'Reply-To: balbaugh@balbaughs-iMac.localdomain' . "\r\n";
+		$headers .= 'X-Mailer: PHP/' . phpversion();
 
 		mail($to, $subject, $message, $headers);
 
-		$email_log = "Registration was successful and verification email has been sent to $empty_email.";
+		$email_log = "Registration was successful and verification email has been sent to $email.";
 
 		header("Location: ../sources/verification.html.php?success=Registration successful, please check email for verification code!");
+
 		exit();
 	}
 } else {

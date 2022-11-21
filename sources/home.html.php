@@ -20,7 +20,6 @@ $prev = 0;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 $pageMax = 6;
-
 $imageTotal = count(getImages());
 $totalPages = ceil($imageTotal / $pageMax);
 $offset = ($page - 1) * $pageMax;
@@ -65,6 +64,7 @@ if ($_GET['page'] > $totalPages) {
 			try {
 				$conn = dbConnect();
 				$stmt = $conn->query("SELECT * FROM images ORDER BY id_image DESC LIMIT $offset, $pageMax");
+
 				$stmt->execute();
 				$imageTotal = count(getImages());
 				$totalPages = ceil($imageTotal / $pageMax);

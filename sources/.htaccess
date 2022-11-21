@@ -1,1 +1,8 @@
+# Disable Directory Indexing
 Options -Indexes
+
+# Deny Access to the .htaccess File
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>

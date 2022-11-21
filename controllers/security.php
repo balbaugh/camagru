@@ -7,33 +7,14 @@ include_once '../config/dbConnect.php';
 date_default_timezone_set('Europe/Helsinki');
 
 
-// force username to be alphanumeric, greater than 0 and less than 32 characters
-$clean = array();
-$length = mb_strlen($_POST['username']);
-if (ctype_alnum($_POST['username']) && ($length > 0) && ($length <= 32)) {
-	$clean['username'] = $_POST['username'];
-} else {
-	/* ERROR */
-}
-
-// This filter allows only alphabetic characters, spaces, hyphens, and single quotes (apostrophes), and it uses a whitelist approach as described earlier. In this case, the whitelist is the list of valid characters.
-$clean = array();
-if (preg_match("/[^A-Za-z \'\-]/", $_POST['last_name'])) { /* ERROR */
-} else {
-	$clean['last_name'] = $_POST['last_name'];
-}
-
-
-
-// checks the characters in the string for special characters that could be used to hack the database
-// also in functions.php
-function characterCheck($user)
+// renders malicious html input harmless
+function sanitize($input)
 {
-	if (preg_match(pattern: '/[\'^£$%&*()}{@#~?!><>\s+,\/|=+¬-]/', subject: $user)) {
-		return 1;
-	} else {
-		return 0;
-	}
+	$input = trim($input);
+	$input = stripslashes($input);
+	$input = strip_tags($input);
+	$input = htmlentities($input, ENT_QUOTES, 'UTF-8');
+	return $input;
 }
 
 
@@ -49,13 +30,12 @@ function validateData($data)
 
 
 // password validation
+// password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number
 function validatePassword($password)
 {
+	$pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,20}$/';
 	if (
-		strlen($password) > 8 &&
-		preg_match('/[a-z]/', $password) &&
-		preg_match('/[A-Z]/', $password) &&
-		preg_match('/[0-9]/', $password)
+		preg_match($pattern, $password)
 	) {
 		return 1;
 	} else {
@@ -63,16 +43,6 @@ function validatePassword($password)
 	}
 }
 
-
-function sanitizeString($var)
-{
-	global $connection;
-	$var = strip_tags($var);
-	$var = htmlentities($var);
-	if (get_magic_quotes_gpc())
-		$var = stripslashes($var);
-	return $connection->real_escape_string($var);
-}
 
 
 // checks the input of user activation code to check if it is numeric or not
@@ -103,33 +73,4 @@ function destroySession()
 	}
 
 	exit();
-}
-
-
-//checks that the login and password match and also if the user account is activated
-function auth($login, $password)
-{
-	$res = 0;
-	try {
-		$conn = dbConnect();
-		$sql = "SELECT username, password, verify_token FROM users ";
-		$qry = $conn->query($sql);
-		$result = $qry->fetchAll(PDO::FETCH_ASSOC);
-		if ($result) {
-			foreach ($result as $key) {
-				$userPwd = hash('whirlpool', $password);
-				if ($key['username'] == $login && $key['pwd'] == $userPwd) {
-					$res += 1;
-				}
-				if ($key['verify_token'] == 1 && $res == 1) {
-					$conn = null;
-					return ($res += 1);
-				}
-			}
-		}
-	} catch (PDOException $e) {
-		echo $qry . "<br>" . $e->getMessage();
-	}
-	$conn = null;
-	return $res;
 }

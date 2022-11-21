@@ -2,6 +2,16 @@
 
 session_start();
 
+if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
+	if (($_SESSION['check']) != hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])) {
+		session_destroy();
+		header('Location: ../sources/login.html.php?error=Session expired!');
+	} else {
+		$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+	}
+}
+
+
 include_once '../config/dbConnect.php';
 include_once '../controllers/security.php';
 
@@ -29,8 +39,8 @@ function resetEmail($email)
 			if ($checkEmail->rowCount() > 0) {
 				$newToken = rand(100000, 999999);
 				$stmt = $conn->prepare("UPDATE users SET verify_token = :newToken WHERE email = :email");
-				$stmt->bindParam(':newToken', $newToken);
-				$stmt->bindParam(':email', $email);
+				$stmt->bindParam(':newToken', $newToken, PDO::PARAM_INT);
+				$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 				$stmt->execute();
 			} else {
 				header('Location: ../sources/forgot.html.php?error=Email not found!');
@@ -82,8 +92,8 @@ function resetPassword($resetPassword)
 			$checkEmail->fetch();
 			if ($checkEmail->rowCount() > 0) {
 				$stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND verify_token = :verify_token");
-				$stmt->bindParam(':email', $resetParams['email']);
-				$stmt->bindParam(':verify_token', $resetParams['verify_token']);
+				$stmt->bindParam(':email', $resetParams['email'], PDO::PARAM_STR);
+				$stmt->bindParam(':verify_token', $resetParams['verify_token'], PDO::PARAM_INT);
 				$stmt->execute();
 				$checkToken = $stmt->fetch();
 				if (password_verify($resetParams['password'], $checkToken['password'])) {
@@ -92,8 +102,8 @@ function resetPassword($resetPassword)
 				} elseif ($checkToken['verify_token'] == $resetParams['verify_token']) {
 					$hashedPassword = password_hash($resetParams['password'], PASSWORD_DEFAULT);
 					$stmt = $conn->prepare("UPDATE users SET password = :password WHERE email = :email");
-					$stmt->bindParam(':password', $hashedPassword);
-					$stmt->bindParam(':email', $resetParams['email']);
+					$stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
+					$stmt->bindParam(':email', $resetParams['email'], PDO::PARAM_STR);
 					$stmt->execute();
 				} else {
 					header('Location: ../sources/reset.html.php?error=Invalid token!');

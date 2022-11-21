@@ -49,7 +49,7 @@ include_once '../controllers/gallery.php';
 								<div class="content mt-2" id="cameraView">
 
 									<div>
-										<canvas id="myCanvas" width="1000" height="700"></canvas>
+										<canvas id="myCanvas"></canvas>
 
 									</div>
 

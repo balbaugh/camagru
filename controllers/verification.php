@@ -13,7 +13,7 @@ date_default_timezone_set('Europe/Helsinki');
 // verification page with error message.
 
 
-if (isset($_POST['submit_verification'])) {
+if ((isset($_POST['submit_verification'])) && (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
 	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 	$verify_token = $_POST['verify_token'];
 	if (check_token($email, $verify_token)) {
@@ -26,20 +26,21 @@ if (isset($_POST['submit_verification'])) {
 }
 exit();
 
+
 function check_token($email, $verify_token)
 {
 	if (numberCheck($verify_token) == 1) {
 		try {
 			$conn = dbConnect();
 			$stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND verify_token = :verify_token");
-			$stmt->bindParam(':email', $email);
-			$stmt->bindParam(':verify_token', $verify_token);
+			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+			$stmt->bindParam(':verify_token', $verify_token, PDO::PARAM_INT);
 			$stmt->execute();
 			$user = $stmt->fetch();
 			if ($user) {
 				$stmt = $conn->prepare("UPDATE users SET verified = 1 WHERE email = :email AND verify_token = :verify_token");
-				$stmt->bindParam(':email', $email);
-				$stmt->bindParam(':verify_token', $verify_token);
+				$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+				$stmt->bindParam(':verify_token', $verify_token, PDO::PARAM_INT);
 				$stmt->execute();
 				return (1);
 			} else {

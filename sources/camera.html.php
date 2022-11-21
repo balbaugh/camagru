@@ -2,6 +2,7 @@
 
 session_start();
 
+
 include_once '../includes/headNav.html.php';
 include_once '../controllers/gallery.php';
 
