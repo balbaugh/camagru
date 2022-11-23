@@ -6,8 +6,7 @@ let start = document.getElementById('start');
 let saveImage = document.getElementById('save');
 let clear = document.getElementById('clear');
 let stickersDiv = document.getElementById('stickers');
-let mySticker1 = mySticker_function1();
-let mySticker2 = mySticker_function2();
+
 
 
 
@@ -23,7 +22,7 @@ start.addEventListener('click', async function () {
 		}
 	};
 
-	let stream = await navigator.mediaDevices.getUserMedia(constraints).catch(function (err) { alert("You must allow access to your webcam to use this feature! Please reload the page and try again..."); });
+	let stream = await navigator.mediaDevices.getUserMedia(constraints).catch(function () { alert("You must allow access to your webcam to use this feature! Please reload the page and try again..."); });
 
 	if (stream) {
 		stickersDiv.classList.remove("is-hidden");
@@ -55,13 +54,11 @@ snap.addEventListener("click", function () {
 
 // Webcam Stickers
 function mySticker_function1() {
-	let x = document.getElementById("mySelect1").value;
-	return x;
+	return document.getElementById("mySelect1").value;
 }
 
 function mySticker_function2() {
-	let x = document.getElementById("mySelect2").value;
-	return x;
+	return document.getElementById("mySelect2").value;
 }
 
 
@@ -69,7 +66,7 @@ function mySticker_function2() {
 saveImage.addEventListener("click", function () {
 	let data = canvas.toDataURL();
 	data = data.replace("data:image/png;base64,", "");
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 
 	let mySticker1 = mySticker_function1();
 	let sticker1src = document.getElementById(mySticker1).getAttribute("src");

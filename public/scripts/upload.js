@@ -2,8 +2,7 @@ let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 let imgInput = document.getElementById('imageInput');
 let saveImage = document.getElementById('save');
-let mySticker1 = mySticker_function1();
-let mySticker2 = mySticker_function2();
+
 
 
 imgInput.addEventListener('change', function () {
@@ -31,13 +30,11 @@ imgInput.addEventListener('change', function () {
 
 // Webcam Stickers
 function mySticker_function1() {
-	let x = document.getElementById("mySelect1").value;
-	return x;
+	return document.getElementById("mySelect1").value;
 }
 
 function mySticker_function2() {
-	let x = document.getElementById("mySelect2").value;
-	return x;
+	return document.getElementById("mySelect2").value;
 }
 
 
@@ -45,7 +42,7 @@ function mySticker_function2() {
 saveImage.addEventListener("click", function () {
 	let data = canvas.toDataURL();
 	data = data.replace("data:image/png;base64,", "");
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 
 	let mySticker1 = mySticker_function1();
 	let sticker1src = document.getElementById(mySticker1).getAttribute("src");

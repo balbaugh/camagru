@@ -1,6 +1,0 @@
-
-Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8ÌæŞÅ0
-:php:S113"'Add a new line at the end of this file.8ÌæŞÅ0
-r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Üí¦¬øÿÿÿÿ8ÌæŞÅ0
-m	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(õùàø8ÌæŞÅ0
-n	php:S4833Ê"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ8ÌæŞÅ0

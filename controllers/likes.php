@@ -24,8 +24,7 @@ function checkLikes($id_image, $id_user)
 		$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
 		$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 		$stmt->execute();
-		$likes = $stmt->fetchAll();
-		return $likes;
+		return $stmt->fetchAll();
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
@@ -65,8 +64,7 @@ function countLikes($id_image)
 		$stmt = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_image = :id_image");
 		$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
 		$stmt->execute();
-		$count = $stmt->fetchColumn();
-		return $count;
+        return $stmt->fetchColumn();
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();

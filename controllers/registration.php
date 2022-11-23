@@ -10,7 +10,7 @@ date_default_timezone_set('Europe/Helsinki');
 
 if (isset($_POST['submit_registration'])) {
 	$email = trim($_POST['email']);
-	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
 	$username = sanitize($_POST['username']);
 	$password = trim($_POST['password']);
 	$verify_token = random_int($min = 100000, $max = 999999);
@@ -19,19 +19,24 @@ if (isset($_POST['submit_registration'])) {
 	if (empty($email)) {
 		header("Location: ../sources/register.html.php?error=Email is required!");
 		exit();
-	} elseif (empty($username)) {
+	}
+    if (empty($username)) {
 		header("Location: ../sources/register.html.php?error=Username is required!");
 		exit();
-	} elseif (empty($password)) {
+	}
+    if (empty($password)) {
 		header("Location: ../sources/register.html.php?error=Password is required!");
 		exit();
-	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	}
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/register.html.php?error=Invalid email format!");
 		exit();
-	} elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+	}
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 		header("Location: ../sources/register.html.php?error=Username must be alphanumberic!");
 		exit();
-	} elseif (!validatePassword($password)) {
+	}
+    if (!validatePassword($password)) {
 		header("Location: ../sources/register.html.php?error=Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number!");
 		exit();
 	}

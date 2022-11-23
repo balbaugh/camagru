@@ -1,7 +1,5 @@
 <?php
 
-
-
 function dbConnect()
 {
 	$DB_DSN = 'mysql:host=localhost;dbname=camagru;';

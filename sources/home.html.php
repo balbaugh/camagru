@@ -4,8 +4,6 @@ session_start();
 
 require_once '../config/dbConnect.php';
 
-// include_once '../controllers/comments.php'
-
 include_once '../controllers/likes.php';
 
 include_once '../controllers/gallery.php';
@@ -13,14 +11,13 @@ include_once '../controllers/gallery.php';
 include_once '../includes/headNavHome.html.php';
 
 
-
-
 $next = 0;
 $prev = 0;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 $pageMax = 6;
-$imageTotal = count(getImages());
+$getImages = getImages();
+$imageTotal = count($getImages);
 $totalPages = ceil($imageTotal / $pageMax);
 $offset = ($page - 1) * $pageMax;
 $start = ($page > 1) ? ($page * $pageMax) - $pageMax : 0;
@@ -251,7 +248,7 @@ function confirmDelete() {
 	<div class="columns is-centered">
 		<div class="column is-two-thirds pt-6 mt-6">
 			<p class="image">
-				<img class="modal-content" id="myModalImage" alt="">
+				<img class="modal-content" id="myModalImage" alt="" src="">
 			</p>
 		</div>
 	</div>

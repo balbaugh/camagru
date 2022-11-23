@@ -232,7 +232,7 @@ function onlyOne(checkbox) {
 	<div class="columns is-mobile is-centered">
 		<div class="column is-half pt-6 mt-6">
 			<p class="image">
-				<img class="modal-content" id="myModalImage" alt="">
+				<img class="modal-content" id="myModalImage" alt="" src="">
 			</p>
 		</div>
 	</div>

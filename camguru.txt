@@ -70,7 +70,6 @@ smtp_port = 25
 sendmail_path = "/applications/mamp/php -t -i"
 ;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
 
-
 mamp/php/etc/php.ini
 
 ***   outlook accepts emails from localhost   ***

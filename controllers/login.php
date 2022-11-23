@@ -11,19 +11,22 @@ date_default_timezone_set('Europe/Helsinki');
 
 if (isset($_POST['submit_login'])) {
 	$email = trim($_POST['email']);
-	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
 	$password = trim($_POST['password']);
 
 	if (empty($email)) {
 		header("Location: ../sources/login.html.php?error=Email is required!");
 		exit();
-	} elseif (empty($password)) {
+	}
+    if (empty($password)) {
 		header("Location: ../sources/login.html.php?error=Password is required!");
 		exit();
-	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	}
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/login.html.php?error=Invalid email format!");
 		exit();
-	} elseif (!validatePassword($password)) {
+	}
+    if (!validatePassword($password)) {
 		header("Location: ../sources/login.html.php?error=Incorrect password format!");
 		exit();
 	}

@@ -37,7 +37,7 @@ function resetEmail($email)
 			$checkEmail = $conn->query("SELECT * FROM users WHERE email = '$email'");
 			$checkEmail->fetch();
 			if ($checkEmail->rowCount() > 0) {
-				$newToken = rand(100000, 999999);
+				$newToken = random_int(100000, 999999);
 				$stmt = $conn->prepare("UPDATE users SET verify_token = :newToken WHERE email = :email");
 				$stmt->bindParam(':newToken', $newToken, PDO::PARAM_INT);
 				$stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -99,7 +99,8 @@ function resetPassword($resetPassword)
 				if (password_verify($resetParams['password'], $checkToken['password'])) {
 					header('Location: ../sources/reset.html.php?error=New password cannot be the same as the old one!');
 					exit();
-				} elseif ($checkToken['verify_token'] == $resetParams['verify_token']) {
+				}
+                if ($checkToken['verify_token'] == $resetParams['verify_token']) {
 					$hashedPassword = password_hash($resetParams['password'], PASSWORD_DEFAULT);
 					$stmt = $conn->prepare("UPDATE users SET password = :password WHERE email = :email");
 					$stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);

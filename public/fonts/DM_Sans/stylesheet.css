@@ -1,41 +1,41 @@
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-MediumItalic.eot');
+	src: url('public/fonts/DM_Sans/DMSans-MediumItalic.eot');
 	font-weight: 500;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-Italic.eot');
+	src: url('public/fonts/DM_Sans/DMSans-Italic.eot');
 	font-weight: normal;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-BoldItalic.eot');
+	src: url('public/fonts/DM_Sans/DMSans-BoldItalic.eot');
 	font-weight: bold;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-Medium.eot');
+	src: url('public/fonts/DM_Sans/DMSans-Medium.eot');
 	font-weight: 500;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-Regular.eot');
+	src: url('public/fonts/DM_Sans/DMSans-Regular.eot');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'DM Sans';
-	src: url('public/fonts/DMSans-Bold.eot');
+	src: url('public/fonts/DM_Sans/DMSans-Bold.eot');
 	font-weight: bold;
 	font-style: normal;
 }

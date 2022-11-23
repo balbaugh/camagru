@@ -11,10 +11,7 @@ function getImages()
 {
 	try {
 		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT * FROM images ORDER BY id_image DESC");
-		$stmt->execute();
-		$images = $stmt->fetchAll();
-		return $images;
+		return $conn->query("SELECT * FROM images ORDER BY id_image DESC")->fetchAll();
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
