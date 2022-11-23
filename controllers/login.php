@@ -49,6 +49,7 @@ if (isset($_POST['submit_login'])) {
 					$_SESSION['notifications'] = $result['notifications'];
 
 					$_SESSION['check'] = hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
+					$token = $_SESSION['check'];
 
 
 					header("Location: ../sources/home.html.php?success=You have been logged in!");

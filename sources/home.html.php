@@ -31,13 +31,13 @@ $prev = ($page > 1) ? $page - 1 : 0;
 if (!isset($_GET['page'])) {
 	$page = 1;
 }
-if (!(int)$_GET['page']) {
+if (isset($_GET['page']) && (!(int)$_GET['page'])) {
 	$page = 1;
 }
-if ($_GET['page'] < 1) {
+if (isset($_GET['page']) && ($_GET['page'] < 1)) {
 	$page = 1;
 }
-if ($_GET['page'] > $totalPages) {
+if (isset($_GET['page']) && ($_GET['page'] > $totalPages)) {
 	$page = $totalPages;
 }
 
@@ -85,7 +85,8 @@ if ($_GET['page'] > $totalPages) {
 			<div class="card card-gallery is-shadowless mt-6">
 				<div class="header">
 					<div class="media-content is-pulled-right pr-4 pt-3">
-						<?php if ($row['id_user'] == $_SESSION['id_user']) : ?>
+						<?php if (isset($_SESSION['logged'])) : ?>
+						<?php if ($id_user == $_SESSION['id_user']) : ?>
 						<div id="deleteForm" class="level-item">
 							<form action="../controllers/gallery.php" method="post">
 								<span class="tag is-warning">
@@ -96,6 +97,7 @@ if ($_GET['page'] > $totalPages) {
 								</span>
 							</form>
 						</div>
+						<?php endif; ?>
 						<?php endif; ?>
 					</div>
 
@@ -114,7 +116,7 @@ if ($_GET['page'] > $totalPages) {
 				<div class="card-content">
 					<div class="level is-mobile">
 						<div class="level-left">
-							<?php if ($_SESSION['verified'] == "1") : ?>
+							<?php if (isset($_SESSION['logged'])) : ?>
 							<div class="level-item has-text-centered">
 								<div class="heart">
 									<form id="<?php echo $id_image ?>" action="../controllers/likes.php" method="post">

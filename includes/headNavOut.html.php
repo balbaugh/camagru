@@ -71,13 +71,13 @@
 	<?php if (isset($_GET['success'])) { ?>
 	<div class="notification is-success is-light">
 		<button class="delete"></button>
-		<h2 class="is-size-3"><?php echo $_GET['success']; ?></h2>
+		<h2 class="is-size-3"><?php echo htmlentities($_GET['success'], ENT_QUOTES, 'UTF-8'); ?></h2>
 	</div>
 	<?php } ?>
 
 	<?php if (isset($_GET['error'])) { ?>
 	<div class="notification is-danger is-light">
 		<button class="delete"></button>
-		<h2 class="is-size-3"><?php echo $_GET['error']; ?></h2>
+		<h2 class="is-size-3"><?php echo htmlentities($_GET['error'], ENT_QUOTES, 'UTF-8'); ?></h2>
 	</div>
 	<?php } ?>

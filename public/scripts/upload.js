@@ -1,23 +1,28 @@
-
+let canvas = document.getElementById('canvas');
+let context = canvas.getContext('2d');
 let imgInput = document.getElementById('imageInput');
+let saveImage = document.getElementById('save');
+let mySticker1 = mySticker_function1();
+let mySticker2 = mySticker_function2();
 
-imgInput.addEventListener('change', function (e) {
-	if (e.target.files) {
-		let imageFile = e.target.files[0]; //here we get the image file
-		let reader = new FileReader();
-		reader.readAsDataURL(imageFile);
-		reader.onloadend = function (e) {
-			let myImage = new Image(); // Creates image object
-			myImage.src = e.target.result; // Assigns converted image to image object
-			myImage.onload = function (ev) {
-				let mySticker = mySticker_function();
-				let myCanvas = document.getElementById("myCanvas"); // Creates a canvas object
-				let myContext = myCanvas.getContext("2d"); // Creates a
-				// context object
-				myCanvas.width = myImage.width; // Assigns image's width to canvas
-				myCanvas.height = myImage.height; // Assigns image's height to canvas
-				myContext.drawImage(myImage, 0, 0); // Draws the image on canvas
-				myContext.drawImage(document.getElementById(mySticker), 20, 50, 128, 128);
+
+imgInput.addEventListener('change', function () {
+	if (this.files && this.files[0]) {
+		if (this.files[0].size > 2097152) {
+			alert("Image size is too big! Please upload an image less than 2MB.");
+			this.value = "";
+		}
+		if (this.value != "") {
+			saveImage.classList.remove("is-hidden");
+			let myImage = new Image();
+
+			myImage.src = URL.createObjectURL(this.files[0]);
+			myImage.onload = function () {
+				canvas.width = myImage.width;
+				canvas.height = myImage.height;
+
+				context.drawImage(myImage, 0, 0);
+				this.value = "";
 			}
 		}
 	}
@@ -25,26 +30,34 @@ imgInput.addEventListener('change', function (e) {
 
 
 // Webcam Stickers
-function mySticker_function() {
-	let x = document.getElementById("mySelect").value;
+function mySticker_function1() {
+	let x = document.getElementById("mySelect1").value;
+	return x;
+}
+
+function mySticker_function2() {
+	let x = document.getElementById("mySelect2").value;
 	return x;
 }
 
 
 // //Save Image
-const saveImage = document.getElementById("save");
-
-saveImage.addEventListener("click", () => {
-	let data = myCanvas.toDataURL();
+saveImage.addEventListener("click", function () {
+	let data = canvas.toDataURL();
 	data = data.replace("data:image/png;base64,", "");
-	let request = new XMLHttpRequest();
+	var request = new XMLHttpRequest();
 
-	request.onload = () => {
-		console.log(request.responseText, request);
+	let mySticker1 = mySticker_function1();
+	let sticker1src = document.getElementById(mySticker1).getAttribute("src");
+	let mySticker2 = mySticker_function2();
+	let sticker2src = document.getElementById(mySticker2).getAttribute("src");
+
+	request.onload = function () {
+		window.location.reload();
 	}
-	request.open("POST", "/camagru/controllers/camera.php", false);
+
+	request.open("POST", "/camagru/controllers/upload.php");
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send("img=" + encodeURIComponent(data));
 
+	request.send("img=" + encodeURIComponent(data) + "&sticker1=" + sticker1src + "&sticker2=" + sticker2src);
 });
-

@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		const $notification = $delete.parentNode;
 
 		$delete.addEventListener('click', () => {
-			$notification.parentNode.removeChild($notification);
+			if ($notification.parentNode) {
+				$notification.parentNode.removeChild($notification);
+			}
 		});
 	});
 });

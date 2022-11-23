@@ -69,3 +69,17 @@ C
 config/database.php,6/9/69e3bd8ddf957a32ec5a3b80a87f8cc4bfe36a27
 @
 config/setup.php,8/b/8b592efb8c1cc743379544524fadd6aee0225f8e
+F
+sources/login.html.php,6/e/6e593007e263d6e4c558e366db61c567b6bd3816
+H
+public/scripts/camera.js,c/5/c5988d09fa649566f972666a44c5420595ddfc42
+E
+sources/home.html.php,5/8/583b90dcf09b6f1f90e5cc87619b06cd541115e7
+G
+controllers/gallery.php,b/c/bc4d879c4ea92f390b104a1ce633e1f1bf35693b
+H
+controllers/comments.php,8/0/807e7badb9e59db0cf85336994fa3dd67cdea075
+H
+controllers/settings.php,1/1/1141ef3ed4f14e2b692bcdb93cc511ede015c59d
+9
+	.htaccess,f/1/f14dd8fe84b7e99eb63debbf029152463832e7ad

@@ -38,62 +38,61 @@ if (isset($_POST['submit_registration'])) {
 
 	try {
 		$conn = dbConnect();
-		$stmt = $conn->prepare("SELECT id_user FROM users WHERE email = ? OR username = ?");
+		$stmt = $conn->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
 
 		$stmt->bindParam(1, $email, PDO::PARAM_STR);
 		$stmt->bindParam(2, $username, PDO::PARAM_STR);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($result['email']) {
+			header("Location: ../sources/register.html.php?error=Account associated with that email already exists!");
+			exit();
+		} else if ($result['username'] == $username) {
+			header("Location: ../sources/register.html.php?error=Username already exists!");
+			exit();
+		} else {
+			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+			try {
+				$conn = dbConnect();
+				$stmt = $conn->prepare("INSERT INTO users (email, username, password, verify_token) VALUES (?, ?, ?, ?)");
+				$stmt->bindParam(1, $email, PDO::PARAM_STR);
+				$stmt->bindParam(2, $username, PDO::PARAM_STR);
+				$stmt->bindParam(3, $hashedPassword, PDO::PARAM_STR);
+				$stmt->bindParam(4, $verify_token, PDO::PARAM_INT);
+				$stmt->execute();
+			} catch (PDOException $e) {
+				echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+				exit();
+			}
+
+			$url = "http://localhost:8080/camaguru/sources/verification.html.php";
+			$to = $email;
+			$subject = "Camagru Verification Code";
+			$body = '<p>Thank you for registering with camagru!</p>.</br>';
+			$body .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
+			$body .= "<a href='$url'>Click here to verify your account.</a>";
+
+			$headers = 'MIME-Version: 1.0' . "\r\n" .
+				'Content-type: text/html; charset=utf-8' . "\r\n" .
+				'From: balbaugh <info@camagru.fi>' . "\r\n" .
+				'Reply-To: info@camagru.fi' . "\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+
+			mail($to, $subject, $body, $headers);
+
+			header("Location: ../sources/verification.html.php?success=Registration successful! Please check your email for verification code.");
+
+			/* if (mail($to, $subject, $body, $headers)) {
+				header("Location: ../sources/verification.html.php?success=Registration successful! Please check your email for verification code.");
+				exit();
+			} else {
+				header("Location: ../sources/register.html.php?error=Something went wrong! Please try again!");
+				exit();
+			} */
+		}
 	} catch (PDOException $e) {
 		echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();
 	}
-	if ($result == $email) {
-		header("Location: ../sources/register.html.php?error=Email already exists!");
-		exit();
-	}
-	if ($result == $username) {
-		header("Location: ../sources/register.html.php?error=Username already exists!");
-		exit();
-	} else {
-		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-		try {
-			$conn = dbConnect();
-			$stmt = $conn->prepare("INSERT INTO users (email, username, password, verify_token) VALUES (?, ?, ?, ?)");
-			$stmt->bindParam(1, $email, PDO::PARAM_STR);
-			$stmt->bindParam(2, $username, PDO::PARAM_STR);
-			$stmt->bindParam(3, $hashedPassword, PDO::PARAM_STR);
-			$stmt->bindParam(4, $verify_token, PDO::PARAM_INT);
-			$stmt->execute();
-		} catch (PDOException $e) {
-			echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
-			exit();
-		}
-
-		$url = "http://localhost:8080/camaguru/sources/verification.html.php";
-		$to = $email;
-		$subject = "Email Verification";
-		$message = '<p>Thank you for registering with camagru!</p>.</br>';
-		$message .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
-		$message .= "<a href='$url'>Click here to verify your account.</a>";
-
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-		$headers .= 'From: balbaugh <info@hive.fi>' . "\r\n";
-		$headers .= 'Reply-To: info@hive.fi' . "\r\n";
-		//$headers .= 'From: balbaugh <balbaugh@balbaughs-iMac.localdomain>' . "\r\n";
-		//$headers .= 'Reply-To: balbaugh@balbaughs-iMac.localdomain' . "\r\n";
-		$headers .= 'X-Mailer: PHP/' . phpversion();
-
-		mail($to, $subject, $message, $headers);
-
-		$email_log = "Registration was successful and verification email has been sent to $email.";
-
-		header("Location: ../sources/verification.html.php?success=Registration successful, please check email for verification code!");
-
-		exit();
-	}
-} else {
-	header('Location: ../sources/register.html.php?error=An error has occurred. Please try again.');
-	exit();
 }

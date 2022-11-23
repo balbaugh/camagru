@@ -14,7 +14,7 @@ include_once '../controllers/gallery.php';
 		<div class="content">
 			<h2>Webcam Guide</h2>
 			<ul>
-				<li class="is-size-4"><strong>1.</strong> Choose Sticker <strong>2.</strong> Take Picture
+				<li class="is-size-4"><strong>1.</strong> Choose Sticker(s) <strong>2.</strong> Take Picture
 					<strong>3.</strong> Save Your Creation
 				</li>
 			</ul>
@@ -35,13 +35,6 @@ include_once '../controllers/gallery.php';
 								<li><label class="button is-same2 is-focused mb-2 mr-1"
 										for="camera"><a><strong>Camera</strong></a></label>
 								</li>
-
-								<!--
-								<li><label class="button is-same2 is-focused mb-2 ml-1"
-										for="upload"><a><strong>Upload</strong></a></label>
-								</li>
-								 -->
-
 							</ul>
 						</div>
 
@@ -96,105 +89,52 @@ include_once '../controllers/gallery.php';
 										</p>
 									</div>
 
-									<div class="level">
+									<div class="level is-hidden" id="stickers">
 										<div class="level-item">
-											<div class="field is-inline-block mt-2">
-												<label class="label">Sticker Select</label>
+											<div class="field mt-2">
+												<label class="label">Sticker Select 1</label>
 												<div class="control">
 													<div class="select is-primary is-small is-rounded">
-														<select id="mySelect">
-
-															<option selected="selected" value="img1">Bolt</option>
-															<option value="img2">Stealie</option>
-															<option value="img3">Stealie Blank</option>
-															<option value="img4">Silent Emoji</option>
+														<select id="mySelect1">
+															<option selected="selected" value="img1"
+																src="../public/stickers/bolt.png">Bolt</option>
+															<option value="img2" src="../public/stickers/stealie.png">
+																Stealie</option>
+															<option value="img3"
+																src="../public/stickers/stealieBlank.png">Stealie Blank
+															</option>
+															<option value="img4" src="../public/stickers/silent.png">
+																Silent Emoji</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="level-item">
+											<div class="field mt-2">
+												<label class="label">Sticker Select 2</label>
+												<div class="control">
+													<div class="select is-primary is-small is-rounded">
+														<select id="mySelect2">
+															<option value="img1" src="../public/stickers/bolt.png">Bolt
+															</option>
+															<option value="img2" src="../public/stickers/stealie.png">
+																Stealie</option>
+															<option value="img3"
+																src="../public/stickers/stealieBlank.png">Stealie Blank
+															</option>
+															<option value="img4" src="../public/stickers/silent.png">
+																Silent Emoji</option>
+															<option selected="selected" value="img0"
+																src="../public/stickers/blank.png">None
+															</option>
 														</select>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-
 								</div>
-							</div>
-
-							<div class="tab-pane content-upload">
-								<form method="POST" action="" enctype="multipart/form-data">
-									<div class="content" id="uploadForm">
-										<div class="card-image p-3 is-hidden" id="uploadedDiv">
-											<figure class="image is-4by3">
-												<img id="uploadImage" alt="" src="" />
-											</figure>
-											<div id="canvasDiv2">
-												<canvas class="is-hidden" id="uploadCanvas"></canvas>
-											</div>
-
-										</div>
-
-										<div class="block">
-											<div class="field is-grouped is-grouped-centered">
-												<p class="control">
-													<button
-														class="button is-normal is-rounded is-different is-focused is-primary is-light is-responsive mt-2 is-inline-block"
-														id="snap2">
-														Capture
-													</button>
-												</p>
-											</div>
-
-											<div class="field is-grouped is-grouped-centered">
-												<p class="control">
-													<button
-														class="button is-normal is-rounded is-same is-focused is-warning is-light is-responsive mt-2 is-inline-block"
-														id="clear2">
-														Clear
-													</button>
-												</p>
-												<p class="control">
-													<button
-														class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
-														id="save2" type="submit">
-														Save
-													</button>
-												</p>
-											</div>
-										</div>
-
-										<div class="level">
-											<div class="level-item">
-												<div class="field is-inline-block mt-2">
-													<label class="label">Sticker Select</label>
-													<div class="control">
-														<div class="select is-primary is-small is-rounded">
-															<select id="mySelect2">
-																<option selected="selected" value="img1">Bolt
-																</option>
-																<option value="img2">Stealie</option>
-																<option value="img3">Stealie Blank</option>
-																<option value="img4">Silent Emoji</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="level-item">
-												<div class="file is-small is-boxed is-info mt-5" id="uploadButtonDiv">
-													<label class="file-label">
-														<input class="file-input" type="file" name="uploadImage"
-															id="uploadImage" accept="image/png, image/jpg, image/jpeg">
-
-														<span class="file-cta">
-															<span class="file-label" id="uploadButton">
-																Choose File
-															</span>
-														</span>
-													</label>
-												</div>
-											</div>
-										</div>
-
-									</div>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -256,6 +196,7 @@ include_once '../controllers/gallery.php';
 											class="sticker frame is-white p-5" id="img3" alt="stealieBlank">
 										<img src="../public/stickers/silent.png" class="sticker frame is-white p-5"
 											id="img4" alt="stealie">
+										<img src="../public/stickers/blank.png" class="is-hidden" id="img0" alt="none">
 									</figure>
 								</div>
 							</div>
@@ -269,8 +210,8 @@ include_once '../controllers/gallery.php';
 </section>
 
 
-<script src="../public/scripts/camera.js"></script>
 
+<script src="../public/scripts/camera.js"></script>
 <script src="../public/scripts/gallery.js"></script>
 
 

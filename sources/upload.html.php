@@ -16,7 +16,7 @@ include_once '../controllers/gallery.php';
 		<div class="content">
 			<h2>Upload Guide</h2>
 			<ul>
-				<li class="is-size-4"><strong>1.</strong> Choose Sticker <strong>2.</strong> Upload Picture
+				<li class="is-size-4"><strong>1.</strong> Choose Sticker(s) <strong>2.</strong> Upload Picture
 					<strong>3.</strong> Save Your Creation
 				</li>
 			</ul>
@@ -49,23 +49,52 @@ include_once '../controllers/gallery.php';
 								<div class="content mt-2" id="cameraView">
 
 									<div>
-										<canvas id="myCanvas"></canvas>
+										<canvas id="canvas"></canvas>
 
 									</div>
 
 
 									<div class="level">
 										<div class="level-item">
-											<div class="field is-inline-block mt-2">
-												<label class="label">Sticker Select</label>
+											<div class="field  mt-2">
+												<label class="label">Sticker Select 1</label>
 												<div class="control">
 													<div class="select is-primary is-small is-rounded">
-														<select id="mySelect">
-															<option selected="selected" value="img1">Bolt</option>
-															<option value="img2">Stealie</option>
-															<option value="img3">Stealie Blank</option>
-															<option value="img4">Silent Emoji</option>
-															<option value="img0">None</option>
+														<select id="mySelect1">
+															<option selected="selected" value="img1"
+																src="../public/stickers/bolt.png">Bolt</option>
+															<option value="img2" src="../public/stickers/stealie.png">
+																Stealie</option>
+															<option value="img3"
+																src="../public/stickers/stealieBlank.png">Stealie Blank
+															</option>
+															<option value="img4" src="../public/stickers/silent.png">
+																Silent Emoji</option>
+															<option value="img0" src="../public/stickers/blank.png">
+																Blank</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="level-item">
+											<div class="field  mt-2">
+												<label class="label">Sticker Select 2</label>
+												<div class="control">
+													<div class="select is-primary is-small is-rounded">
+														<select id="mySelect2">
+															<option value="img1" src="../public/stickers/bolt.png">Bolt
+															</option>
+															<option value="img2" src="../public/stickers/stealie.png">
+																Stealie</option>
+															<option value="img3"
+																src="../public/stickers/stealieBlank.png">Stealie Blank
+															</option>
+															<option value="img4" src="../public/stickers/silent.png">
+																Silent Emoji</option>
+															<option selected="selected" value="img0"
+																src="../public/stickers/blank.png">
+																Blank</option>
 														</select>
 													</div>
 												</div>
@@ -90,7 +119,7 @@ include_once '../controllers/gallery.php';
 										<div class="field is-grouped is-grouped-centered">
 											<p class="control">
 												<button
-													class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block"
+													class="button is-normal is-rounded is-same is-focused is-link is-light is-responsive mt-2 is-inline-block is-hidden"
 													id="save" type="submit">
 													Save
 												</button>

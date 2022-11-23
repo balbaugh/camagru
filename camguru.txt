@@ -37,12 +37,22 @@ UPLOAD PHOTO AND EDIT THEN SAVE TO DATABASE
 - PROTECT FROM BLACK PICTURES AFTER WEBCAM IS BLOCKED BY USER THEN THEY CLICK CAPTURE OR SAVE?
 ADD SECURITY TO SETTINGS.PHP
 USE SECURITY.PHP TOOLS IN CONTROLLER FILES
+__ PREVENT SAVE IMG IN UPLOAD WITH MEDIA LOADED __
+-- )) CANNOT VIEW GALLERY AFTER LOGGING OUT (( --
+--- CAMERA.HTML.PHP HAS JAVASCRIPT BUG FOR NOTIFICATIONS PANEL
+IMAGE MANIPULATION STARTS SERVER SIDE ??
+-- DOES THIS MEAN THE IMAGE CONVERSION ON THE SERVER SIDE FROM CANVAS TO PNG ??
+-- OR STICKER IS ADDED IN PHP THEN WE DRAW THE RESULTING IMAGE ON THE CANVAS ??
+
 
 
 FINISHED SECURITY::
 –––––––
 FILTER_VAR - FILTER_VALIDATE_EMAIL
 HTMLENTITIES - ENT_QUOTES for COMMENTS
+
+
+
 
 _______
 MAIL MAIL MAIL
@@ -56,7 +66,8 @@ smtp_port = 25
 ;sendmail_from = don@example.com
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+;sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+sendmail_path = "/applications/mamp/php -t -i"
 ;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
 
 
@@ -86,42 +97,22 @@ TO _ DO
 ––
 
 
+!!!! CHECK SERVER ERROR LOGS !!!!
 EVERY LOG WARNING OR ERROR ON SERVER OR WEB CONSOLE IS CONSIDERED A CRASH
--- UPLOAD.JS CAMERA.JS
+-- UPLOAD.JS
+-- CAMERA.JS
 
 
-FIX
---- CAMERA.HTML.PHP HAS JAVASCRIPT BUG FOR NOTIFICATIONS PANEL
--- === ?? MOBILE NAVBURGER BROKEN ?? === --
--- LIMIT UPLOAD IMG SIZE AND RESTRICT FORMAT --
-	-- // STICKERS WON"T DISPLAY ON LARGE IMG // --
-== LOGIN SUCCESS NOTIFICATION EXISTS ON PAGE RELOAD DESPITE DISMISSING ==
-	-- https://www.w3schools.com/howto/howto_js_snackbar.asp --
-	-- https://gist.github.com/micah1701/c641c40a18e28b7dc064ed3c3a37f6c4 --
-	-- https://rfoel.github.io/bulma-toast/#doc --
--- )) CANNOT VIEW GALLERY AFTER LOGGING OUT (( --
-
-
-
-
-CHECK FOR PROPER HEAD NAV USAGE OF INCLUDES
+“PHPSESSID” has “SameSite” policy set to “Lax” because it is missing a “SameSite” attribute, and “SameSite=Lax” is the default value for this attribute. login.html.php
 
 
 SESSION DESTROY DURING DATABASE SETUP.PHP
 
 
-LOREM IPSUM
-
 ERROR PAGES
 
 
 !!!! CHECK APP IN CHROME !!!!
-
-
-!!!! CHECK SERVER ERROR LOGS !!!!
-
-
-??? BLOCK ACCESS TO VERIFICATION PAGE ???
 
 
 NOTIFICATION EMAILS FOR ::
@@ -134,20 +125,19 @@ NOTIFICATION EMAILS FOR ::
 - ADD THESE ALL TO THE RESPECTIVE CONTROLLER FILES
 
 
-IMAGE MANIPULATION STARTS SERVER SIDE ??
--- DOES THIS MEAN THE IMAGE CONVERSION ON THE SERVER SIDE FROM CANVAS TO PNG ??
--- OR STICKER IS ADDED IN PHP THEN WE DRAW THE RESULTING IMAGE ON THE CANVAS ??
+FIX
 
 
-CHARACTER COUNT (255) ON IMAGE COMMENTS
--- CURRENTLY USING
-	<?php if (isset($_GET['email_error'])) { ?>
-		<p class="help is-danger"><?php echo $_GET['email_error']; ?> </p>
-	<?php } ?>
--- NEED TO SETUP DELIVERY OF THE ERROR MESSAGE
+-- === ?? MOBILE NAVBURGER BROKEN ?? === --
 
+-- LIMIT UPLOAD IMG SIZE AND RESTRICT FORMAT --
+	-- // STICKERS WON"T DISPLAY ON LARGE IMG // --
 
-
+== LOGIN SUCCESS NOTIFICATION EXISTS ON PAGE RELOAD DESPITE DISMISSING ==
+	-- https://www.w3schools.com/howto/howto_js_snackbar.asp --
+	-- https://gist.github.com/micah1701/c641c40a18e28b7dc064ed3c3a37f6c4 --
+	-- https://rfoel.github.io/bulma-toast/#doc --
+FIX
 
 
 
@@ -177,28 +167,11 @@ smtp_port = 25
 ;sendmail_from = don@tripleroi.com
 
 ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+;sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+sendmail_path = "/applications/mamp/php -t -i"
 ;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
 
 
 mamp/php/etc/php.ini
 
 ***   outlook accepts emails from localhost   ***
-
-
-
-
-CAMERA
-
-<video> element
-- The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the <audio> element may provide a more appropriate user experience.
-
-- autoplay
--- A Boolean attribute; if specified, the video automatically begins to play back as soon as it can do so without stopping to finish loading the data.
-
-- muted
--- Boolean attribute to mute video audio by default.
--- In some browsers (e.g. Chrome 70.0) autoplay doesn't work if no muted attribute is present.
-
-
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-autoplay

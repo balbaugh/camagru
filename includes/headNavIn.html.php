@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>-->
 	<script src="../public/scripts/navbar.js"></script>
 	<script src="../public/scripts/notifications.js"></script>
 	<link rel="stylesheet" href="../public/styles/bulma.css">
@@ -79,13 +78,13 @@
 	<?php if (isset($_GET['success'])) { ?>
 	<div class="notification is-success is-light">
 		<button class="delete"></button>
-		<h2 class="is-size-3"><?php echo $_GET['success']; ?></h2>
+		<h2 class="is-size-3"><?php echo htmlentities($_GET['success'], ENT_QUOTES, 'UTF-8'); ?></h2>
 	</div>
 	<?php } ?>
 
 	<?php if (isset($_GET['error'])) { ?>
 	<div class="notification is-danger is-light">
 		<button class="delete"></button>
-		<h2 class="is-size-3"><?php echo $_GET['error']; ?></h2>
+		<h2 class="is-size-3"><?php echo htmlentities($_GET['error'], ENT_QUOTES, 'UTF-8'); ?></h2>
 	</div>
 	<?php } ?>

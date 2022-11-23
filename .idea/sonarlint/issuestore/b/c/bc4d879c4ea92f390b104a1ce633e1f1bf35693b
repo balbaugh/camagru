@@ -1,0 +1,6 @@
+
+Qphp:S105"EReplace all tab characters in this file by sequences of white-spaces.
+qphp:S117"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Çñˆ¾8Ş¯ÀöÁ0
+f	php:S1192"JDefine a constant instead of duplicating this literal ":id_image" 5 times.( ³Ç†8ß¯ÀöÁ0
+€	php:S1488"_Immediately return this expression instead of assigning it to the temporary variable "$images".(¯èîóøÿÿÿÿ8ß¯ÀöÁ0
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
