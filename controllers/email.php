@@ -63,7 +63,7 @@ function notifyLike ($id_image, $id_user)
 		$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($result) {
+		if ($resultPoster) {
 			$stmt = $conn->prepare("SELECT * FROM users WHERE id_user = ?");
 			$stmt->bindParam(1, $result['id_user'], PDO::PARAM_INT);
 			$stmt->execute();
