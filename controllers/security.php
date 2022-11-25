@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 include_once '../config/dbConnect.php';
 
@@ -14,7 +16,7 @@ function sanitize($input)
 	$input = stripslashes($input);
 	$input = strip_tags($input);
 	$input = htmlentities($input, ENT_QUOTES, 'UTF-8');
-	return $input;
+	return ($input);
 }
 
 
@@ -25,7 +27,7 @@ function validateData($data)
 	$data = stripslashes($data);
 	$data = strip_tags($data);
 	$data = htmlspecialchars($data);
-	return $data;
+	return ($data);
 }
 
 
@@ -37,9 +39,9 @@ function validatePassword($password)
 	if (
 		preg_match($pattern, $password)
 	) {
-		return 1;
+		return (1);
 	} else {
-		return 0;
+		return (0);
 	}
 }
 
@@ -51,11 +53,11 @@ function numberCheck($str)
 	$i = 0;
 	while ($str[$i]) {
 		if (is_numeric($str[$i]) == 1) {
-			return 1;
+			return (1);
 		}
 		$i++;
 	}
-	return 0;
+	return (0);
 }
 
 

@@ -1,6 +1,9 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
 
 include_once '../config/dbConnect.php';
 include_once '../controllers/security.php';
@@ -18,15 +21,15 @@ if (isset($_POST['submit_login'])) {
 		header("Location: ../sources/login.html.php?error=Email is required!");
 		exit();
 	}
-    if (empty($password)) {
+	if (empty($password)) {
 		header("Location: ../sources/login.html.php?error=Password is required!");
 		exit();
 	}
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		header("Location: ../sources/login.html.php?error=Invalid email format!");
 		exit();
 	}
-    if (!validatePassword($password)) {
+	if (!validatePassword($password)) {
 		header("Location: ../sources/login.html.php?error=Incorrect password format!");
 		exit();
 	}

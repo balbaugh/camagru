@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 require_once 'config/setup.php';
 
@@ -10,6 +12,6 @@ if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
 	header('Location: ./sources/home.html.php');
 	exit;
 } else {
-	header('Location: ./sources/login.html.php');
+	header('Location: ./sources/register.html.php');
 	exit;
 }

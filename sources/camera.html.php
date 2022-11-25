@@ -1,7 +1,8 @@
 <?php
 
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 include_once '../includes/headNav.html.php';
 include_once '../controllers/gallery.php';

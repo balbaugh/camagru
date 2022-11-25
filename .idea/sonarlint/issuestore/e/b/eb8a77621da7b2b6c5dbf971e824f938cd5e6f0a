@@ -1,0 +1,18 @@
+
+_php:S103v"KSplit this 140 characters long line (which is greater than 120 authorized).(âñóØ
+ophp:S117"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(èĞ›ÿÿÿÿÿ
+nphp:S117"URename this parameter "$id_user" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(èĞ›ÿÿÿÿÿ
+jphp:S117#"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Û·¾Ù
+iphp:S117#"URename this parameter "$id_user" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Û·¾Ù
+ophp:S117<"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‚‘ñªøÿÿÿÿ
+ophp:S117K"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(©Ùõ¿ûÿÿÿÿ
+nphp:S117K"URename this parameter "$id_user" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(©Ùõ¿ûÿÿÿÿ
+^	php:S1192"JDefine a constant instead of duplicating this literal ":id_image" 4 times.(ôšäg
+c	php:S1192"IDefine a constant instead of duplicating this literal ":id_user" 3 times.(Áàº¬ÿÿÿÿÿ
+J	php:S1172"0Remove the unused function parameter "$id_user".(èĞ›ÿÿÿÿÿ
+E	php:S1172#"0Remove the unused function parameter "$id_user".(Û·¾Ù
+J	php:S1172K"0Remove the unused function parameter "$id_user".(©Ùõ¿ûÿÿÿÿ
+Q	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(Ğ»¶é
+3php:S125f"Remove this commented out code.(–±Ù
+3php:S125"Remove this commented out code.(®ïÑ„
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç

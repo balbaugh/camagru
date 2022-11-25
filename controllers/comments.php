@@ -1,9 +1,12 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 include_once '../config/dbConnect.php';
 include_once '../controllers/security.php';
+include_once '../controllers/email.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
@@ -15,7 +18,7 @@ if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
 		$id_user = $_SESSION['id_user'];
 
 		postComment($id_image, $id_user, $comment);
-		// notifyUser($id_image, 1, $id_user, $comment);
+		notifyComment($id_image, $id_user, $comment);
 	}
 }
 header('Location: ../sources/home.html.php');

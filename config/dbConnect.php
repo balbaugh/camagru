@@ -1,5 +1,6 @@
 <?php
 
+
 function dbConnect()
 {
 	$DB_DSN = 'mysql:host=localhost;dbname=camagru;';
@@ -13,5 +14,5 @@ function dbConnect()
 	} catch (PDOException $e) {
 		echo "Unable to connect to the database server: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 	}
-	return $conn;
+	return ($conn);
 }

@@ -1,0 +1,9 @@
+
+kphp:S103""KSplit this 140 characters long line (which is greater than 120 authorized).(¥Ööøÿÿÿÿ8É”ı¶É0
+qphp:S117"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(•Ğ€­8É”ı¶É0
+pphp:S117"URename this parameter "$id_user" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(•Ğ€­8É”ı¶É0
+D	php:S1066"/Merge this if statement with the enclosing one.(ªÎ‹¼
+3php:S1253"Remove this commented out code.(–±Ù
+:php:S125"Remove this commented out code.(âÑ8Ê”ı¶É0
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
+k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìşŒÿÿÿÿÿÿ

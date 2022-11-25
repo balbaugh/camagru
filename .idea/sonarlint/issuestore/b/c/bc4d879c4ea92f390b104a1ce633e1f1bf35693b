@@ -1,0 +1,5 @@
+
+qphp:S117"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Çñˆ¾8Ş¯ÀöÁ0
+qphp:S117*"VRename this parameter "$id_image" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÇÓ“8èÏ…²Ê0
+e	php:S1192"JDefine a constant instead of duplicating this literal ":id_image" 5 times.(ôšäg8éÏ…²Ê0
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç

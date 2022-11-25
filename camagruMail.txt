@@ -1,0 +1,111 @@
+
+==================================================
+?CHANGE FROM EMAIL ADDRESS IN NOTIFICATION EMAILS?
+==================================================
+
+
+https://www.justinsilver.com/technology/osx/send-emails-mac-os-x-postfix-gmail-relay/
+
+==================================
+/Applications/mamp/php/etc/php.ini
+==================================
+
+[mail function]
+; For Win32 only.
+;SMTP = localhost
+;smtp_port = 25
+
+; For Win32 only.
+;sendmail_from = me@example.com
+
+; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+
+; HOME
+sendmail_path = "env -i /usr/sbin/sendmail -t -i"
+; HIVE
+;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
+
+; Force the addition of the specified parameters to be passed as extra parameters
+; to the sendmail binary. These parameters will always replace the value of
+; the 5th parameter to mail().
+;mail.force_extra_parameters =
+
+; Add X-PHP-Originating-Script: that will include uid of the script followed by the filename
+mail.add_x_header = Off
+
+; The path to a log file that will log all mail() calls. Log entries include
+; the full path of the script, line number, To address and headers.
+;mail.log =
+; Log mail to syslog (Event Log on Windows).
+;mail.log = syslog
+
+
+
+
+====================
+/etc/postfix/main.cf
+====================
+
+FIRST ::
+# readme_directory: The location of the Postfix README files.
+#
+readme_directory = /usr/share/doc/postfix
+inet_protocols = ipv4
+
+THEN ::
+# Postfix as relay
+#
+# See http://www.postfix.org/RELAY_README.html
+#
+#Outlook SMTP
+relayhost=[smtp.office365.com]:587
+#Gmail SMTP
+#relayhost=[smtp.gmail.com]:587
+#Hotmail SMTP
+#relayhost=[smtp.live.com]:587
+#Yahoo SMTP
+#relayhost=[smtp.mail.yahoo.com]:465
+# Enable SASL authentication in the Postfix SMTP client.
+smtpd_sasl_auth_enable =yes
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+
+#smtp_sasl_security_options=noanonymous
+#smtp_sasl_mechanism_filter=plain
+
+smtp_sasl_security_options =
+smtp_sasl_mechanism_filter = AUTH LOGIN
+
+# Enable Transport Layer Security (TLS), i.e. SSL.
+smtp_use_tls=yes
+smtp_tls_security_level=encrypt
+tls_random_source=dev:/dev/urandom
+
+
+
+========================
+/etc/postfix/sasl_passwd
+========================
+[smtp.office365.com]:587 balbaugh@outlook.com:Sage0-Unlatch-Overrun
+
+THEN ::
+sudo chown -R root: /etc/postfix/
+THEN ::
+sudo postmap /etc/postfix/sasl_passwd
+THEN ::
+sudo postfix stop && sudo postfix start
+
+
+
+
+
+_______
+DATE DATE DATE
+_______
+[Date]
+; Defines the default timezone used by the date functions
+; https://php.net/date.timezone
+date.timezone = "Europe/Helsinki"
+_______
+DATE DATE DATE
+_______

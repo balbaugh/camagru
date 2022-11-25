@@ -44,39 +44,17 @@ IMAGE MANIPULATION STARTS SERVER SIDE ??
 -- DOES THIS MEAN THE IMAGE CONVERSION ON THE SERVER SIDE FROM CANVAS TO PNG ??
 -- OR STICKER IS ADDED IN PHP THEN WE DRAW THE RESULTING IMAGE ON THE CANVAS ??
 
+NOTIFICATION EMAILS FOR ::
+- REGISTRATION SEND VERIFICATION EMAILS TO NEW USERS
 
 
+
+––
 FINISHED SECURITY::
 –––––––
 FILTER_VAR - FILTER_VALIDATE_EMAIL
 HTMLENTITIES - ENT_QUOTES for COMMENTS
-
-
-
-
-_______
-MAIL MAIL MAIL
-_______
-[mail function]
-; For Win32 only.
-SMTP = localhost
-smtp_port = 25
-
-; For Win32 only.
-;sendmail_from = don@example.com
-
-; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-;sendmail_path = "env -i /usr/sbin/sendmail -t -i"
-sendmail_path = "/applications/mamp/php -t -i"
-;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
-
-mamp/php/etc/php.ini
-
-***   outlook accepts emails from localhost   ***
-_______
-MAIL MAIL MAIL
-_______
-
+––
 
 
 ––
@@ -85,10 +63,8 @@ TO _ DO
 –––––––
 __
 ??? NORMINETTE ???
-__
-REVIEW PDF OF ASSIGNMENT && EVALUATION
 ––
-–––––––
+REVIEW PDF OF ASSIGNMENT && EVALUATION
 ––
 _______
 TO _ DO
@@ -96,28 +72,34 @@ TO _ DO
 ––
 
 
+
+==================================================
+?CHANGE FROM EMAIL ADDRESS IN NOTIFICATION EMAILS?
+==================================================
+
+
+// HANDLE // SCALE LARGER IMAGES // RESIZE //
+
+
+CHMOD IMAGES
+
+
+!!! DS_STORE FILES !!!
+
+
 !!!! CHECK SERVER ERROR LOGS !!!!
 EVERY LOG WARNING OR ERROR ON SERVER OR WEB CONSOLE IS CONSIDERED A CRASH
--- UPLOAD.JS
--- CAMERA.JS
 
 
 “PHPSESSID” has “SameSite” policy set to “Lax” because it is missing a “SameSite” attribute, and “SameSite=Lax” is the default value for this attribute. login.html.php
-
-
-SESSION DESTROY DURING DATABASE SETUP.PHP
-
-
-ERROR PAGES
 
 
 !!!! CHECK APP IN CHROME !!!!
 
 
 NOTIFICATION EMAILS FOR ::
-- REGISTRATION SEND VERIFICATION EMAILS TO NEW USERS
-- LIKES
-- COMMENTS
+- LIKES :: REFINE ONLY NOTIFY IF PREFERENCES ON AND VERIFY TO:: FROM:: FIELDS
+- COMMENTS :: REFINE ONLY NOTIFY IF PREFERENCES ON AND VERIFY TO:: FROM:: FIELDS
 - SETTINGS :: EMAIL CHANGE VERIFICATION
 - SETTINGS :: EMAIL SEND A VERIFICATION EMAIL TO THE NEW EMAIL ADDRESS
 - ADD SEND EMAIL VERIFICATION TO PASSWORD RESET FORGET WITH NEW TOKEN
@@ -125,8 +107,6 @@ NOTIFICATION EMAILS FOR ::
 
 
 FIX
-
-
 -- === ?? MOBILE NAVBURGER BROKEN ?? === --
 
 -- LIMIT UPLOAD IMG SIZE AND RESTRICT FORMAT --
@@ -138,39 +118,3 @@ FIX
 	-- https://rfoel.github.io/bulma-toast/#doc --
 FIX
 
-
-
-[mail function]
-; For Win32 only.
-; https://php.net/smtp
-SMTP = localhost
-; https://php.net/smtp-port
-smtp_port = 25
-
-; For Win32 only.
-; https://php.net/sendmail-from
-;sendmail_from = balbaugh@outlook.com
-
-; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-; https://php.net/sendmail-path
-sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
-
-UPDATED
-
-[mail function]
-; For Win32 only.
-SMTP = localhost
-smtp_port = 25
-
-; For Win32 only.
-;sendmail_from = don@tripleroi.com
-
-; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-;sendmail_path = "env -i /usr/sbin/sendmail -t -i"
-sendmail_path = "/applications/mamp/php -t -i"
-;sendmail_path = "env -i /goinfre/balbaugh/mamp/php -t -i"
-
-
-mamp/php/etc/php.ini
-
-***   outlook accepts emails from localhost   ***

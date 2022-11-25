@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 require_once '../config/dbConnect.php';
 
@@ -197,8 +199,10 @@ if (isset($_GET['page']) && ($_GET['page'] > $totalPages)) {
 			<?php }
 				} else { ?>
 			<section class="block">
-				<br>
+				</br>
 				<p>No image(s) found...</p>
+				</br>
+				<p>Click <a href=camera.html.php>HERE</a> and be the first to share a post!</p>
 			</section>
 			<?php }
 			} catch (PDOException $e) {

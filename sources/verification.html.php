@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 if (isset($_SESSION["logged"]) && $_SESSION["logged"] === true) {
 	header('Location: ../index.php');
@@ -38,7 +40,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="verify_token" class="label">Verification
 								Token</label>
 							<div class="control">
-								<input class="input" type="text" name="verify_token" id="verify_token"
+								<input class="input" type="password" name="verify_token" id="verify_token"
 									placeholder="********" required>
 							</div>
 						</div>

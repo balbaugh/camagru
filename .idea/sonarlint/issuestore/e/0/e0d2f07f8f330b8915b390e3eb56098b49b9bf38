@@ -1,0 +1,8 @@
+
+_php:S103:"KSplit this 126 characters long line (which is greater than 120 authorized).(•˜ó„
+ephp:S103D"KSplit this 136 characters long line (which is greater than 120 authorized).(ªË¢	8Íµ–ßÅ0
+kphp:S103N"KSplit this 131 characters long line (which is greater than 120 authorized).(Ë‹èŠûÿÿÿÿ8¶ÑßÅ0
+fphp:S103U"KSplit this 128 characters long line (which is greater than 120 authorized).(ë¾‘±8·ÑßÅ0
+r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(Üí¦¬øÿÿÿÿ8Ğµ–ßÅ0
+m	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(õùàø8§²Ê0
+g	php:S4833ó"QReplace "include_once" with namespace import mechanism through the "use" keyword.(‹…ˆÃ

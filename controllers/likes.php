@@ -1,9 +1,12 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 
 include_once '../config/dbConnect.php';
+include_once '../controllers/email.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
@@ -46,6 +49,7 @@ function postLikes($id_image, $id_user)
 				$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
 				$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmt->execute();
+
 				header("Location: ../sources/home.html.php");
 				exit();
 			} catch (PDOException $e) {
@@ -64,7 +68,7 @@ function countLikes($id_image)
 		$stmt = $conn->prepare("SELECT COUNT(*) FROM likes WHERE id_image = :id_image");
 		$stmt->bindParam(':id_image', $id_image, PDO::PARAM_INT);
 		$stmt->execute();
-        return $stmt->fetchColumn();
+		return $stmt->fetchColumn();
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 		exit();

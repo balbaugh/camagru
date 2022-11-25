@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
 if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
 	if (($_SESSION['check']) != hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])) {
@@ -100,7 +102,7 @@ function resetPassword($resetPassword)
 					header('Location: ../sources/reset.html.php?error=New password cannot be the same as the old one!');
 					exit();
 				}
-                if ($checkToken['verify_token'] == $resetParams['verify_token']) {
+				if ($checkToken['verify_token'] == $resetParams['verify_token']) {
 					$hashedPassword = password_hash($resetParams['password'], PASSWORD_DEFAULT);
 					$stmt = $conn->prepare("UPDATE users SET password = :password WHERE email = :email");
 					$stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);

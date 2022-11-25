@@ -1,0 +1,5 @@
+
+kphp:S103$"KSplit this 122 characters long line (which is greater than 120 authorized).(•²Î™þÿÿÿÿ8˜‚’²Ê0
+¢	php:S1192A"…Define a constant instead of duplicating this literal "Location: ../sources/login.html.php?error=Invalid email or password!" 3 times.(Éîµ–8™‚’²Ê0
+f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
+k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìþŒÿÿÿÿÿÿ
