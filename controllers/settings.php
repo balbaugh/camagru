@@ -15,19 +15,20 @@ if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
 
 include_once '../config/dbConnect.php';
 include_once '../controllers/security.php';
+include_once '../controllers/email.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
 
-if (isset($_POST['newEmail']) && $_POST['newEmail'] != '') {
+if (isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
 	newEmail($_POST['newEmail']);
-} elseif (isset($_POST['newUsername']) && $_POST['newUsername'] != '') {
+} elseif (isset($_POST['newUsername']) && !empty($_POST['newUsername'])) {
 	newUsername($_POST['newUsername']);
-} elseif (isset($_POST['newPassword'])) {
+} elseif (isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
 	newPassword($_POST['newPassword']);
-} elseif (isset($_POST['newNotifications'])) {
+} elseif (isset($_POST['newNotifications']) && !empty($_POST['newNotifications'])) {
 	newNotifications($_POST['newNotifications']);
-} elseif (isset($_POST['deleteAccount'])) {
+} elseif (isset($_POST['deleteAccount']) && !empty($_POST['deleteAccount'])) {
 	deleteAccount();
 } else {
 	header('Location: ../sources/settings.html.php?error=invalid action!');
@@ -36,51 +37,64 @@ if (isset($_POST['newEmail']) && $_POST['newEmail'] != '') {
 
 function newEmail($newEmail)
 {
-	$newEmail = trim($newEmail);
-	if (filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+	$email = filter_var(trim($newEmail), FILTER_SANITIZE_EMAIL);
+	$newToken = bin2hex(random_bytes(8));
+	$newTokenHash = password_hash($newToken, PASSWORD_DEFAULT);
+
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		try {
 			$conn = dbConnect();
-			$checkEmail = $conn->query("SELECT * FROM users WHERE email = '$newEmail'");
-			$checkEmail->fetch();
-			if ($checkEmail->rowCount() > 0) {
+			$stmt = $conn->query("SELECT * FROM users WHERE email = '$email'");
+			$stmt->fetch(PDO::FETCH_ASSOC);
+			$count = $stmt->rowCount();
+			if ($count > 0) {
 				header('Location: ../sources/settings.html.php?error=email already in use!');
 			} else {
-				session_start();
+				if (session_status() === PHP_SESSION_NONE) {
+					session_start();
+				}
 				session_regenerate_id(true);
 
-				$newToken = random_int(100000, 999999);
-				$stmt = $conn->prepare("UPDATE users SET email = :newEmail, verify_token = :newToken, verified = 0 WHERE id_user = :id_user");
-				$stmt->bindParam(':newEmail', $newEmail, PDO::PARAM_STR);
-				$stmt->bindParam(':newToken', $newToken, PDO::PARAM_INT);
-				$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
+				$stmt = $conn->prepare("UPDATE users SET email = ?, verify_token = ?, verified = 0 WHERE id_user = ?");
+				$stmt->bindParam(1, $newEmail, PDO::PARAM_STR);
+				$stmt->bindParam(2, $newTokenHash, PDO::PARAM_STR);
+				$stmt->bindParam(3, $_SESSION['id_user'], PDO::PARAM_INT);
+
 				$stmt->execute();
+
+				$url = "http://localhost:8080/camagru/sources/verification.html.php";
+				$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+
+				$to = $newEmail;
+				$subject = "Camagru :: New Email Verification";
+				$body = 'Hello ' . $_SESSION['username'] . ', <br><br>';
+				$body .= '<p>You email address has been updated!</p>.</br>';
+				$body .= '<p>Your verification code is: <b>' . $newToken . '</b></p>';
+				$body .= "<a href='$url'>Click here to verify your account.</a>";
+				$body .= '</br>';
+				$body .= 'Best regards, <br>';
+				$body .= 'Camagru Team </br>';
+				$body .= '</br>';
+				$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
+
+
+				$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
+					'Reply-To: balbaugh@outlook.com' . "\r\n" .
+					'Date: ' . date("r") . "\r\n" .
+					'MIME-Version: 1.0' . "\r\n" .
+					'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
+
+				mail($to, $subject, $body, $headers);
+
+				session_destroy();
+
+				header('Location: ../sources/verification.html.php?success=Email changed successfully! Check your inbox to verify the new address.');
 			}
 		} catch (PDOException $e) {
 			echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 			exit();
 		}
-
-		$url = "http://localhost:8080/camaguru/sources/verification.html.php";
-		$to = $newEmail;
-		$subject = "Email Verification";
-		$message = '<p>You email address has been updated!</p>.</br>';
-		$message .= '<p>Your verification code is: <b>' . $newToken . '</b></p>';
-		$message .= "<a href='$url'>Click here to verify your account.</a>";
-
-		$headers = "From: balbaugh <info@hive.fi>\r\n";
-		$headers .= "Reply-To: info@hive.fi\r\n";
-		$headers .= "Content-type: text/html\r\n";
-
-		mail($to, $subject, $message, $headers);
-
-
-		$email_log = "Registration was successful and verification email has been sent to $newEmail.";
-
-		session_destroy();
-
-		header('Location: ../sources/verification.html.php?success=Email changed successfully! Check your inbox to verify the new address.');
-
-		exit();
 	} else {
 		header('Location: ../sources/settings.html.php?error=Invalid email!');
 	}
@@ -98,7 +112,9 @@ function newUsername($newUsername)
 			if ($checkUsername->rowCount() > 0) {
 				header('Location: ../sources/settings.html.php?error=username already taken');
 			} else {
-				session_start();
+				if (session_status() === PHP_SESSION_NONE) {
+					session_start();
+				}
 				session_regenerate_id(true);
 
 				$stmtUsername = $conn->prepare("UPDATE users SET username = '$newUsername' WHERE id_user = :id_user");
@@ -114,6 +130,9 @@ function newUsername($newUsername)
 				$stmtComments->execute();
 
 				$_SESSION['username'] = $newUsername;
+
+				notifyUsername($newUsername);
+
 				header('Location: ../sources/settings.html.php?success=username changed successfully');
 			}
 		} catch (PDOException $e) {
@@ -136,7 +155,9 @@ function newPassword($newPassword)
 			if (password_verify($newPassword, $comparePassword['password'])) {
 				header('Location: ../sources/settings.html.php?error=New password cannot be the same as the old one!');
 			} else {
-				session_start();
+				if (session_status() === PHP_SESSION_NONE) {
+					session_start();
+				}
 				session_regenerate_id(true);
 
 				$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -144,6 +165,9 @@ function newPassword($newPassword)
 				$stmt->bindParam(':newPassword', $newPassword, PDO::PARAM_STR);
 				$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 				$stmt->execute();
+
+				notifyPassword($_SESSION['id_user']);
+
 				session_destroy();
 				header('Location: ../sources/login.html.php?success=Password change successful! Please login.');
 			}
@@ -160,7 +184,9 @@ function newPassword($newPassword)
 function newNotifications($newNotifications)
 {
 	try {
-		session_start();
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
 		session_regenerate_id(true);
 
 		$conn = dbConnect();
@@ -168,6 +194,9 @@ function newNotifications($newNotifications)
 		$stmt->bindParam(':newNotifications', $newNotifications, PDO::PARAM_INT);
 		$stmt->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 		$stmt->execute();
+
+		notifyNotifications($_SESSION['id_user']);
+
 		header('Location: ../sources/settings.html.php?success=Notifications preference changed successfully!');
 	} catch (PDOException $e) {
 		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
@@ -198,8 +227,11 @@ function deleteAccount()
 			$stmtUser->bindParam(':id_user', $_SESSION['id_user'], PDO::PARAM_INT);
 			$stmtUser->execute();
 
+			notifyDelete($_SESSION['id_user']);
+
 			destroySession();
-			header('Location: ../sources/index.html.php?success=Account deleted successfully!');
+
+			header('Location: ../sources/home.html.php?success=Account deleted successfully!');
 		} catch (PDOException $e) {
 			echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 			exit();

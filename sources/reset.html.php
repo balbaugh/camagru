@@ -37,12 +37,12 @@ include_once '../includes/headNavHome.html.php';
 							<label for="verify_token" class="label">Verification
 								Token</label>
 							<div class="control">
-								<input class="input" type="text" name="verify_token" id="verify_token"
+								<input class="input" type="password" name="verify_token" id="verify_token"
 									placeholder="********" required>
 							</div>
 						</div>
 						<div class=" field">
-							<label for="password" class="label">Password</label>
+							<label for="password" class="label">New Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
 									placeholder="********" required onChange="onChange();">
@@ -54,7 +54,7 @@ include_once '../includes/headNavHome.html.php';
 						</div>
 
 						<div class=" field">
-							<label for="confirmPassword" class="label">Confirm Password</label>
+							<label for="confirmPassword" class="label">Confirm New Password</label>
 							<div class="control">
 								<input class="input" type="password" name="confirmPassword" id="confirmPassword"
 									placeholder="********" required onChange="onChange();">

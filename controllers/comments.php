@@ -11,17 +11,18 @@ include_once '../controllers/email.php';
 date_default_timezone_set('Europe/Helsinki');
 
 
-if (!empty($_POST['postComment']) && !empty($_POST['id_image'])) {
+$id_user = $_SESSION['id_user'];
+$username = $_SESSION['username'];
+
+if (isset($_POST['postComment']) && isset($_POST['id_image']) && !empty($_POST['postComment']) && !empty($_POST['id_image'])) {
 	if (strlen($_POST['postComment']) <= 255) {
 		$comment = sanitize($_POST['postComment']);
-		$id_image = ($_POST['id_image']);
-		$id_user = $_SESSION['id_user'];
+		$id_image = $_POST['id_image'];
 
 		postComment($id_image, $id_user, $comment);
-		notifyComment($id_image, $id_user, $comment);
 	}
 }
-header('Location: ../sources/home.html.php');
+
 
 
 function postComment($id_image, $id_user, $comment)
@@ -40,6 +41,9 @@ function postComment($id_image, $id_user, $comment)
 				$stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
 				$stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
 				$stmt->execute();
+				notifyComment($id_image, $_SESSION['username'], $comment);
+				header("Location: ../sources/home.html.php");
+				exit();
 			} catch (PDOException $e) {
 				echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
 				exit();
@@ -47,24 +51,3 @@ function postComment($id_image, $id_user, $comment)
 		}
 	}
 }
-
-
-
-
-/*
-$url = "http://localhost:8080/camaguru/sources/verification.html.php";
-$to = $email;
-$subject = "Email Verification";
-$message = '<p>Thank you for registering with camagru!</p>.</br>';
-$message .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>';
-$message .= "<a href='$url'>Click here to verify your account.</a>";
-
-$headers = "From: balbaugh <info@hive.fi>\r\n";
-$headers .= "Reply-To: info@hive.fi\r\n";
-$headers .= "Content-type: text/html\r\n";
-
-mail($to, $subject, $message, $headers);
-
-$email_log = "Registration was successful and verification email has been sent to $email.";
-
- */

@@ -53,21 +53,3 @@ function check_token($email, $verify_token)
 		echo "Error: " . $e->getMessage();
 	}
 }
-
-
-/*
-if (($_SERVER['REQUEST_METHOD'] == 'GET') && (!empty($_GET['verify_token'])) && (isset($_GET['verify_token'])) && (!empty($_GET['email'])) && (isset($_GET['email']))) {
-	$email = filter_var($_GET['email'], FILTER_VALIDATE_EMAIL);
-	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
-	$verify_token = $_GET['verify_token'];
-	$verify_token = htmlentities($verify_token, ENT_QUOTES, 'UTF-8');
-
-	if (check_token($email, $verify_token)) {
-		header("Location: ../sources/login.html.php?success=Your account has been verified! Please log in.");
-	} else {
-		header("Location: ../sources/verification.html.php?error=Invalid verification token!");
-	}
-} else {
-	header("Location: ../sources/verification.html.php?error=Please try again!");
-}
-*/

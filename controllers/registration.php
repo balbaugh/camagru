@@ -81,16 +81,16 @@ if (isset($_POST['submit_registration'])) {
 			$body = '<p>Thank you for registering with camagru!</p>.</br>';
 			$body .= '<p>Your verification code is: <b>' . $verify_token . '</b></p>.</br>';
 			$body .= '</br>';
-			$body .= "<p>Please click '<a href=$url>HERE</a>', and enter the code to verify your account.</p>.</br>";
+			$body .= "<p>Please click <a href=$url>HERE</a>, and enter the code to verify your account.</p>.</br>";
 			$body .= '</br>';
 			$body .= '<p>Thank you!</p> </br>';
 			$body .= '<p>Camagru Team</p>';
 
 			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
+				'Reply-To: balbaugh@outlook.com' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
 				'X-Mailer: PHP/' . phpversion();
 
 			mail($to, $subject, $body, $headers);

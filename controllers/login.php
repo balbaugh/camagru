@@ -44,7 +44,9 @@ if (isset($_POST['submit_login'])) {
 			if (password_verify($password, $result['password'])) {
 				if ($result['verified'] == 1) {
 
-					session_start();
+					if (session_status() === PHP_SESSION_NONE) {
+						session_start();
+					}
 					session_regenerate_id(true);
 
 					$_SESSION['logged'] = true;
