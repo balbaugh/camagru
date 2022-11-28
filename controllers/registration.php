@@ -53,10 +53,11 @@ if (isset($_POST['submit_registration'])) {
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		if ($result['email']) {
+
+		if ($result && $result['email'] === $email) {
 			header("Location: ../sources/register.html.php?error=Account associated with that email already exists!");
 			exit();
-		} else if ($result['username'] == $username) {
+		} else if ($result && $result['username'] === $username) {
 			header("Location: ../sources/register.html.php?error=Username already exists!");
 			exit();
 		} else {

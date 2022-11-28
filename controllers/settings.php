@@ -26,7 +26,7 @@ if (isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
 	newUsername($_POST['newUsername']);
 } elseif (isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
 	newPassword($_POST['newPassword']);
-} elseif (isset($_POST['newNotifications']) && !empty($_POST['newNotifications'])) {
+} elseif (isset($_POST['newNotifications']) && ($_POST['newNotifications'] == '1' || $_POST['newNotifications'] == '0')) {
 	newNotifications($_POST['newNotifications']);
 } elseif (isset($_POST['deleteAccount']) && !empty($_POST['deleteAccount'])) {
 	deleteAccount();
@@ -184,11 +184,6 @@ function newPassword($newPassword)
 function newNotifications($newNotifications)
 {
 	try {
-		if (session_status() === PHP_SESSION_NONE) {
-			session_start();
-		}
-		session_regenerate_id(true);
-
 		$conn = dbConnect();
 		$stmt = $conn->prepare("UPDATE users SET notifications = :newNotifications WHERE id_user = :id_user");
 		$stmt->bindParam(':newNotifications', $newNotifications, PDO::PARAM_INT);

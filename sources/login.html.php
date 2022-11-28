@@ -31,7 +31,7 @@ include_once '../includes/headNavOut.html.php';
 						<div class="field">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="email" id="email"
+								<input class="input" type="email" name="email" id="email" autocomplete="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
 						</div>
@@ -40,7 +40,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="password" class="label">Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
-									placeholder="********" required>
+									autocomplete="current-password" placeholder="********" required>
 							</div>
 						</div>
 

@@ -56,12 +56,13 @@ include_once '../includes/headNav.html.php';
 							<label for="password" class="label">Change Password</label>
 							<div class="control is-expanded">
 								<input class="input" type="password" name="newPassword" id="newPassword"
-									placeholder="New Password" onChange="onChange();">
+									autocomplete="new-password" placeholder="New Password" onChange="onChange();">
 							</div>
 							<div class="field has-addons pt-2">
 								<div class="control is-expanded">
 									<input class="input" type="password" name="confirmPassword" id="confirmPassword"
-										placeholder="Confirm New Password" onChange="onChange();">
+										autocomplete="new-password" placeholder="Confirm New Password"
+										onChange="onChange();">
 								</div>
 								<p class="control">
 									<button class="button is-info" type="submit" name="changePassword">

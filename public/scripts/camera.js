@@ -5,7 +5,7 @@ let snap = document.getElementById('snap');
 let start = document.getElementById('start');
 let saveImage = document.getElementById('save');
 let clear = document.getElementById('clear');
-let stickersDiv = document.getElementById('stickers');
+let stickersDiv = document.getElementById('sticker');
 
 
 

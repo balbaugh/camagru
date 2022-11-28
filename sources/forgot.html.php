@@ -30,7 +30,7 @@ include_once '../includes/headNavHome.html.php';
 						<div class="field pt-2">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="email" id="email"
+								<input class="input" type="email" name="email" id="email" autocomplete="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
 						</div>

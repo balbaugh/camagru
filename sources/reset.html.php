@@ -29,7 +29,7 @@ include_once '../includes/headNavHome.html.php';
 						<div class="field pt-2">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="email" id="email"
+								<input class="input" type="email" name="email" id="email" autocomplete="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
 						</div>
@@ -45,7 +45,7 @@ include_once '../includes/headNavHome.html.php';
 							<label for="password" class="label">New Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
-									placeholder="********" required onChange="onChange();">
+									autocomplete="new-password" placeholder="********" required onChange="onChange();">
 							</div>
 
 							<strong>
@@ -57,7 +57,7 @@ include_once '../includes/headNavHome.html.php';
 							<label for="confirmPassword" class="label">Confirm New Password</label>
 							<div class="control">
 								<input class="input" type="password" name="confirmPassword" id="confirmPassword"
-									placeholder="********" required onChange="onChange();">
+									autocomplete="new-password" placeholder="********" required onChange="onChange();">
 							</div>
 						</div>
 						<div class="field pt-2">

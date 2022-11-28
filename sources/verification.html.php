@@ -31,7 +31,7 @@ include_once '../includes/headNavOut.html.php';
 						<div class="field">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="email" id="email"
+								<input class="input" type="email" name="email" id="email" autocomplete="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
 						</div>

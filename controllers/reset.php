@@ -49,7 +49,7 @@ function resetEmail($emailPost)
 			$checkEmail = $conn->query("SELECT * FROM users WHERE email = '$email'");
 			$checkEmail->fetch(PDO::FETCH_ASSOC);
 			$count = $checkEmail->rowCount();
-			if ($count > 0) {
+			if ($count && $count > 0) {
 				$stmt = $conn->prepare("UPDATE users SET verify_token = ? WHERE email = ?");
 				$stmt->bindParam(1, $newToken, PDO::PARAM_STR);
 				$stmt->bindParam(2, $email, PDO::PARAM_STR);
@@ -93,7 +93,7 @@ resetPassword($emailPost, $tokenPost, $passwordPost)
 			$stmt->execute();
 			$stmt->fetch(PDO::FETCH_ASSOC);
 			$count = $stmt->rowCount();
-			if ($count > 0) {
+			if ($count && $count > 0) {
 				$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 				$stmt->bindParam(1, $email, PDO::PARAM_STR);
 				$stmt->execute();

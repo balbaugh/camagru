@@ -10,8 +10,10 @@ include_once '../controllers/email.php';
 
 date_default_timezone_set('Europe/Helsinki');
 
-$id_user = $_SESSION['id_user'];
-$username = $_SESSION['username'];
+if (isset($_SESSION['logged'])) {
+	$id_user = $_SESSION['id_user'];
+	$username = $_SESSION['username'];
+}
 
 
 if (isset($_POST['like']) && !empty($_POST['like'])) {

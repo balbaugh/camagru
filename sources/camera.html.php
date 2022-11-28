@@ -90,7 +90,7 @@ include_once '../controllers/gallery.php';
 										</p>
 									</div>
 
-									<div class="level is-hidden" id="stickers">
+									<div class="level is-hidden" id="sticker">
 										<div class="level-item">
 											<div class="field mt-2">
 												<label class="label">Sticker Select 1</label>
@@ -162,7 +162,6 @@ include_once '../controllers/gallery.php';
 
 						<!-- Tab panes -->
 						<div class="tab-content">
-
 							<div class="tab-pane content-library">
 								<div class="content">
 									<div class="card-content is-scrollable2">
@@ -171,7 +170,7 @@ include_once '../controllers/gallery.php';
 											$images = getImages();
 											foreach ($images as $image) : ?>
 											<?php
-												if ($_SESSION['id_user'] == $image['id_user']) : {
+												if (isset($_SESSION['logged']) && ($_SESSION['id_user'] == $image['id_user'])) : {
 														$imageName = $image['image_name']; ?>
 											<img class="image is-128x128 mx-3 is-clickable postedImageImg"
 												src=" ../public/uploads/<?php echo $imageName; ?>"
@@ -183,7 +182,6 @@ include_once '../controllers/gallery.php';
 										</figure>
 									</div>
 								</div>
-
 							</div>
 
 							<div class="tab-pane content-stickers">

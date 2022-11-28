@@ -31,7 +31,7 @@ include_once '../includes/headNavOut.html.php';
 						<div class="field">
 							<label for="email" class="label">Email</label>
 							<div class="control">
-								<input class="input" type="email" name="email" id="email"
+								<input class="input" type="email" name="email" id="email" autocomplete="email"
 									placeholder="e.g. alex@example.com" required>
 							</div>
 						</div>
@@ -39,8 +39,8 @@ include_once '../includes/headNavOut.html.php';
 						<div class=" field">
 							<label for="username" class="label">Username</label>
 							<div class="control">
-								<input class="input" type="text" name="username" id="username" placeholder="Username"
-									required>
+								<input class="input" type="text" name="username" id="username" autocomplete="username"
+									placeholder="Username" required>
 							</div>
 						</div>
 
@@ -48,7 +48,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="password" class="label">Password</label>
 							<div class="control">
 								<input class="input" type="password" name="password" id="password"
-									placeholder="********" required onChange="onChange();">
+									autocomplete="new-password" placeholder="********" required onChange="onChange();">
 							</div>
 
 							<strong>
@@ -60,7 +60,7 @@ include_once '../includes/headNavOut.html.php';
 							<label for="confirmPassword" class="label">Confirm Password</label>
 							<div class="control">
 								<input class="input" type="password" name="confirmPassword" id="confirmPassword"
-									placeholder="********" required onChange="onChange();">
+									autocomplete="new-password" placeholder="********" required onChange="onChange();">
 							</div>
 						</div>
 

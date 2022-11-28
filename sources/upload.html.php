@@ -73,7 +73,7 @@ include_once '../controllers/gallery.php';
 															<option value="img4" src="../public/stickers/silent.png">
 																Silent Emoji</option>
 															<option value="img0" src="../public/stickers/blank.png">
-																Blank</option>
+																None</option>
 														</select>
 													</div>
 												</div>
@@ -96,7 +96,7 @@ include_once '../controllers/gallery.php';
 																Silent Emoji</option>
 															<option selected="selected" value="img0"
 																src="../public/stickers/blank.png">
-																Blank</option>
+																None</option>
 														</select>
 													</div>
 												</div>
@@ -164,7 +164,7 @@ include_once '../controllers/gallery.php';
 											$images = getImages();
 											foreach ($images as $image) : ?>
 											<?php
-												if ($_SESSION['id_user'] == $image['id_user']) : {
+												if (isset($_SESSION['logged']) && ($_SESSION['id_user'] == $image['id_user'])) : {
 														$imageName = $image['image_name']; ?>
 											<img class="image is-128x128 mx-3 is-clickable postedImageImg"
 												src=" ../public/uploads/<?php echo $imageName; ?>"
