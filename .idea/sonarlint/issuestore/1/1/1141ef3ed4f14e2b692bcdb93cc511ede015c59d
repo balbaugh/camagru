@@ -1,9 +1,0 @@
-
-Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8¿Á§ûË0
-ephp:S103N"KSplit this 123 characters long line (which is greater than 120 authorized).(”ı¿8ÙÁ§ûË0
-fphp:S103\"KSplit this 137 characters long line (which is greater than 120 authorized).(º¢ôè8ÿ®ûßÉ0
-:php:S113"'Add a new line at the end of this file.8ÚÁ§ûË0
-j	php:S1192y"IDefine a constant instead of duplicating this literal ":id_user" 9 times.(¯æ»Šüÿÿÿÿ8ÚÁ§ûË0
-f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
-r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìşŒÿÿÿÿÿÿ8Ì•ı¶É0
-r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(±²ßøÿÿÿÿ8ÛÁ§ûË0

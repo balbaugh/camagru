@@ -1,5 +1,0 @@
-
-kphp:S100"RRename function "check_token" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(×ÔðŒþÿÿÿÿ
-sphp:S117"ZRename this parameter "$verify_token" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(×ÔðŒþÿÿÿÿ
-f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
-r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìþŒÿÿÿÿÿÿ8­çüßÅ0

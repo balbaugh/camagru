@@ -1,8 +1,0 @@
-
-dphp:S103("KSplit this 155 characters long line (which is greater than 120 authorized).(·›ù¨øÿÿÿÿ
-dphp:S103Y"KSplit this 136 characters long line (which is greater than 120 authorized).(Æ…á÷úÿÿÿÿ
-dphp:S103\"KSplit this 137 characters long line (which is greater than 120 authorized).(Æ…á÷úÿÿÿÿ
-Q	php:S17938"<Replace this "else if" keyword sequence by "elseif" keyword.(ÅñÌ
-8php:S125["Remove this commented out code.(ýËÕóûÿÿÿÿ
-f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
-k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìþŒÿÿÿÿÿÿ

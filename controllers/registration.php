@@ -87,8 +87,8 @@ if (isset($_POST['submit_registration'])) {
 			$body .= '<p>Thank you!</p> </br>';
 			$body .= '<p>Camagru Team</p>';
 
-			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
+			$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+				'Reply-To: camagru@hive.fi' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .

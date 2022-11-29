@@ -1,12 +1,0 @@
-
-Xphp:S105"EReplace all tab characters in this file by sequences of white-spaces.8ğ´§ûË0
-dphp:S103"KSplit this 132 characters long line (which is greater than 120 authorized).(«á÷¾ıÿÿÿÿ
-kphp:S103?"KSplit this 135 characters long line (which is greater than 120 authorized).(ŸˆÏˆüÿÿÿÿ8œ®÷ûË0
-:php:S113"'Add a new line at the end of this file.8´¶§ûË0
-N	php:S1172&"2Remove the unused function parameter "$emailPost".(ğÜ ‚8®÷ûË0
-S	php:S1172Q"2Remove the unused function parameter "$emailPost".( ÿù±úÿÿÿÿ8®÷ûË0
-S	php:S1172Q"2Remove the unused function parameter "$tokenPost".( ÿù±úÿÿÿÿ8®÷ûË0
-V	php:S1172Q"5Remove the unused function parameter "$passwordPost".( ÿù±úÿÿÿÿ8Õ³úûË0
-f	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(¿Üåç
-k	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(ìşŒÿÿÿÿÿÿ
-r	php:S4833"QReplace "include_once" with namespace import mechanism through the "use" keyword.(±²ßøÿÿÿÿ8º¶§ûË0

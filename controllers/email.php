@@ -41,8 +41,8 @@ function notifyComment($id_image, $username, $comment)
 				$body .= '</br>';
 				$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
 
-				$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-					'Reply-To: balbaugh@outlook.com' . "\r\n" .
+				$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+					'Reply-To: camagru@hive.fi' . "\r\n" .
 					'Date: ' . date("r") . "\r\n" .
 					'MIME-Version: 1.0' . "\r\n" .
 					'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -87,8 +87,8 @@ function notifyLike($id_image, $username)
 				$body .= '</br>';
 				$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
 
-				$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-					'Reply-To: balbaugh@outlook.com' . "\r\n" .
+				$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+					'Reply-To: camagru@hive.fi' . "\r\n" .
 					'Date: ' . date("r") . "\r\n" .
 					'MIME-Version: 1.0' . "\r\n" .
 					'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -126,8 +126,8 @@ function notifyUsername($newUsername)
 			$body .= '</br>';
 			$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
 
-			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
+			$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+				'Reply-To: camagru@hive.fi' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -164,8 +164,8 @@ function notifyNotifications($id_user)
 			$body .= '</br>';
 			$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
 
-			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
+			$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+				'Reply-To: camagru@hive.fi' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -204,8 +204,8 @@ function notifyPassword($id_user)
 			$body .= '</br>';
 			$body .= "Please <a href=$urlSettings>CLICK HERE</a> if you would like to change your notification preferences. </br>";
 
-			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
+			$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+				'Reply-To: camagru@hive.fi' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -242,8 +242,8 @@ function notifyDelete($id_user)
 			$body .= '</br>';
 			$body .= "<a href=$urlRegister>CLICK HERE</a> to create a new account.</br>";
 
-			$headers = 'From: camagru <balbaugh@outlook.com>' . "\r\n" .
-				'Reply-To: balbaugh@outlook.com' . "\r\n" .
+			$headers = 'From: camagru <camagru@hive.fi>' . "\r\n" .
+				'Reply-To: camagru@hive.fi' . "\r\n" .
 				'Date: ' . date("r") . "\r\n" .
 				'MIME-Version: 1.0' . "\r\n" .
 				'Content-type: text/html; charset=ISO-8859-1' . "\r\n" .
@@ -294,9 +294,3 @@ function notifyReset($email, $token)
 		echo "Error: " . $e->getMessage();
 	}
 }
-
-/*
-function notifyEmail()
-{
-}
- */
