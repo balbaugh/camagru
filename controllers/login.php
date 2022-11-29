@@ -11,6 +11,13 @@ include_once '../controllers/security.php';
 date_default_timezone_set('Europe/Helsinki');
 
 
+/*
+1. The session_status() function checks if the session is started or not.
+2. The PHP_SESSION_NONE is a constant which is declared in the PHP core files.
+3. The session_start() function starts the session.
+4. The session_regenerate_id() function regenerates the session ID. This will prevent session hijacking.
+5. The true parameter is used to indicate that the existing session should be destroyed.
+*/
 
 if (isset($_POST['submit_login'])) {
 	$email = trim($_POST['email']);

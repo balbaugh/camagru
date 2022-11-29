@@ -8,8 +8,8 @@
 	<script src="../public/scripts/navbar.js"></script>
 	<script src="../public/scripts/notifications.js"></script>
 	<link rel="stylesheet" href="../public/styles/bulma.css">
-	<title>camagru</title>
 	<link rel="shortcut icon" type="image/jpg" href="../public/images/whiteFavicon.png" />
+	<title>camagru</title>
 </head>
 
 <body class="main">
@@ -19,11 +19,12 @@
 			<a href="" class="navbar-item">
 				<img src="../public/logo/camagruText.png" alt="">
 			</a>
-			<div class="navbar-burger burger" data-target="navMenu">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
+			<a role="button" class="navbar-burger burger" id="burger" data-target="navMenu" aria-label="menu"
+				aria-expanded="false" onClick="toggleNavbar()">
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</a>
 		</div>
 
 		<div id="navMenu" class="navbar-menu">

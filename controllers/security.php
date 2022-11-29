@@ -20,7 +20,7 @@ function sanitize($input)
 }
 
 
-// double validation for user entries
+// validation for user entries
 function validateData($data)
 {
 	$data = trim($data);
@@ -47,7 +47,7 @@ function validatePassword($password)
 
 
 
-// checks the input of user activation code to check if it is numeric or not
+// checks if the input of user is numeric or not
 function numberCheck($str)
 {
 	$i = 0;
@@ -60,7 +60,7 @@ function numberCheck($str)
 	return (0);
 }
 
-
+/* First we unset the $_SESSION variable. Then we check if the session cookie is set and if it is, we proceed to destroy it (by setting the expiration date to one day before the current date). Finally we destroy the session itself. */
 function destroySession()
 {
 	if (!isset($_SESSION['logged'])) {

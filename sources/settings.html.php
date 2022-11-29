@@ -23,7 +23,7 @@ include_once '../includes/headNav.html.php';
 						<figure class="image level is-mobile is-square">
 							<img src="../public/logo/camagruStealie.png" alt="StealieLogo">
 						</figure>
-						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
+						<form class="block" id="settingsEmail" action="../controllers/settings.php" method="post">
 							<label for="email" class="label">Change Email</label>
 							<div class="field has-addons">
 								<div class="control is-expanded">
@@ -37,7 +37,7 @@ include_once '../includes/headNav.html.php';
 								</p>
 							</div>
 						</form>
-						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
+						<form class="block" id="settingsUsername" action="../controllers/settings.php" method="post">
 							<label for="username" class="label">Change Username</label>
 							<div class="field has-addons">
 								<div class="control is-expanded">
@@ -52,7 +52,7 @@ include_once '../includes/headNav.html.php';
 							</div>
 						</form>
 
-						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
+						<form class="block" id="settingsPasswd" action="../controllers/settings.php" method="post">
 							<label for="password" class="label">Change Password</label>
 							<div class="control is-expanded">
 								<input class="input" type="password" name="newPassword" id="newPassword"
@@ -71,7 +71,7 @@ include_once '../includes/headNav.html.php';
 								</p>
 							</div>
 						</form>
-						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
+						<form class="block" id="settingsNotif" action="../controllers/settings.php" method="post">
 							<label for="notifications" class="label">Email Notifications</label>
 							<div class="field has-addons">
 								<div class="select is-fullwidth">
@@ -89,7 +89,7 @@ include_once '../includes/headNav.html.php';
 						</form>
 					</div>
 					<div class="box box-settings is-shadowless has-text-centered">
-						<form class="block" id="settingsForm" action="../controllers/settings.php" method="post">
+						<form class="block" id="settingsDelete" action="../controllers/settings.php" method="post">
 							<div class="field">
 								<div class="control">
 									<button class="button is-danger is-fullwidth" type="submit" name="deleteAccount"

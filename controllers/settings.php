@@ -28,7 +28,7 @@ if (isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
 	newPassword($_POST['newPassword']);
 } elseif (isset($_POST['newNotifications']) && ($_POST['newNotifications'] == '1' || $_POST['newNotifications'] == '0')) {
 	newNotifications($_POST['newNotifications']);
-} elseif (isset($_POST['deleteAccount']) && !empty($_POST['deleteAccount'])) {
+} elseif (isset($_POST['deleteAccount'])) {
 	deleteAccount();
 } else {
 	header('Location: ../sources/settings.html.php?error=invalid action!');
@@ -203,6 +203,7 @@ function newNotifications($newNotifications)
 function deleteAccount()
 {
 	if (isset($_SESSION['logged'])) {
+		deleteUploads($_SESSION['id_user']);
 		try {
 			$conn = dbConnect();
 
@@ -233,5 +234,23 @@ function deleteAccount()
 		}
 	} else {
 		header('Location: ../sources/settings.html.php?error=You are not logged in!');
+	}
+}
+
+
+function deleteUploads($id_user)
+{
+	try {
+		$conn = dbConnect();
+		$stmt = $conn->prepare("SELECT image_name FROM images WHERE id_user = :id_user");
+		$stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+		$stmt->execute();
+		$images = $stmt->fetchAll();
+		foreach ($images as $image) {
+			unlink("../public/uploads/" . $image['image_name']);
+		}
+	} catch (PDOException $e) {
+		echo $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine();
+		exit();
 	}
 }

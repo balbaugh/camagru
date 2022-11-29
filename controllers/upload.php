@@ -14,7 +14,22 @@ $date = date('Y-m-d H:i:s');
 
 $date_added = $date;
 
-
+/*
+1. I check if the session is set and not empty.
+2. I check if the session hash is equal to the hash created from the ip address and the user agent of the client.
+3. If the check is passed, I create a new session hash.
+4. I create variables from the session variables.
+5. Then I check if the image is set.
+6. I decode the image.
+7. I check if the first sticker is set.
+8. I get the content of the first sticker.
+9. I decode the content of the first sticker.
+10. I use the imagecopy function to copy the first sticker on the image.
+11. I do the same thing with the second sticker.
+12. I save the image in the given directory.
+13. I destroy the stickers and the image.
+14. I call the insertImage function to insert the image in the database.
+*/
 
 if (isset($_SESSION['check']) && !empty($_SESSION['check'])) {
 	if (($_SESSION['check']) != hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT'])) {
