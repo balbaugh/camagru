@@ -2,4 +2,4 @@
 
 # Camagru
 
-Hypertube is the last project of Hive Helsinki's web branch. It's a streaming web app similar to Netflix, but it downloads and caches bittorrents to the server and then streams them to the user.
+Camagru is an instagram-like web app that has webcam integration and basic image editing capabilities. You can capture an image with a webcam or upload an image and add stickers on top of the image. Stickers can be positioned freely with the mouse, and the sticker's size and opacity can be modified. Images can be saved as drafts or posted to be displayed in the image feed to other users. The feed features infinite pagination and the posts have like and comment capabilities. User settings can be modified in the control panel.
