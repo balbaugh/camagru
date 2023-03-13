@@ -86,7 +86,7 @@ tls_random_source=dev:/dev/urandom
 ========================
 /etc/postfix/sasl_passwd
 ========================
-[smtp.office365.com]:587 balbaugh@outlook.com:Sage0-Unlatch-Overrun
+[smtp.office365.com]:587 
 
 THEN ::
 sudo chown -R root: /etc/postfix/
