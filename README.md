@@ -21,12 +21,6 @@ Insert gif or link to demo
 
 ## Features
 
-- OAuth Registration and Login
-- Torrent Search Download, and Stream
-- Translation i18n [Finnish, English]
-- YTS API [Torrents]
-- TMDB API [Poster Images]
-- OpenSubtitles API [Subtitles]
 - Credentials Login and Signup
 - Account Email Verification and Password Reset
 
