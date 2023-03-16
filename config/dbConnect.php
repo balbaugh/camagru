@@ -3,9 +3,11 @@
 
 function dbConnect()
 {
-	$DB_DSN = 'mysql:host=localhost;dbname=camagru;';
+    $DB_NAME = 'camagru';
+//	$DB_DSN = 'mysql:host=localhost;dbname=camagru;';
+    $DB_DSN = 'mysql:host=mysql-server;dbname='.$DB_NAME.';charset=utf8mb4';
 	$DB_USER = 'root';
-	$DB_PASSWORD = 'pizzza';
+	$DB_PASSWORD = 'password';
 	$conn = "";
 
 	try {

@@ -62,8 +62,8 @@ function newEmail($newEmail)
 
 				$stmt->execute();
 
-				$url = "http://localhost:8080/camagru/sources/verification.html.php";
-				$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+				$url = "http://localhost:8080/sources/verification.html.php";
+				$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 				$to = $newEmail;
 				$subject = "Camagru :: New Email Verification";

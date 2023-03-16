@@ -7,11 +7,6 @@ let saveImage = document.getElementById('save');
 let clear = document.getElementById('clear');
 let stickersDiv = document.getElementById('sticker');
 
-
-
-
-
-
 // EVENT LISTENERS
 
 start.addEventListener('click', async function () {
@@ -77,14 +72,13 @@ saveImage.addEventListener("click", function () {
 		window.location.reload();
 	}
 
-	request.open("POST", "/camagru/controllers/camera.php", true);
+	request.open("POST", "/controllers/camera.php", true);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 	request.send("img=" + encodeURIComponent(data) + "&sticker1=" + sticker1src + "&sticker2=" + sticker2src);
 
 
 });
-
 
 //Clear Webcam Image
 document.getElementById('clear').addEventListener('click', function () {

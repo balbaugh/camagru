@@ -75,8 +75,8 @@ if (isset($_POST['submit_registration'])) {
 				exit();
 			}
 
-			$url = "http://localhost:8080/camagru/sources/verification.html.php";
-			$verifyUrl = "http://localhost:8080/camagru/controllers/verification.php?email=" . $email . "&token=" . $verify_token;
+			$url = "http://localhost:8080/sources/verification.html.php";
+			$verifyUrl = "http://localhost:8080/controllers/verification.php?email=" . $email . "&token=" . $verify_token;
 			$to = $email;
 			$subject = "Camagru Verification Code";
 			$body = '<p>Thank you for registering with camagru!</p>.</br>';

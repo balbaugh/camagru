@@ -25,8 +25,8 @@ function notifyComment($id_image, $username, $comment)
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			if ($result && $result['notifications'] == 1) {
 
-				$urlLogin = "http://localhost:8080/camagru/sources/login.html.php";
-				$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+				$urlLogin = "http://localhost:8080/sources/login.html.php";
+				$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 				$to = $result['email'];
 				$subject = "Camagru - Comment Notification";
@@ -72,8 +72,8 @@ function notifyLike($id_image, $username)
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			if ($result && $result['notifications'] == 1) {
 
-				$urlLogin = "http://localhost:8080/camagru/sources/login.html.php";
-				$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+				$urlLogin = "http://localhost:8080/sources/login.html.php";
+				$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 				$to = $result['email'];
 				$subject = "Camagru - Like Notification";
@@ -112,7 +112,7 @@ function notifyUsername($newUsername)
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result && $result['notifications'] == 1) {
-			$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+			$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 			$to = $result['email'];
 			$subject = "Camagru - New Username Notification";
@@ -151,7 +151,7 @@ function notifyNotifications($id_user)
 
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result) {
-			$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+			$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 			$to = $result['email'];
 			$subject = "Camagru - Notification Preferences Notification";
@@ -189,8 +189,8 @@ function notifyPassword($id_user)
 
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result && $result['notifications'] == 1) {
-			$urlLogin = "http://localhost:8080/camagru/sources/login.html.php";
-			$urlSettings = "http://localhost:8080/camagru/sources/settings.html.php";
+			$urlLogin = "http://localhost:8080/sources/login.html.php";
+			$urlSettings = "http://localhost:8080/sources/settings.html.php";
 
 			$to = $result['email'];
 			$subject = "Camagru - New Password Notification";
@@ -229,7 +229,7 @@ function notifyDelete($id_user)
 
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result && $result['notifications'] == 1) {
-			$urlRegister = "http://localhost:8080/camagru/sources/register.html.php";
+			$urlRegister = "http://localhost:8080/sources/register.html.php";
 
 
 			$to = $result['email'];
@@ -267,7 +267,7 @@ function notifyReset($email, $token)
 		$stmt->execute();
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($result) {
-			$urlReset = "http://localhost:8080/camagru/sources/reset.html.php";
+			$urlReset = "http://localhost:8080/sources/reset.html.php";
 
 			$to = $result['email'];
 			$subject = "Camagru - Password Reset Notification";
