@@ -35,19 +35,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start
+  docker-compose up --build
 ```
 
 
@@ -56,10 +44,6 @@ Start the server
 #### Question 1
 
 Answer 1
-
-#### Question 2
-
-Answer 2
 
 
 ## Authors
