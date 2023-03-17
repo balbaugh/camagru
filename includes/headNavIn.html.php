@@ -7,7 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../public/scripts/navbar.js"></script>
 	<script src="../public/scripts/notifications.js"></script>
-	<link rel="stylesheet" href="../public/styles/bulma.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../public/styles/bulma.css">
 	<link rel="shortcut icon" type="image/jpg" href="../public/images/whiteFavicon.png" />
 	<title>camagru</title>
 </head>

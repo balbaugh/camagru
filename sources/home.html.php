@@ -187,11 +187,10 @@ if (isset($_GET['page']) && ($_GET['page'] > $totalPages)) {
 							</label>
 						</div>
 						<p class="control">
-							<button data="<?php echo $id_image; ?>" class="comment-icon button is-info" id="commentBtn"
-								type="submit">
-								Post
-							</button>
-						</p>
+                            <button data="<?php echo $id_image; ?>" class="comment-icon button is-info" id="commentBtn" type="button">
+                                Post
+                            </button>
+                        </p>
 					</form>
 					<?php endif; ?>
 				</div>

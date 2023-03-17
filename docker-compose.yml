@@ -7,10 +7,11 @@ services:
     restart: always
     volumes:
       - "./:/var/www/html/"
+      - "./public/uploads:/var/www/html/public/uploads"
     ports:
       - "8080:80"
   mysql-server:
-    image: mysql:8.0.19
+    image: mysql:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -19,12 +20,13 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.0.1
+    platform: linux/x86_64
     restart: always
     environment:
       PMA_HOST: mysql-server
       PMA_USER: root
       PMA_PASSWORD: password
     ports:
-      - "5000:80"
+      - "8000:80"
 volumes:
   mysql-data:

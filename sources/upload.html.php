@@ -37,7 +37,7 @@ include_once '../controllers/gallery.php';
 
 						<div class="tabs is-centered">
 							<ul>
-								<li><label class="button is-same2 is-focused mb-2 mr-1"
+								<li><label class="button is-same2 mb-2 mr-1"
 										for="camera"><a><strong>Upload</strong></a></label>
 								</li>
 
@@ -144,10 +144,10 @@ include_once '../controllers/gallery.php';
 
 						<div class="tabs is-centered">
 							<ul>
-								<li><label class="button is-same2 is-focused mb-2 mr-1" for="library"><a><strong>Photo
+								<li><label class="button is-same2 mb-2 mr-1" for="library"><a><strong>Photo
 												Library</strong></a></label>
 								</li>
-								<li><label class="button is-same2 is-focused mb-2 ml-1"
+								<li><label class="button is-same2 mb-2 ml-1"
 										for="stickers"><a><strong>Sticker
 												Preview</strong></a></label>
 								</li>

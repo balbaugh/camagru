@@ -148,6 +148,8 @@ screen and (-ms-high-contrast: none) {
 
 .button.is-same2 {
 	min-width: 185px;
+	text-decoration: none;
+
 }
 
 /* Canvas */
@@ -7833,9 +7835,9 @@ label.panel-block:hover {
 
 .tabs a {
 	align-items: center;
-	border-bottom-color: #dbdbdb;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+	/*border-bottom-color: #dbdbdb;*/
+	/*border-bottom-style: solid;*/
+	/*border-bottom-width: 1px;*/
 	color: #4a4a4a;
 	display: flex;
 	justify-content: center;
@@ -7845,7 +7847,7 @@ label.panel-block:hover {
 }
 
 .tabs a:hover {
-	border-bottom-color: #363636;
+	/*border-bottom-color: #363636;*/
 	color: #363636;
 }
 
@@ -7854,15 +7856,15 @@ label.panel-block:hover {
 }
 
 .tabs li.is-active a {
-	border-bottom-color: #485fc7;
+	/*border-bottom-color: #485fc7;*/
 	color: #485fc7;
 }
 
 .tabs ul {
 	align-items: center;
-	border-bottom-color: #dbdbdb;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+	/*border-bottom-color: #dbdbdb;*/
+	/*border-bottom-style: solid;*/
+	/*border-bottom-width: 1px;*/
 	display: flex;
 	flex-grow: 1;
 	flex-shrink: 0;
