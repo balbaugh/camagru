@@ -8,15 +8,6 @@ Camagru is an instagram-like web application that allows users to create and sha
 ## 
 ![Demo](https://github.com/balbaugh/camagru/raw/main/demo.gif)
 
-## Tech Stack
-**Frontend:** Javascript, Bulma CSS
-
-**Backend:** PHP
-
-**Database:** MySQL
-
-**Dev Tools:** MAMP, Data Grip, PHP Admin, PHP Storm, VS Code
-
 
 ## Features
 
@@ -26,6 +17,16 @@ Camagru is an instagram-like web application that allows users to create and sha
 - Save and share photo with other users
 - View and comment on photos created by others
 - Responsive design for desktop and mobile devices
+
+
+## Tech Stack
+**Frontend:** Javascript, Bulma CSS
+
+**Backend:** PHP
+
+**Database:** MySQL
+
+**Dev Tools:** MAMP, Data Grip, PHP Admin, PHP Storm, VS Code
 
 
 ## Authors
