@@ -6,7 +6,8 @@
 
 Camagru is an Instagram like web application and the first project in the Hive Helsinki / 42 School web branch. Camagru allows users to create and share photos using their webcam. Users can snap a picture with their webcam, overlay a sticker on the image, and then share their creation with others.
 
-# [Live Demo](https://camagru.balbaugh.com){: target="_blank" rel="noopener"}
+# [Live Demo](https://camagru.balbaugh.com){: .btn .btn-blue target="_blank" }
+
 
 ![Demo](https://github.com/balbaugh/camagru/raw/main/demo.gif)
 
