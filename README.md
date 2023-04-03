@@ -8,7 +8,6 @@ Camagru is an Instagram like web application and the first project in the Hive H
 
 # [Live Demo](https://camagru.balbaugh.com)
 
-## 
 ![Demo](https://github.com/balbaugh/camagru/raw/main/demo.gif)
 
 
