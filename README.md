@@ -1,5 +1,6 @@
 
-![Logo](https://github.com/balbaugh/camagru/raw/main/public/logo/camagruTextAlt.png)
+[![Logo](https://github.com/balbaugh/camagru/raw/main/public/logo/camagruTextAlt.png)](https://camagru.balbaugh.com)
+
 
 # Camagru
 
